@@ -3,11 +3,9 @@ def main():
     n = input()
     l1 = input().split()
     l2 = input().split()
-    for i in range(2 * int(n)):
-        if i % 2 == 0:
-            res += l1[int(i / 2)] + " "
-        else:
-            res += l2[int((i - 1) / 2)] + " "
+    for i in range(int(n)):
+        res += l1[i] + " "
+        res += l2[i] + " "
     print(res)
 
 
