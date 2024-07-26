@@ -7,7 +7,7 @@ def main():
         for i in range(n - 1):
             for j in range(i + 1, n):
                 a, b = l[i], l[j]
-                if a + b == x:
+                if a + b == k:
                     res = (a, b)
                     break
         print(*res if res else (res,), file=of)
