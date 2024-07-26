@@ -2,7 +2,7 @@ def main():
     with open("input.txt") as inp, open("output.txt", "w") as of:
         n = int(inp.readline())
         l = list(map(int, inp.readline().split()))
-        x = int(inp.readline())
+        k = int(inp.readline())
         res = None
         for i in range(n - 1):
             for j in range(i + 1, n):
