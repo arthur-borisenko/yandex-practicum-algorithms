@@ -3,9 +3,9 @@ def calc_func(a, x, b, c):
 
 
 def main():
-    with open("input.txt") as inp, open("output.txt", "w") as of:
-        vals = list(map(int, inp.readline().split()))
-        print(calc_func(vals[0], vals[1], vals[2], vals[3]), file=of)
+    with open("input.txt") as input_file, open("output.txt", "w") as output_file:
+        vals = list(map(int, input_file.readline().split()))
+        print(calc_func(vals[0], vals[1], vals[2], vals[3]), file=output_file)
 
 
 if __name__ == "__main__":
