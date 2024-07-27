@@ -1,12 +1,12 @@
 def main():
-    with open("input.txt") as inp, open("output.txt", "w") as of:
-        n = int(inp.readline())
-        m = int(inp.readline())
+    with open("input.txt") as input_file, open("output.txt", "w") as output_file:
+        n = int(input_file.readline())
+        m = int(input_file.readline())
         matrix = []
         for i in range(n):
-            matrix.append(list(map(int, inp.readline().split())))
-        x = int(inp.readline())
-        y = int(inp.readline())
+            matrix.append(list(map(int, input_file.readline().split())))
+        x = int(input_file.readline())
+        y = int(input_file.readline())
         result = []
         if x > 0:
             result.append(matrix[x - 1][y])
@@ -16,7 +16,7 @@ def main():
             result.append(matrix[x][y - 1])
         if y < m - 1:
             result.append(matrix[x][y + 1])
-        print(*sorted(result), file=of)
+        print(*sorted(result), file=output_file)
 
 
 if __name__ == "__main__":
