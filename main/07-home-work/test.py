@@ -7,25 +7,25 @@ from utils import testUtil
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """A man, a plan, a canal: Panama
+            """5
 """,
             task.main,
         )
         self.assertEqual(
             value,
-            """True
+            """101
 """,
         )
 
     def test_case2(self):
         value = testUtil.file_test(
-            """zo
+            """14
             """,
             task.main,
         )
         self.assertEqual(
             value,
-            """False
+            """1110
 """,
         )
 
