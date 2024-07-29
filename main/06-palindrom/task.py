@@ -23,7 +23,8 @@ def is_palindrome(phrase: str, ignore_case=True, only_letters_digits=True):
     :param only_letters_digits:
     :param phrase: phrase to check
     :param ignore_case: if true(default) - ignore case
-
+    :param only_letters_digits: if true(default) - only letters and digits are checked
+    :return: True if string is palindrome
     """
     phrase = phrase.lower() if ignore_case else phrase
     phrase = (
