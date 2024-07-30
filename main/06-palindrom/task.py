@@ -8,12 +8,7 @@ def remove_all_except_letters_and_digits(string: str):
     :param string: string to parsse
     :return: string with only letters and digits
     """
-    res = ""
-    for symbol in string:
-        is_letter_or_digit = r"[a-zA-Z0-9]"
-        if re.match(is_letter_or_digit, symbol):
-            res += symbol
-    return res
+    return "".join(map(lambda x: x if x.isalnum() else "", string))
 
 
 def is_palindrome(phrase: str, ignore_case=True, only_letters_digits=True):
