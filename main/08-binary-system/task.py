@@ -11,10 +11,10 @@ class Binary:
     """Base binary number.
     Currently supported:
     create - O(log(n))
-    str - O(1)
+    str - O(n)
     int-O(1)
     bool - O(1)
-    equal - O(1)
+    equal - O(?)
     add - O(n)"""
 
     @staticmethod
@@ -40,9 +40,9 @@ class Binary:
     @staticmethod
     def parseint(value):
         """convert base 10 integer to binary ARRAY"""
-        sign = False
+        sign = 1
         if value < 0:
-            sign = True
+            sign = 0
             value = -value
         current_power = 0
         while 2**current_power <= value:
@@ -53,13 +53,13 @@ class Binary:
             "B",
             [0] * (current_power + 1),
         )
+        current_power = 0
         while 2**current_power <= value:
             if value % 2 ** (current_power + 1) != 0:
                 value -= 2**current_power
-                res[current_power + 1] = value
+                res[-current_power - 1] = 1
             current_power += 1
-        res[0] = sign
-        return res
+        return res, sign
 
     def set_value(self, sign, value):
         self._value = arr.array("B", value)
