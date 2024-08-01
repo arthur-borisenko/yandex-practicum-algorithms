@@ -13,18 +13,18 @@ def is_simple(n: int):
     return True
 
 
-def checker(test_case, i, o):
-    res = 1
-    for val in o.split():
-        if not is_simple(int(val)):
-            raise AssertionError("factorization must return list of simple numbers")
-        res *= int(val)
-    test_case.assertEqual(i, res)
+def checker(test_case, i: str, o):
+    if i.splitlines()[0].count(o.strip()) != i.splitlines()[1].count(o.strip()):
+        test_case.assertTrue(True, "OK")
+    else:
+        test_case.assertTrue(False, f"Output {o.strip()} is incorrect")
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
-        inp = 464458159
+        inp = """abcd
+abcde
+"""
         value = testUtil.file_test(
             str(inp),
             task.main,
@@ -32,7 +32,9 @@ class TestCase(unittest.TestCase):
         checker(self, inp, value)
 
     def test_case2(self):
-        inp = 13
+        inp = """go
+ogg
+"""
         value = testUtil.file_test(
             str(inp),
             task.main,
@@ -40,7 +42,9 @@ class TestCase(unittest.TestCase):
         checker(self, inp, value)
 
     def test_case3(self):
-        inp = 8
+        inp = """xtkpx
+xkctpx
+"""
         value = testUtil.file_test(
             str(inp),
             task.main,
