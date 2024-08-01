@@ -16,17 +16,18 @@ def main():
     :return: Void
     """
     with open("input.txt") as inp, open("output.txt", "w") as outp:
-        n = int(inp.readline())
-        res = array.array(
-            "l"
-        )  # using arrayList because we don't know output length, not using list because saving only primitives
-        for i in range(2, int(math.sqrt(n)) + 1):
-            while n % i == 0:
-                res.append(i)
-                n = int(n / i)
-        if n > 1:
-            res.append(n)
-        print(" ".join(map(str, array_iterator(res))), file=outp)
+        line1 = inp.readline()
+        line2 = inp.readline()
+        letters1 = {}
+        letters2 = {}
+        for i in range(len(line2)):
+            if i < len(line1):
+                letters1[line1[i]] = letters1.get(line1[i], 0) + 1
+            letters2[line2[i]] = letters2.get(line2[i], 0) + 1
+        for letter in letters2:
+            if letters2[letter] != letters1.get(letter, 0):
+                print(letter, file=outp)
+                break
 
 
 if __name__ == "__main__":
