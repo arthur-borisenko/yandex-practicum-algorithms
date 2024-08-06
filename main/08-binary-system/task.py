@@ -20,22 +20,87 @@ class Binary:
     @staticmethod
     def _addBinaryDigits(a, b):
         """
-
-        :param a:
-        :param b:
-        :return:
+        add two binary digits:
+        a + b = xy
+        Truth table:
+        1 + 1 -> 1, 0
+        1 + 0 -> 0, 1
+        0 + 1 -> 0, 1
+        0 + 0 -> 0, 0
+        :param a: first digit
+        :param b: second digit
+        :return: tuple(x, y)
         """
-        if a and b:
-            return True, False
-        if ((not a) and b) or ((not b) and a):
-            return False, True
-        else:
-            return False, False
+        if a == 1 and b == 1:
+            return 1, 0
+        if a == 0 and b == 1:
+            return 0, 1
+        if a == 1 and b == 0:
+            return 0, 1
+        if a == 0 and b == 0:
+            return 0, 0
 
     def _addBinaryDigitsAnd2stCharge(self, a, b, cin):
+        """
+
+
+        write doc exmpaining what is going on. write simple example
+
+        lets assume we have task to add 2 binary nums:
+
+        Task:
+        111
+        111
+
+        Solution:
+        1 step:
+        111
+        111
+        _
+        **0 (remember 1)
+
+        2 step:
+        111
+        111
+        _
+        *0 (2nd remember 1) 0 (1st remember 1)
+
+        then
+        111
+        111
+        _
+        *1 (2nd remember 0) 0
+
+        3 step:
+        111
+        111
+        _
+        0 (3rd remember 1) 1 (2nd remember 0) 0
+
+        then
+        111
+        111
+        _
+        1 (3rd remember 0) 1 1 0
+
+        Result
+        1110
+
+        all their steps will look like 2nd step
+
+        current method implements both substeps of 2nd step (a + b + cin) = xy
+
+        :param a: first digit
+        :param b: second digit
+        :param cin: charge from previous sum
+        :return: tuple(x, y)
+        """
         ab2nd, ab1st = self._addBinaryDigits(a, b)
         abc2nd, abc1st = self._addBinaryDigits(ab1st, cin)
-        return abc2nd or ab2nd, abc1st
+        if abc2nd == 1 or ab2nd == 1:
+            return 1, abc1st
+        else:
+            return 0, abc1st
 
     @staticmethod
     def parseint(value):
@@ -78,17 +143,16 @@ class Binary:
         else:
             longest_num = self._value
             shortest_num = other._value
-        _next = False
+        _next = 0
         res = arr.array("B", [0] * (len(longest_num) + 1))
         for i, digit_1 in enumerate(reversed(longest_num)):
             digit_2 = 0
             if i < len(shortest_num):
                 digit_2 = shortest_num[-i - 1]
-            summ = self._addBinaryDigitsAnd2stCharge(digit_1 == 1, digit_2 == 1, _next)
+            summ = self._addBinaryDigitsAnd2stCharge(digit_1, digit_2, _next)
             _next, val = summ
-            res[i] = 1 if val else 0
-        if _next:
-            res[-1] = 1
+            res[i] = val
+        res[-1] = _next
         sign = self._sign == other._sign
         num = Binary()
         num.set_value(1 if sign else 0, tuple(reversed(res)))
