@@ -1,3 +1,5 @@
+import copy
+
 import task
 import unittest
 
@@ -51,12 +53,13 @@ class TestCase(unittest.TestCase):
         )
 
     def test_time_and_big_values(self):
-        time_limit = 1
-        import time
-
-        inp_matrix = [[998] * 1000] * 1000
+        time_limit = float("inf")
+        inp_matrix = []
+        exc_matrix = []
+        for i in range(1000):
+            inp_matrix.append([998] * 1000)
+            exc_matrix.append([998] * 1000)
         inp_matrix[0][1] = 1000
-        exc_matrix = [[998] * 1000] * 1000
         exc_matrix[1][0] = 1000
         inp_matrix_str = "\n".join(map(lambda x: " ".join(map(str, x)), inp_matrix))
         exc_matrix_str = "\n".join(map(lambda x: " ".join(map(str, x)), exc_matrix))
@@ -64,12 +67,11 @@ class TestCase(unittest.TestCase):
 {10**3}
 {inp_matrix_str}"""
         output = exc_matrix_str
-        start_time = time.process_time()
-        value = testUtil.file_test(
+
+        value, sol_time = testUtil.time_file_test(
             input_data,
             task.main,
         )
-        sol_time = time.process_time() - start_time
         print(
             f"solution time is {round(sol_time, 2)} seconds, limit is {time_limit} seconds"
         )

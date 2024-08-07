@@ -1,3 +1,4 @@
+import time
 from copy import deepcopy
 
 
@@ -10,7 +11,7 @@ class MatrixError(Exception):
 class Matrix:
     def _parse_string(self, string):
         matrix = []
-        for line in string.split("\n"):
+        for line in string.strip().split("\n"):
             matrix.append(line.split())
         return matrix
 
@@ -26,7 +27,7 @@ class Matrix:
             for j in range(len(self.matrix[i])):
                 res += str(self.matrix[i][j])
                 if j != len(self.matrix[i]) - 1:
-                    res += "\t"
+                    res += " "
             if i != len(self.matrix) - 1:
                 res += "\n"
         return res
@@ -48,9 +49,7 @@ class Matrix:
             new_matrix.append([])
             for j in range(obj.size()[0]):
                 new_matrix[i].append(None)
-        for i in range(len(obj.matrix)):
-            for j in range(len(obj.matrix[i])):
-                new_matrix[j][i] = obj.matrix[i][j]
+                new_matrix[i][j] = obj.matrix[j][i]
         return Matrix(new_matrix)
 
     def transpose(self):
@@ -77,4 +76,8 @@ def main():
         matrix_str = inp.read()
         matrix = Matrix(matrix_str)
         matrix.transpose()
-        print(matrix)
+        print(matrix, file=outp)
+
+
+if __name__ == "__main__":
+    main()
