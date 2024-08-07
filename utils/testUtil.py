@@ -37,6 +37,26 @@ def file_test(i, m):
     return result
 
 
+def special_file_test(i, m, *args, **kwargs):
+    if i:
+        if not os.path.exists("input.txt"):
+            open("input.txt", "x", encoding="utf-8").close()
+        input_file = open("input.txt", "w", encoding="utf-8")
+        try:
+            input_file.write(i)
+        finally:
+            input_file.close()
+    if not os.path.exists("output.txt"):
+        open("output.txt", "x", encoding="utf-8").close()
+    output_file = open("output.txt", "r", encoding="utf-8")
+    try:
+        res = m(*args, **kwargs)
+        result = output_file.read()
+    finally:
+        output_file.close()
+    return result, res
+
+
 def time_file_test(i, m):
     if not os.path.exists("input.txt"):
         open("input.txt", "x", encoding="utf-8").close()
