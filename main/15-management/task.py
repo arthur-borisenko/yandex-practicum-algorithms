@@ -73,7 +73,7 @@ class Matrix:
 
 def main():
     with open("input.txt") as inp, open("output.txt", "w") as outp:
-        i, j = inp.readline(),inp.readline()
+        i, j = inp.readline(), inp.readline()
         matrix_str = inp.read()
         matrix = Matrix(matrix_str)
         matrix.transpose()
