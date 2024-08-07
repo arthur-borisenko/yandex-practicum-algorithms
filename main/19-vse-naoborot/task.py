@@ -11,6 +11,7 @@ if LOCAL:
             self.next = next
             self.prev = prev
 
+
 # solution
 def solution(head):
     Node_class = head.__class__
@@ -212,6 +213,7 @@ def solution(head):
     l.tail = tail
     l.reverse()
     return l.head
+
 
 # From template
 def test():
