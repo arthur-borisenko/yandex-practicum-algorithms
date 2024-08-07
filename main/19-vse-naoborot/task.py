@@ -1,3 +1,4 @@
+# From template
 import os
 
 LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
@@ -10,7 +11,7 @@ if LOCAL:
             self.next = next
             self.prev = prev
 
-
+# solution
 def solution(head):
     Node_class = head.__class__
 
@@ -212,7 +213,7 @@ def solution(head):
     l.reverse()
     return l.head
 
-
+# From template
 def test():
     node3 = DoubleConnectedNode("node3")
     node2 = DoubleConnectedNode("node2")
