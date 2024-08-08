@@ -6,6 +6,10 @@ def get_distance(x1, x2):
 
 
 def solve(n, street):
+    """CPU - O(k * m),
+    k - number of non-0 elements
+    m - number of 0 elements
+    ram - O(n)"""
     res = arr("L", range(n))
     first_0 = None
     next_0 = None
