@@ -15,6 +15,8 @@ class RingArray:
         self._data[self._get_real_i(i)] = value
 
     def _get_real_i(self, i):
+        if i < 0:
+            i += 1
         while i < 0:
             i += len(self)
         if i < len(self):
@@ -48,7 +50,7 @@ class Queue:
     def peek(self):
         if len(self) == 0:
             raise IndexError("Attempted to get element of empty queue")
-        return self._data[-(self._tail + self._len) - 1]
+        return self._data[self._tail]
 
     def __bool__(self):
         return len(self) > 0
@@ -85,8 +87,9 @@ def main():
             except IndexError:
                 print(None, file=outp)
             else:
-                if res:
+                if res is not None:
                     print(res, file=outp)
+        pass  # 66 -41 96 0 42 44 -43 -37
 
 
 if __name__ == "__main__":
