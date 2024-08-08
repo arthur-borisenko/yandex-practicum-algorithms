@@ -9,19 +9,26 @@ class MatrixError(Exception):
 
 
 class Matrix:
-    def _parse_string(self, string):
+    @staticmethod
+    def _parse_matrix_str(matrix_str):
         matrix = []
-        for line in string.strip().split("\n"):
+        for line in matrix_str.strip().split("\n"):
             matrix.append(line.split())
         return matrix
 
     def __init__(self, matrix):
         if isinstance(matrix, str):
-            self.matrix = self._parse_string(matrix)
+            self.matrix = self._parse_matrix_str(matrix)
         else:
             self.matrix = deepcopy(matrix)
 
     def __str__(self):
+        """
+        CPU - O(n)
+        RAM - O(n)
+        n - matrix size
+        :return: string representation of matrix
+        """
         res = ""
         for i in range(len(self.matrix)):
             for j in range(len(self.matrix[i])):
@@ -32,18 +39,15 @@ class Matrix:
                 res += "\n"
         return res
 
-    def __add__(self, other):
-        if self.size() != other.size():
-            raise MatrixError(self, other)
-        else:
-            res = Matrix(self.matrix)
-            for i in range(len(res.matrix)):
-                for j in range(len(res.matrix[i])):
-                    res.matrix[i][j] += other.matrix[i][j]
-            return res
-
     @staticmethod
     def transposed(obj):
+        """
+        CPU - O(n)
+        RAM - O(n)
+        n - matrix size
+        :param obj:
+        :return: transposed copy of matrix
+        """
         new_matrix = []
         for i in range(obj.size()[1]):
             new_matrix.append([])
@@ -53,24 +57,32 @@ class Matrix:
         return Matrix(new_matrix)
 
     def transpose(self):
+        """
+        transpose current matrix
+        CPU - O(n)
+        RAM - O(n)
+        n - matrix size
+        :return:
+        """
         new_matrix = self.transposed(self)
         self.matrix = new_matrix.matrix
         return new_matrix
 
-    def __mul__(self, other):
-        res = Matrix(self.matrix)
-        for i in range(len(res.matrix)):
-            for j in range(len(res.matrix[i])):
-                res.matrix[i][j] *= other
-        return res
-
-    __rmul__ = __mul__
-
     def size(self):
+        """
+        CPU - O(1)
+        RAM - O(1)
+        :return: [matrix y size, matrix x size]
+        """
         return len(self.matrix), len(self.matrix[0])
 
 
 def main():
+    """
+    CPU - O(n)
+    RAM - O(n)
+    n - input matrix size
+    """
     with open("input.txt") as inp, open("output.txt", "w") as outp:
         i, j = inp.readline(), inp.readline()
         matrix_str = inp.read()
