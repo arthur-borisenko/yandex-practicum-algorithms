@@ -1,4 +1,8 @@
 def solve(k, field):
+    """CPU - O(n)
+    n - field size
+    RAM-O(m)
+    m - number of different digits"""
     button_counts = {}
     for val in tuple(field):
         if val.isdigit():
@@ -13,7 +17,9 @@ def solve(k, field):
 def main():
     """
     CPU - O(n)
-    RAM - O(n)
+    n - field size, in current task - 16
+    RAM-O(m)
+    m - number of different digits, in current task, can be from 1 to 9
     :return: Void
     """
     with open("input.txt") as inp, open("output.txt", "w") as outp:
