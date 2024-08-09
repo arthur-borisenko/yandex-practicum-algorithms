@@ -1,14 +1,3 @@
-import array
-import math
-
-
-def array_iterator(arr):
-    i = 0
-    while i < len(arr):
-        yield arr[i]
-        i += 1
-
-
 def main():
     """
     CPU - O(n)
