@@ -38,6 +38,8 @@ class LinkedList:
 
 
 def solution(node):
+    """CPU - O(n)
+    RAM - O(1)"""
     with open("output.txt", "w") as outp:
         l = LinkedList(node)
         for el in l:
