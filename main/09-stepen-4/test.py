@@ -7,7 +7,7 @@ from utils import testUtil
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """A man, a plan, a canal: Panama
+            """16
 """,
             task.main,
         )
@@ -19,7 +19,7 @@ class TestCase(unittest.TestCase):
 
     def test_case2(self):
         value = testUtil.file_test(
-            """zo
+            """15
             """,
             task.main,
         )
