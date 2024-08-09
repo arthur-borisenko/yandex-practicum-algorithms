@@ -1,8 +1,6 @@
 from array import array
-from enum import Enum
 
-BRACKETS_IDS = {"(": 1, ")": 2, "[": 3, "]": 4, "{": 5, "}": 6}
-BRACKETS = {1: 2, 3: 4, 5: 6}
+BRACKETS = {"(": ")", "[": "]", "{": "}"}
 
 
 class Stack:
@@ -10,7 +8,9 @@ class Stack:
     def __init__(self, size):
         self._len = 0
         self.size = size
-        self._data = array("q", (0,) * size)
+        self._data = array(
+            "u", "-" * size
+        )  # using - as empty value because array item must be unicode character
 
     def push(self, item):
         if self._len == self.size:
@@ -45,18 +45,19 @@ class SafeStack(Stack):
             return self.peek()
 
 
-def brackets_comparator(opening, closing):
+def check_closing_bracket(opening, closing):
     return BRACKETS.get(opening, None) == closing
 
 
 def check_bracket_sequence(seq: str):
+    """CPU - O(n)
+    RAM - O(n)"""
     open_brackets = SafeStack(len(seq))
     for bracket in seq:
-        encoded_bracket = BRACKETS_IDS[bracket]
-        if brackets_comparator(open_brackets.safe_peek(), encoded_bracket):
+        if check_closing_bracket(open_brackets.safe_peek(), bracket):
             open_brackets.pop()
         else:
-            open_brackets.push(encoded_bracket)
+            open_brackets.push(bracket)
     return not open_brackets
 
 
