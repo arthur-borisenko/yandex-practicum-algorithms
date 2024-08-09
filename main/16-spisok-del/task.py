@@ -11,14 +11,11 @@ class Node:
 
 class LinkedList:
     """Linked list data structure
-    supports: add, insert, iterate, slice, get item, delete item,
-     string interpretation, equality
-    methods which names starts with _ are internal and
-     may not be used outside this class
+    supports: iterate
     """
 
-    def __init__(self):
-        self.head: Node = Node(None)
+    def __init__(self, head=None):
+        self.head: Node = Node(None, head)
         self.tail = self.head
         self._len: int = 0
 
@@ -42,8 +39,7 @@ class LinkedList:
 
 def solution(node):
     with open("output.txt", "w") as outp:
-        l = LinkedList()
-        l.head.next_item = node
+        l = LinkedList(node)
         for el in l:
             print(el.value, file=outp)
 
