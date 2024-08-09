@@ -19,6 +19,11 @@ class TwoLinkedList:
     """
 
     def __init__(self, head=None):
+        """
+        CPU - O(n)
+        n - len of initial data
+        :param head: initial data head
+        """
         self.head = DoubleConnectedNode(None, head)
         self.tail = self.head
         self._len: int = 0
@@ -44,6 +49,10 @@ class TwoLinkedList:
         return _Iterator()
 
     def reverse(self):
+        """
+        CPU - O(n)
+        RAM - O(n)
+        """
         nodes = []
         for node in self:
             nodes.append(node)
@@ -54,6 +63,12 @@ class TwoLinkedList:
 
 # solution
 def solution(head):
+    """
+    CPU - O(n)
+    RAM - O(n)
+    :param head:
+    :return:
+    """
     l = TwoLinkedList(head)
     l.reverse()
     return l.head
