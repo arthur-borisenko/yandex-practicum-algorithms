@@ -7,56 +7,56 @@ from utils import testUtil
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """8
-2
-peek
-push 5
-push 2
-peek
+            """10
+put -34
+put -23
+get
 size
+get
 size
-push 1
+get
+get
+put 80
 size
 """,
             task.main,
         )
         self.assertEqual(
             value,
-            """None
-5
-2
-2
+            """-34
+1
+-23
+0
 error
-2
+error
+1
 """,
         )
 
     def test_case2(self):
         value = testUtil.file_test(
-            """10
-1
-push 1
+            """9
+get
 size
-push 3
+put 74
+get
 size
-push 1
-pop
-push 1
-pop
-push 3
-push 3
+put 90
+size
+size
+size
 """,
             task.main,
         )
         self.assertEqual(
             value,
-            """1
-error
+            """error
+0
+74
+0
 1
-error
 1
 1
-error
 """,
         )
 
