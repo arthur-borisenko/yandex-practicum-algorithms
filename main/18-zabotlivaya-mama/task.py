@@ -19,6 +19,12 @@ class LinkedList:
         self._len: int = 0
 
     def find_first(self, value):
+        """
+        CPU - O(n)
+        RAM - O(1)
+        :param value:
+        :return:
+        """
         for i, el in enumerate(self):
             if el.value == value:
                 return i
@@ -43,6 +49,13 @@ class LinkedList:
 
 
 def solution(node, value):
+    """
+    CPU - O(n)
+    RAM - O(1)
+    :param node:
+    :param value:
+    :return:
+    """
     l = LinkedList()
     l.head.next_item = node
     return l.find_first(value)
