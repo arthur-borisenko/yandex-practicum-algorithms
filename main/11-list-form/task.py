@@ -8,14 +8,14 @@ def main():
     :return: Void
     """
     with open("input.txt") as inp, open("output.txt", "w") as outp:
-        l = int(inp.readline())
-        n = tuple(map(int, inp.readline().split()))
+        x_len = int(inp.readline())
+        x = tuple(map(int, inp.readline().split()))
         k = array.array("i", map(int, inp.readline().strip()))
-        res = array.array("i", [0] * (max(len(n), len(k)) + 1))
+        res = array.array("i", [0] * (max(len(x), len(k)) + 1))
         next_add = False
-        for i in range(max(len(n), len(k))):
+        for i in range(max(len(x), len(k))):
             summ = (
-                (n[-i - 1] if len(n) > i else 0)
+                (x[-i - 1] if len(x) > i else 0)
                 + (k[-i - 1] if len(k) > i else 0)
                 + (1 if next_add else 0)
             )
