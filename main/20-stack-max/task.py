@@ -2,6 +2,7 @@ from array import array
 
 
 class Stack:
+    """Basic stack - supports push, pop, peek, iterate from top."""
 
     def __init__(self, size):
         self._len = 0
@@ -29,43 +30,32 @@ class Stack:
     def __bool__(self):
         return len(self) > 0
 
+    def __iter__(self):
+        class _Iterator:
+            def __init__(self, stack):
+                self._stack = stack
+                self._index = stack._len - 1
+
+            def __next__(self):
+                if self._index < 0:
+                    raise StopIteration
+                res = self._stack._data[self._index]
+                self._index -= 1
+                return res
+
+        return _Iterator(self)
+
     def __len__(self):
         return self._len
 
 
-class StackMax:
-    def __init__(self, size):
-        self.size = size
-        self._data = Stack(size)
-        self._maximums = Stack(size)
-
-    def push(self, x):
-        if self.__len__() == self.size:
-            raise OverflowError("Stack overflow")
-        self._data.push(x)
-        if self._maximums and self._maximums.peek() > x:
-            current_max = self._maximums.peek()
-        else:
-            current_max = x
-        self._maximums.push(current_max)
-
-    def __len__(self):
-        return len(self._data)
-
-    def pop(self):
-        self._maximums.pop()
-        return self._data.pop()
-
-    def peek(self):
-        return self._data.peek()
-
-    def __bool__(self):
-        return bool(self._data)
-
+class StackMax(Stack):
     def get_max(self):
-        if self._maximums:
-            return self._maximums.peek()
-        return None
+        res = None
+        for el in self:
+            if res is None or el > res:
+                res = el
+        return res
 
 
 def parse_input_cmd(line, stack):
