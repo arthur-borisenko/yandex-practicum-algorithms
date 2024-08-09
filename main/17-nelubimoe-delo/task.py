@@ -42,7 +42,14 @@ class LinkedList:
 
 
 def solution(node, idx):
-
+    """
+    CPU - O(n)
+    RAM - O(1)
+    n - index
+    :param node:
+    :param idx:
+    :return:
+    """
     with open("output.txt", "w") as outp:
         l = LinkedList()
         l.head.next_item = node
