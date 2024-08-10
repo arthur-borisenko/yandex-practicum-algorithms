@@ -1,6 +1,5 @@
 import os
 
-LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
 
 
 class Node:
