@@ -9,12 +9,16 @@ class Stack:
         self._data = array("q", (0,) * size)
 
     def push(self, item):
+        """CPU - O(1)
+        RAM - O(1)"""
         if self._len == self.size:
             raise OverflowError("Stack overflow")
         self._data[self._len] = item
         self._len += 1
 
     def pop(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         if self._len == 0:
             raise IndexError("Stack underflow")
         res = self.peek()
@@ -22,14 +26,20 @@ class Stack:
         return res
 
     def peek(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         if self._len == 0:
             raise IndexError("Attempted to get element of empty stack")
         return self._data[self._len - 1]
 
     def __bool__(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         return len(self) > 0
 
     def __len__(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         return self._len
 
 
@@ -40,6 +50,8 @@ class StackMaxEffective:
         self._maximums = Stack(size)
 
     def push(self, x):
+        """CPU - O(1)
+        RAM - O(1)"""
         if self.__len__() == self.size:
             raise OverflowError("Stack overflow")
         self._data.push(x)
@@ -50,19 +62,29 @@ class StackMaxEffective:
         self._maximums.push(current_max)
 
     def __len__(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         return len(self._data)
 
     def pop(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         self._maximums.pop()
         return self._data.pop()
 
     def peek(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         return self._data.peek()
 
     def __bool__(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         return bool(self._data)
 
     def get_max(self):
+        """CPU - O(1)
+        RAM - O(1)"""
         if self._maximums:
             return self._maximums.peek()
         return None
