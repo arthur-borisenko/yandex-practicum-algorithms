@@ -90,7 +90,7 @@ class StackMaxEffective:
         return None
 
 
-def parse_input_cmd(line, stack):
+def run_input_cmd(line, stack):
     cmd, args = line.split()[0], line.split()[1:]
     match cmd:
         case "push":
@@ -112,7 +112,7 @@ def main():
         for i in range(n):
             cmd = inp.readline().strip()
             try:
-                res = parse_input_cmd(cmd, stack)
+                res = run_input_cmd(cmd, stack)
             except:
                 res = "error"
             if cmd == "get_max" or cmd == "top" or res == "error":
