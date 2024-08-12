@@ -106,6 +106,8 @@ def run_input_cmd(line, stack):
 
 
 def main():
+    """CPU - O(n)
+    RAM - O(n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         stack = StackMaxEffective(n)
