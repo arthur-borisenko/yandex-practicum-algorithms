@@ -18,10 +18,10 @@ class TwoLinkedList:
         n - len of initial data
         :param head: initial data head
         """
-        self.head = DoubleConnectedNode(None, head)
+        self.head = head
         self.tail = self.head
         self._len: int = 0
-        self.head.next = head
+
         while self.tail.next:
             self.tail = self.tail.next
 
@@ -34,9 +34,10 @@ class TwoLinkedList:
                 self.current = self._base.head
 
             def __next__(self):
-                if self.current.next:
+                if self.current:
+                    res = self.current
                     self.current = self.current.next
-                    return self.current
+                    return res
                 else:
                     raise StopIteration
 
