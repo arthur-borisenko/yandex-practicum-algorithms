@@ -93,7 +93,7 @@ def main():
             else:
                 if res is not None:
                     print(res, file=outp)
-        pass  # 66 -41 96 0 42 44 -43 -37
+        pass
 
 
 if __name__ == "__main__":
