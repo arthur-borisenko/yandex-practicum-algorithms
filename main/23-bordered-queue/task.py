@@ -75,6 +75,10 @@ def parse_input_cmd(line, queue):
 
 
 def main():
+    """
+    CPU - O(n)
+    RAM - O(n)
+    """
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         queue = Queue(int(inp.readline()))
