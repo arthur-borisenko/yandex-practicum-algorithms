@@ -1,6 +1,9 @@
-LOCAL = os.environ.get('REMOTE_JUDGE', 'false') != 'true'
+import os
+
+LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
 
 if LOCAL:
+
     class DoubleConnectedNode:
         def __init__(self, value, next=None, prev=None):
             self.value = value
