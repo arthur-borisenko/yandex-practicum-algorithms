@@ -1,16 +1,21 @@
-class Node:
-    def __init__(self, value, next_item=None):
-        self.value = value
-        self.next_item = next_item
+import os
 
+LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
 
-pass
+if LOCAL:
+
+    class Node:
+        def __init__(self, value, next_item=None):
+            self.value = value
+            self.next_item = next_item
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = Node(None)
+    def __init__(self, head=None):
+        self.head = head
         self.tail = self.head
+        while self.tail and self.tail.next_item is not None:
+            self.tail = self.tail.next_item
         self._len: int = 0
 
     def find_first(self, value):
@@ -34,9 +39,10 @@ class LinkedList:
                 self.current = self._base.head
 
             def __next__(self):
-                if self.current.next_item:
+                if self.current:
+                    res = self.current
                     self.current = self.current.next_item
-                    return self.current
+                    return res
                 else:
                     raise StopIteration
 
@@ -51,8 +57,7 @@ def solution(node, value):
     :param value:
     :return:
     """
-    l = LinkedList()
-    l.head.next_item = node
+    l = LinkedList(node)
     return l.find_first(value)
 
 
