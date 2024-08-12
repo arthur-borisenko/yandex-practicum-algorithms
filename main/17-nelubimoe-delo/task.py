@@ -1,21 +1,29 @@
+import os
 
+LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
 
-class Node:
-    def __init__(self, value, next_item=None):
-        self.value = value
-        self.next_item = next_item
+if LOCAL:
+
+    class Node:
+        def __init__(self, value, next_item=None):
+            self.value = value
+            self.next_item = next_item
 
 
 class LinkedList:
 
-    def __init__(self):
-        self.head = Node(None)
+    def __init__(self, head=None):
+        self.head = head
         self.tail = self.head
+        while self.tail and self.tail.next_item:
+            self.tail = self.tail.next_item
         self._len: int = 0
 
     def _get_node(self, i: int):
+        if not self.head:
+            raise IndexError
         res = self.head
-        for i in range(i + 1):
+        for i in range(i):
             if res.next_item is None:
                 raise IndexError
             res = res.next_item
@@ -47,11 +55,9 @@ def solution(node, idx):
     :param idx:
     :return:
     """
-    with open("output.txt", "w") as outp:
-        l = LinkedList()
-        l.head.next_item = node
-        del l[idx]
-        return l.head.next_item
+    l = LinkedList(node)
+    del l[idx]
+    return l.head
 
 
 def test():
