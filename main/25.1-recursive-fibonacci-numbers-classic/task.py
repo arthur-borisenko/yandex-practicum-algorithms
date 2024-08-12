@@ -6,7 +6,6 @@ def recursive_fibonacci_numbers(n, cache):
         cache[n] = fib_n
     else:
         fib_n = cache[n]
-    print("blablabla")
     return fib_n
 
 
