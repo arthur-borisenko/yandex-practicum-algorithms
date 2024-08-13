@@ -1,5 +1,7 @@
 from array import array
 
+OPERATORS = {"+", "-", "*", "/"}
+
 
 class Stack:
     """Basic stack - supports push, pop, peek, iterate from top."""
@@ -49,13 +51,10 @@ class Stack:
         return self._len
 
 
-operators = {"+", "-", "*", "/"}
-
-
 def calculate(task):
     operands = Stack(len(task))
     for el in task:
-        if el not in operators:
+        if el not in OPERATORS:
             operands.push(int(el))
         else:
             match el:
