@@ -1,12 +1,9 @@
 def fibonacci_number(n):
+    f = 1
     prev_f = 1
-    prev_prev_f = 1
-    current_f = prev_f
     for i in range(n - 1):
-        current_f = prev_f + prev_prev_f
-        prev_prev_f = prev_f
-        prev_f = current_f
-    return current_f
+        f, prev_f = f + prev_f, f
+    return f
 
 
 def main():
