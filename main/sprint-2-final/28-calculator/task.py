@@ -29,24 +29,6 @@ class Stack:
             raise IndexError("Attempted to get element of empty stack")
         return self._data[self._len - 1]
 
-    def __bool__(self):
-        return len(self) > 0
-
-    def __iter__(self):
-        class _Iterator:
-            def __init__(self, stack):
-                self._stack = stack
-                self._index = len(self._stack) - 1
-
-            def __next__(self):
-                if self._index < 0:
-                    raise StopIteration
-                res = self._stack._data[self._index]
-                self._index -= 1
-                return res
-
-        return _Iterator(self)
-
     def __len__(self):
         return self._len
 
