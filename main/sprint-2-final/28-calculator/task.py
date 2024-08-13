@@ -74,6 +74,9 @@ def calculate(task):
 
 
 def main():
+    """CPU - O(n)
+    RAM - O(n)
+    n - number of operands"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         print(calculate(inp.readline().split()), file=outp)
 
