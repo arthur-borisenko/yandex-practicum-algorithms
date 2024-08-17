@@ -1,6 +1,6 @@
 def main():
     """CPU - O(n)
-    RAM - O(n)"""
+    RAM - O(1)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         s = inp.readline().strip()
         t = inp.readline().strip()
