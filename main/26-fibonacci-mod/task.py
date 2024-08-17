@@ -1,4 +1,6 @@
 def mod_fibonacci_number(n, k):
+    """CPU - O(n)
+    RAM - O(1)"""
     mod = 10**k
     f = 1
     prev_f = 1
@@ -9,7 +11,7 @@ def mod_fibonacci_number(n, k):
 
 def main():
     """CPU - O(n)
-    RAM - O(n)"""
+    RAM - O(1)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n, k = map(int, inp.readline().split())
         print(mod_fibonacci_number(n, k), file=outp)
