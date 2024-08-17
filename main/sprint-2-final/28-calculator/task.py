@@ -1,7 +1,5 @@
 from array import array
 
-OPERATORS = {"+", "-", "*", "/"}
-
 
 class Stack:
     """Basic stack - supports push, pop, peek, iterate from top."""
@@ -36,22 +34,21 @@ class Stack:
 def calculate(task):
     operands = Stack(len(task))
     for el in task:
-        if el not in OPERATORS:
-            operands.push(int(el))
-        else:
-            match el:
-                case "+":
-                    op2, op1 = operands.pop(), operands.pop()
-                    operands.push(op1 + op2)
-                case "-":
-                    op2, op1 = operands.pop(), operands.pop()
-                    operands.push(op1 - op2)
-                case "*":
-                    op2, op1 = operands.pop(), operands.pop()
-                    operands.push(op1 * op2)
-                case "/":
-                    op2, op1 = operands.pop(), operands.pop()
-                    operands.push(op1 // op2)
+        match el:
+            case "+":
+                op2, op1 = operands.pop(), operands.pop()
+                operands.push(op1 + op2)
+            case "-":
+                op2, op1 = operands.pop(), operands.pop()
+                operands.push(op1 - op2)
+            case "*":
+                op2, op1 = operands.pop(), operands.pop()
+                operands.push(op1 * op2)
+            case "/":
+                op2, op1 = operands.pop(), operands.pop()
+                operands.push(op1 // op2)
+            case _:
+                operands.push(int(el))
     return operands.peek()
 
 
