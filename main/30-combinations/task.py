@@ -13,7 +13,7 @@ BUTTONS = {
 
 
 def parse_input(input_file):
-    val = input_file.readline()
+    val = input_file.readline().strip()
     res = []
     for el in val:
         res.append(BUTTONS[int(el)])
@@ -21,6 +21,8 @@ def parse_input(input_file):
 
 
 def main():
+    """CPU - O(3**n)
+    RAM - O(3**n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         input_data = parse_input(inp)
         print(*map(lambda x: "".join(x), itertools.product(*input_data)), file=outp)
