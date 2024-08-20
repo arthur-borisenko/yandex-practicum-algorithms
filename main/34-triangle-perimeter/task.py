@@ -7,6 +7,8 @@ def solve(lines):
 
 
 def main():
+    """CPU - O(n log(n))
+    RAM - O(n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         lines = list(map(int, inp.readline().strip().split()))
