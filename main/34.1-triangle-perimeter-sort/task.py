@@ -2,8 +2,8 @@ import array
 
 
 def count_sort_o_max_min(arr, reverse=False):
-    """CPU - O(n+max(arr)-min(arr))
-    RAM - O(n)"""
+    """CPU - O(n+max(arr))
+    RAM - O(n+max(arr))"""
     counts = array.array("q", [0] * (max(arr) + 1))
     for el in arr:
         counts[el] = counts[el] + 1
@@ -25,6 +25,8 @@ def solve(lines):
 
 
 def main():
+    """CPU - O(n+max(lines))
+    RAM - O(n+max(lines))"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         lines = list(map(int, inp.readline().strip().split()))
