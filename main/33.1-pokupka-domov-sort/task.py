@@ -2,8 +2,8 @@ import array
 
 
 def count_sort_o_max_min(arr, reverse=False):
-    """CPU - O(n+max(arr)-min(arr))
-    RAM - O(n)"""
+    """CPU - O(n+max(arr))
+    RAM - O(n+max(arr))"""
     counts = array.array("q", [0] * (max(arr) + 1))
     for el in arr:
         counts[el] = counts[el] + 1
