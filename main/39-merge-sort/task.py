@@ -24,6 +24,9 @@ def _merge(arr1, arr2):
 
 
 def _merge_sort(arr, lf, rg):
+    """CPU - O(n log(n))
+    RAM - O(log(n))
+    n - interval length"""
     interval = arr[lf:rg]
     if len(interval) == 0 or len(interval) == 1:
         return interval
