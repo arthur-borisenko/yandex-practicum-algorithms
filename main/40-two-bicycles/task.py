@@ -23,6 +23,8 @@ def binary_nearest_search(seq, target, key=lambda x: x):
 
 
 def main():
+    """CPU - O(log(n))
+    RAM - O(1)"""
     with open("input.txt") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
