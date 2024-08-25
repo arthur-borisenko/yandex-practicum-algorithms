@@ -1,14 +1,10 @@
 import array
 
 
-def count_sort_output_parse_iterator(counts, shift=0, reverse=False):
-    for i in (
-        range(shift, len(counts) + shift)
-        if not reverse
-        else range(max(counts) + 1, shift, -1)
-    ):
-        for j in range(counts[i - shift]):
-            yield i
+def count_sort_to_orig_arr_iterator(cnt_arr, shift=0):
+    for i, cnt in enumerate(cnt_arr):
+        for _ in range(cnt):
+            yield i + shift
 
 
 def count_sort(arr):
@@ -18,7 +14,7 @@ def count_sort(arr):
     counts = array.array("q", [0] * (max(arr) - shift + 1))
     for el in arr:
         counts[el - shift] += 1
-    return count_sort_output_parse_iterator(counts, shift)
+    return count_sort_to_orig_arr_iterator(counts, shift)
 
 
 def solve(children, cookies):
