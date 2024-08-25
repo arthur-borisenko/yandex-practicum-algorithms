@@ -10,7 +10,7 @@ def _count(arr):
 def slice_generator(iterable, start, stop):
     for _ in range(start):
         next(iterable)
-    for _ in range(stop):
+    for _ in range(start, stop):
         try:
             res = next(iterable)
         except StopIteration:
