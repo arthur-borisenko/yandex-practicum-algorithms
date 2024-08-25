@@ -21,6 +21,8 @@ def count_sort(arr: array[int]) -> array[int]:
 
 
 def main():
+    """CPU - O(n)
+    RAM - O(n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         stud_univer_ids = array("q", map(int, inp.readline().split()))
