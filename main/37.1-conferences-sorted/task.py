@@ -20,7 +20,7 @@ def slice_generator(iterable, start, stop):
 
 
 def main():
-    """CPU - O(nk)
+    """CPU - O(n log n)
     RAM - O(n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
