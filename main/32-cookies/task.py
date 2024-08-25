@@ -1,11 +1,12 @@
 def solve(children, cookies):
     res = 0
-    sorted_children, sorted_cookies = sorted(children), sorted(cookies)
+    children.sort()
+    cookies.sort()
     child = 0
-    for cookie in sorted_cookies:
-        if child >= len(sorted_children):
+    for cookie in cookies:
+        if child >= len(children):
             break
-        if cookie >= sorted_children[child]:
+        if cookie >= children[child]:
             child += 1
             res += 1
     return res
