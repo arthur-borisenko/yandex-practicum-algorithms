@@ -1,4 +1,6 @@
 def solve(children, cookies):
+    """CPU - O(n log(n))
+    RAM - O(1)"""
     res = 0
     children.sort()
     cookies.sort()
