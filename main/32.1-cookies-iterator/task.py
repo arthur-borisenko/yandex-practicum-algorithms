@@ -1,24 +1,31 @@
 import array
 
 
-def count_sort_replace(arr, reverse=False):
+def count_sort_output_parse_iterator(counts, shift=0, reverse=False):
+    for i in (
+        range(shift, len(counts) + shift)
+        if not reverse
+        else range(max(counts) + 1, shift, -1)
+    ):
+        for j in range(counts[i - shift]):
+            yield i
+
+
+def count_sort(arr):
     """CPU - O(n+max(arr))
     RAM - O(n+max(arr))"""
-    counts = array.array("q", [0] * (max(arr) + 1))
+    shift = min(arr)
+    counts = array.array("q", [0] * (max(arr) - shift + 1))
     for el in arr:
-        counts[el] = counts[el] + 1
-    index = 0
-    for i in range(min(arr), max(arr) + 1):
-        for j in range(counts[i]):
-            arr[index if not reverse else -index] = i
-            index += 1
+        counts[el - shift] += 1
+    return count_sort_output_parse_iterator(counts, shift)
 
 
 def solve(children, cookies):
     res = 0
-    sorted_children, sorted_cookies = children.copy(), cookies.copy()
-    count_sort_replace(sorted_children)
-    count_sort_replace(sorted_cookies)
+    sorted_children, sorted_cookies = array.array(
+        "q", count_sort(children)
+    ), count_sort(cookies)
     child = 0
     for cookie in sorted_cookies:
         if child >= len(sorted_children):
@@ -30,8 +37,8 @@ def solve(children, cookies):
 
 
 def main():
-    """CPU - O(n+m+max(children)+max(cookies)
-    RAM - O(n+m+max(children)+max(cookies)"""
+    """CPU - O(n+m+max(children)+max(cookies))
+    RAM - O(n+m+max(children)+max(cookies))"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         children = list(map(int, inp.readline().strip().split()))
