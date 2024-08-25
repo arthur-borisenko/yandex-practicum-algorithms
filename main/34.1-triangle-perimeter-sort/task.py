@@ -1,26 +1,30 @@
 import array
 
 
-def count_sort_o_max_min(arr, reverse=False):
+def count_sort(arr, reverse=False):
     """CPU - O(n+max(arr))
-    RAM - O(n+max(arr))"""
+    RAM - O(n+max(arr))
+    sorts input array, does not return anything
+    :param arr: array to sort
+    :param reverse: reverse the order of the result
+    :return: void"""
     counts = array.array("q", [0] * (max(arr) + 1))
     for el in arr:
         counts[el] = counts[el] + 1
-    res = array.array("q", [0] * len(arr))
     index = 0
     for i in range(min(arr), max(arr) + 1):
         for j in range(counts[i]):
-            res[index] = i
+            arr[index if not reverse else -(index + 1)] = i
             index += 1
-    return array.array("q", reversed(res)) if reverse else res
 
 
 def solve(lines):
-    sorted_lines = count_sort_o_max_min(lines, reverse=True)
-    for i in range(2, len(sorted_lines)):
-        if sorted_lines[i - 2] < sorted_lines[i - 1] + sorted_lines[i]:
-            return sorted_lines[i - 2] + sorted_lines[i - 1] + sorted_lines[i]
+    """CPU - O(n+max(lines))
+        RAM - O(max(lines))"""
+    count_sort(lines, reverse=True)
+    for i in range(2, len(lines)):
+        if lines[i - 2] < lines[i - 1] + lines[i]:
+            return lines[i - 2] + lines[i - 1] + lines[i]
     return -1
 
 
