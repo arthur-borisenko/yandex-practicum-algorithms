@@ -20,7 +20,7 @@ def count_sort(arr, reverse=False):
 
 def solve(lines):
     """CPU - O(n+max(lines))
-        RAM - O(max(lines))"""
+    RAM - O(max(lines))"""
     count_sort(lines, reverse=True)
     for i in range(2, len(lines)):
         if lines[i - 2] < lines[i - 1] + lines[i]:
