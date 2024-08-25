@@ -10,7 +10,7 @@ def _merge_sort(arr, lf, rg):
     sorted_left, sorted_right = _merge_sort(interval, *left), _merge_sort(
         interval, *right
     )
-    arr = (sorted_left + sorted_right,)
+    arr = sorted_left.extend(sorted_right)
     merge(arr, 0, len(sorted_left), len(sorted_left) + len(sorted_right))
     return arr
 
