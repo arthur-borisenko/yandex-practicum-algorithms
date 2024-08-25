@@ -2,6 +2,12 @@ import array
 
 
 def count_sort_to_orig_arr_iterator(cnt_arr, shift=0):
+    """CPU - O(n)
+    RAM - O(1)
+    May not be used outside count sort
+    :param cnt_arr: counts array
+    :param shift: minimal element of orig array
+    :return: result iterator"""
     for i, cnt in enumerate(cnt_arr):
         for _ in range(cnt):
             yield i + shift
@@ -9,7 +15,10 @@ def count_sort_to_orig_arr_iterator(cnt_arr, shift=0):
 
 def count_sort(arr):
     """CPU - O(n+max(arr))
-    RAM - O(n+max(arr))"""
+    RAM - O(n+max(arr))
+    does not change source array
+    :param arr: array to be sorted
+    :return: result iterator"""
     shift = min(arr)
     counts = array.array("q", [0] * (max(arr) - shift + 1))
     for el in arr:
