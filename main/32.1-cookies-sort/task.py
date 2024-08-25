@@ -1,33 +1,33 @@
 import array
+from typing import MutableSequence
 
 
-def count_sort(arr, reverse=False):
+def count_sort(arr: MutableSequence[int]) -> None:
     """CPU - O(n+max(arr))
-    RAM - O(n+max(arr))
-    sorts input array, does not return anything
-    :param arr: array to sort
-    :param reverse: reverse the order of the result
-    :return: void"""
+    RAM - O(max(arr))
+    sort input array of ints (non-negative) with "count sort"
+    """
     counts = array.array("q", [0] * (max(arr) + 1))
-    for el in arr:
-        counts[el] = counts[el] + 1
+    for val in arr:
+        counts[val] = counts[val] + 1
     index = 0
-    for i in range(min(arr), max(arr) + 1):
-        for j in range(counts[i]):
-            arr[index if not reverse else -index] = i
+    for i, cnt in enumerate(counts):
+        for _ in range(cnt):
+            arr[index] = i
             index += 1
 
 
 def solve(children, cookies):
+    """CPU - O(n+m+max(children)+max(cookies))
+    RAM - O(max(children)+max(cookies))"""
     res = 0
-    sorted_children, sorted_cookies = children.copy(), cookies.copy()
-    count_sort(sorted_children)
-    count_sort(sorted_cookies)
+    count_sort(children)
+    count_sort(cookies)
     child = 0
-    for cookie in sorted_cookies:
-        if child >= len(sorted_children):
+    for cookie in cookies:
+        if child >= len(children):
             break
-        if cookie >= sorted_children[child]:
+        if cookie >= children[child]:
             child += 1
             res += 1
     return res
