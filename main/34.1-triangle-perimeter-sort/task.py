@@ -4,7 +4,6 @@ import array
 def count_sort(arr, reverse=False) -> None:
     """CPU - O(n+max(arr))
     RAM - O(max(arr))
-    sorts input array of positive integers
     :param arr: array of non-negative integers to sort
     :param reverse: if False(default), sort in ascending order, if True, sort in descending order
     """
