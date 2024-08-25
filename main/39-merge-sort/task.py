@@ -18,20 +18,20 @@ def _merge_sort(arr, lf, rg):
 def merge(arr, lf, mid, rg):
     l, r, k = 0, 0, 0
     while l < mid - lf and r < rg - mid:
-        if arr[l + lf] <= arr[r + mid - 1]:
-            arr[k + lf] = arr[l + lf]
+        if arr[l + lf - 1] <= arr[r + mid - 1]:
+            arr[k + lf - 1] = arr[l + lf - 1]
             l += 1
         else:
-            arr[k + lf] = arr[r + mid - 1]
+            arr[k + lf - 1] = arr[r + mid - 1]
             r += 1
         k += 1
 
     while l < mid - lf:
-        arr[k + lf] = arr[l + lf]
+        arr[k + lf - 1] = arr[l + lf - 1]
         l += 1
         k += 1
     while l < rg - mid:
-        arr[k + lf] = arr[l + mid]
+        arr[k + lf - 1] = arr[l + mid - 1]
         l += 1
         k += 1
 
