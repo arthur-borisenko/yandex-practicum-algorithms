@@ -1,28 +1,3 @@
-def _merge(arr1, arr2):
-    res = [0] * (len(arr1) + len(arr2))
-    append_i = 0
-    arr1_i, arr2_i = 0, 0
-    for i in range(len(arr1) + len(arr2)):
-        if arr1_i < len(arr1) and arr2_i < len(arr2):
-            if arr1[arr1_i] <= arr2[arr2_i]:
-                res[append_i] = arr1[arr1_i]
-                append_i += 1
-                arr1_i += 1
-            else:
-                res[append_i] = arr2[arr2_i]
-                append_i += 1
-                arr2_i += 1
-        elif arr2_i < len(arr2):
-            res[append_i] = arr2[arr2_i]
-            append_i += 1
-            arr2_i += 1
-        else:
-            res[append_i] = arr1[arr1_i]
-            append_i += 1
-            arr1_i += 1
-    return res
-
-
 def _merge_sort(arr, lf, rg):
     """CPU - O(n log(n))
     RAM - O(log(n))
@@ -35,13 +10,30 @@ def _merge_sort(arr, lf, rg):
     sorted_left, sorted_right = _merge_sort(interval, *left), _merge_sort(
         interval, *right
     )
-    return _merge(sorted_left, sorted_right)
+    arr = (sorted_left + sorted_right,)
+    merge(arr, 0, len(sorted_left), len(sorted_left) + len(sorted_right))
+    return arr
 
 
 def merge(arr, lf, mid, rg):
-    left = arr[lf:mid]
-    right = arr[mid:rg]
-    return _merge(left, right)
+    l, r, k = 0, 0, 0
+    while l < mid - lf and r < rg - mid:
+        if arr[l + lf] <= arr[r + mid - 1]:
+            arr[k + lf] = arr[l + lf]
+            l += 1
+        else:
+            arr[k + lf] = arr[r + mid - 1]
+            r += 1
+        k += 1
+
+    while l < mid - lf:
+        arr[k + lf] = arr[l + lf]
+        l += 1
+        k += 1
+    while l < rg - mid:
+        arr[k + lf] = arr[l + mid]
+        l += 1
+        k += 1
 
 
 def merge_sort(arr, lf, rg):
