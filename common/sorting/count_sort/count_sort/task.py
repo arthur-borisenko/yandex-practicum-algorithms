@@ -12,8 +12,8 @@ def count_sort(seq: Sequence[int], reverse=False) -> Iterable[int]:
     counts = array.array("q", [0] * (max(seq, default=0) - shift + 1))
     for el in seq:
         counts[el - shift] += 1
-    _range = range(len(counts)) if not reverse else reversed(range(len(counts)))
-    for i in _range:
+    traverse = range(len(counts)) if not reverse else reversed(range(len(counts)))
+    for i in traverse:
         cnt = counts[i]
         for _ in range(cnt):
             yield i + shift
