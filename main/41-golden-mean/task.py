@@ -1,22 +1,11 @@
-def check_index_in_array(arr, i):
-    return i < len(arr)
-
-
 def safe_float_to_int(x):
     if int(x) == x:
         return int(x)
     return x
 
 
-def select_array(_arr1, _arr2, _arr1_i, _arr2_i):
-    return (
-        1
-        if check_index_in_array(_arr1, _arr1_i)
-        and (
-            not check_index_in_array(_arr2, _arr2_i) or _arr1[_arr1_i] <= _arr2[_arr2_i]
-        )
-        else 2
-    )
+def is_arr_empty(arr, i):
+    return i >= len(arr)
 
 
 def merge_arrays(arr1, arr2):
@@ -30,7 +19,9 @@ def merge_arrays(arr1, arr2):
     arr1_i, arr2_i = 0, 0
 
     for i in range(len(arr1) + len(arr2)):
-        if select_array(arr1, arr2, arr1_i, arr2_i) == 1:
+        if (not is_arr_empty(arr1, arr1_i)) and (
+            is_arr_empty(arr2, arr2_i) or arr1[arr1_i] <= arr2[arr2_i]
+        ):
             yield arr1[arr1_i]
             arr1_i += 1
         else:
