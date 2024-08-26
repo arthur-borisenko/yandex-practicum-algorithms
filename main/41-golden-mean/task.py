@@ -1,3 +1,6 @@
+from typing import Generator, Sequence
+
+
 def safe_float_to_int(x):
     if int(x) == x:
         return int(x)
@@ -8,7 +11,7 @@ def is_arr_empty(arr, i):
     return i >= len(arr)
 
 
-def merge_arrays(arr1, arr2):
+def merge_arrays(arr1: Sequence, arr2: Sequence) -> Generator:
     """
     CPU - O(1)
     RAM - O(1)
