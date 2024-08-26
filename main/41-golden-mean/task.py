@@ -59,8 +59,8 @@ def solve(arr1, arr2):
 
 
 def main():
-    """CPU - O(n log n)
-    RAM - O(n)"""
+    """CPU - O(n + m)
+    RAM - O(n + m)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n, m = int(inp.readline()), int(inp.readline())
         arr1, arr2 = list(map(int, inp.readline().split())), list(
