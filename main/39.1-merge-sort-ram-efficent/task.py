@@ -6,7 +6,7 @@ def merge_sort(arr: Sequence, lf: int, rg: int) -> None:
     Sorts arr[lf:rg]. Other parts of arr are not modified
     all arr elements must support comparsion
     CPU - O(n log(n))
-    RAM - O(n)
+    RAM - O(log(n))
     n - interval length rg - lf
     """
     if rg - lf > 1:
