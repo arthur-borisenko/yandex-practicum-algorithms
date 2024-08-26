@@ -57,9 +57,8 @@ def main():
     RAM - O(n + m)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n, m = int(inp.readline()), int(inp.readline())
-        arr1, arr2 = list(map(int, inp.readline().split())), list(
-            map(int, inp.readline().split())
-        )
+        arr1 = list(map(int, inp.readline().split()))
+        arr2 = list(map(int, inp.readline().split()))
         print(safe_float_to_int(solve(arr1, arr2)), file=outp)
 
 
