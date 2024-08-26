@@ -20,7 +20,7 @@ def count_sort(seq: Sequence[int], reverse=False) -> Iterable[int]:
     Doesn't change input data structure
     Input sequence must contain only non-negative integers
     """
-    shift = min(seq, default=0)  # , default=0)
+    shift = min(seq, default=0)
     counts = array.array("q", [0] * (max(seq, default=0) - shift + 1))
     for el in seq:
         counts[el - shift] += 1
