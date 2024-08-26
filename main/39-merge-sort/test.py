@@ -32,3 +32,15 @@ class TestMergeSort(unittest.TestCase):
     def test_case3(self):
         input = [1, 1, 1, 1, 1]
         self._runner(input, task.merge_sort)
+
+
+class TestFromContest(unittest.TestCase):
+    def test(self):
+        a = [1, 4, 9, 2, 10, 11]
+        b = task.merge(a, 0, 3, 6)
+        expected = [1, 2, 4, 9, 10, 11]
+        self.assertEqual(b, expected)
+        c = [1, 4, 2, 10, 1, 2]
+        task.merge_sort(c, 0, 6)
+        expected = [1, 1, 2, 2, 4, 10]
+        self.assertEqual(c, expected)

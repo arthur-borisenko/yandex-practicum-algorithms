@@ -1,51 +1,37 @@
-def _merge(arr1, arr2):
-    res = [0] * (len(arr1) + len(arr2))
-    append_i = 0
-    arr1_i, arr2_i = 0, 0
-    for i in range(len(arr1) + len(arr2)):
-        if arr1_i < len(arr1) and arr2_i < len(arr2):
-            if arr1[arr1_i] <= arr2[arr2_i]:
-                res[append_i] = arr1[arr1_i]
-                append_i += 1
-                arr1_i += 1
-            else:
-                res[append_i] = arr2[arr2_i]
-                append_i += 1
-                arr2_i += 1
-        elif arr2_i < len(arr2):
-            res[append_i] = arr2[arr2_i]
-            append_i += 1
-            arr2_i += 1
-        else:
-            res[append_i] = arr1[arr1_i]
-            append_i += 1
-            arr1_i += 1
-    return res
-
-
-def _merge_sort(arr, lf, rg):
+def merge_sort(arr, lf, rg):
     """CPU - O(n log(n))
     RAM - O(log(n))
     n - interval length"""
-    interval = arr[lf:rg]
-    if len(interval) == 0 or len(interval) == 1:
-        return interval
-    left = (0, len(interval) // 2)
-    right = (len(interval) // 2, len(interval))
-    sorted_left, sorted_right = _merge_sort(interval, *left), _merge_sort(
-        interval, *right
-    )
-    return _merge(sorted_left, sorted_right)
+    if rg - lf > 1:
+        mid = (rg + lf) // 2
+        merge_sort(arr, lf, mid)
+        merge_sort(arr, mid, rg)
+        arr[lf:rg] = merge(arr, lf, mid, rg)
 
 
 def merge(arr, lf, mid, rg):
-    left = arr[lf:mid]
-    right = arr[mid:rg]
-    return _merge(left, right)
+    def select_array(_arr, _lf, _mid, _left_i, _right_i, _left_len, _right_len):
+        return (
+            1
+            if _left_i < mid and (_right_i >= rg or _arr[left_i] <= _arr[right_i])
+            else 2
+        )
 
-
-def merge_sort(arr, lf, rg):
-    arr[lf:rg] = _merge_sort(arr, lf, rg)
+    left_len = mid - lf
+    right_len = rg - mid
+    append_i = 0
+    res = [0] * (rg - lf)
+    left_i, right_i = lf, mid
+    for i in range(left_len + right_len):
+        if select_array(arr, lf, mid, left_i, right_i, left_len, right_len) == 1:
+            res[append_i] = arr[left_i]
+            append_i += 1
+            left_i += 1
+        else:
+            res[append_i] = arr[right_i]
+            append_i += 1
+            right_i += 1
+    return res
 
 
 def test():
