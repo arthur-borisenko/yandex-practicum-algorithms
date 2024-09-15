@@ -32,24 +32,49 @@ def merge_arrays(arr1: Sequence, arr2: Sequence) -> Generator:
             arr2_i += 1
 
 
+def is_index_valid(i, seq):
+    return i < len(seq) and i >= 0
+
+
+def get_el_by_merged_i(arr1: Sequence, arr2: Sequence, idx):
+    res = float("inf")
+    for seq1_i in range(len(arr1)):  # TODO: use binary search
+        seq2_i = idx - seq1_i - 1
+        if seq2_i < -1:
+            continue
+        if not is_arr_empty(arr2, seq2_i) and (
+            is_arr_empty(arr2, seq2_i + 1) or arr2[seq2_i + 1] >= arr1[seq1_i]
+        ):
+            print(seq1_i, seq2_i)
+            res = arr2[seq2_i]
+    for seq2_i in range(len(arr2)):  # TODO: use binary search
+        seq1_i = idx - seq2_i - 1
+        if seq1_i < -1:
+            continue
+        if not is_arr_empty(arr1, seq1_i) and (
+            is_arr_empty(arr1, seq1_i + 1) or arr1[seq1_i + 1] >= arr2[seq2_i]
+        ):
+            print(seq1_i, seq2_i)
+            if res > arr2[seq2_i]:
+                res = arr1[seq1_i]
+    if res != float("inf"):
+        return res
+    raise Exception("Index out of range or internal error occurred")
+
+
 def solve(arr1, arr2):
     """CPU - O(n+m)
     RAM - O(1)"""
     merged_len = len(arr1) + len(arr2)
-    merged = merge_arrays(arr1, arr2)
     if merged_len % 2 == 0:
-        left_mid_i = merged_len // 2 - 1
-        for i in range(left_mid_i):
-            next(merged)
-        left_mid = next(merged)
-        right_mid = next(merged)
-        return (left_mid + right_mid) / 2
+        mid_i = merged_len // 2 - 1
+        return (
+            get_el_by_merged_i(arr1, arr2, mid_i)
+            + get_el_by_merged_i(arr2, arr1, mid_i + 1)
+        ) / 2
     else:
         mid_i = merged_len // 2
-        for i in range(mid_i):
-            next(merged)
-        mid = next(merged)
-        return mid
+        return get_el_by_merged_i(arr1, arr2, mid_i)
 
 
 def main():
