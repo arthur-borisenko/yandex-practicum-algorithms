@@ -1,6 +1,3 @@
-from array import array
-
-
 def main():
     """CPU - O(n log(n))
     RAM - O(n)"""
