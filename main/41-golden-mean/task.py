@@ -37,29 +37,32 @@ def is_index_valid(i, seq):
 
 
 def get_el_by_merged_i(arr1: Sequence, arr2: Sequence, idx):
-    res = float("inf")
-    for seq1_i in range(len(arr1)):  # TODO: use binary search
-        seq2_i = idx - seq1_i - 1
-        if seq2_i < -1:
-            continue
-        if not is_arr_empty(arr2, seq2_i) and (
-            is_arr_empty(arr2, seq2_i + 1) or arr2[seq2_i + 1] >= arr1[seq1_i]
-        ):
-            print(seq1_i, seq2_i)
-            res = arr2[seq2_i]
-    for seq2_i in range(len(arr2)):  # TODO: use binary search
-        seq1_i = idx - seq2_i - 1
-        if seq1_i < -1:
-            continue
-        if not is_arr_empty(arr1, seq1_i) and (
-            is_arr_empty(arr1, seq1_i + 1) or arr1[seq1_i + 1] >= arr2[seq2_i]
-        ):
-            print(seq1_i, seq2_i)
-            if res > arr2[seq2_i]:
-                res = arr1[seq1_i]
-    if res != float("inf"):
-        return res
-    raise Exception("Index out of range or internal error occurred")
+    start = -1
+    end = len(arr1) - 1
+    if len(arr1) + len(arr2) <= idx:
+        return -1
+    if len(arr2) == 0:
+        return arr1[idx]
+    if len(arr1) == 0:
+        return arr2[idx]
+    while start <= end:
+        arr1_i = (start + end) // 2
+        arr2_i = idx - arr1_i - 1
+        if arr2_i < -1:
+            end = arr1_i - 1
+        elif arr2_i >= len(arr2):
+            start = arr1_i + 1
+        elif arr1_i + 1 < len(arr1) and arr1[arr1_i + 1] < arr2[arr2_i]:
+            start = arr1_i + 1
+        elif arr1_i > -1 and arr2_i + 1 < len(arr2) and arr2[arr2_i + 1] < arr1[arr1_i]:
+            end = arr1_i - 1
+        else:
+            if arr1_i == -1:
+                return arr2[arr2_i]
+            if arr2_i == -1:
+                return arr1[arr1_i]
+            return max(arr1[arr1_i], arr2[arr2_i])
+    return -1
 
 
 def solve(arr1, arr2):
