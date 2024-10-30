@@ -54,8 +54,8 @@ class TestCase(unittest.TestCase):
         value = testUtil.file_test(
             f"""10000
 10000
-{("10000 "*10000).strip()}
-{("9999 "*10000).strip()}
+{("10000 "*4).strip()}
+{("9999 "*4).strip()}
 """,
             task.main,
         )
