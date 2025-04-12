@@ -1,26 +1,30 @@
-def solve(arr):
-    """CPU - O(n)
+import math
+
+
+def solve(input_seq: list) -> int:
+    """
+    Calculates the maximum number of chunks the input array can be split, then sort all of them and get sorted array
+    CPU - O(n)
     RAM - O(1)"""
+    chunks_from_right = []
+    min_from_right = math.inf
+    for el in reversed(input_seq):
+        min_from_right = min(min_from_right, el)
+        chunks_from_right.append(min_from_right)
+
     max_from_left = -1
-    mins_from_right = []
-    min_from_right = len(arr) - 1
-    for i, el in enumerate(reversed(arr)):
-        if el < min_from_right:
-            min_from_right = el
-        mins_from_right.append(min_from_right)
-    max_from_left = -1
-    maxes_from_left = []
-    for i, el in enumerate(arr):
-        if el > max_from_left:
-            max_from_left = el
-        maxes_from_left.append(max_from_left)
-    res = 1
-    for i in range(len(maxes_from_left) - 1):
-        min_from_right = mins_from_right[-i - 2]
-        max_from_left = maxes_from_left[i]
+    chunks_from_left = []
+    for el in input_seq:
+        max_from_left = max(max_from_left, el)
+        chunks_from_left.append(max_from_left)
+    chunks = 1
+
+    for i in range(len(chunks_from_left) - 1):
+        min_from_right = chunks_from_right[-i - 2]
+        max_from_left = chunks_from_left[i]
         if min_from_right >= max_from_left:
-            res += 1
-    return res
+            chunks += 1
+    return chunks
 
 
 def main():
