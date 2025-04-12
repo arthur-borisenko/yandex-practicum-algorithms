@@ -12,7 +12,7 @@ def main():
         for letter in line1:
             letters1[letter] = letters1.get(letter, 0) + 1
         for letter in line2:
-            letters2[letter] = letters1.get(letter, 0) + 1
+            letters2[letter] = letters2.get(letter, 0) + 1
         for letter in letters2:
             if letters2[letter] != letters1.get(letter, 0):
                 print(letter, file=outp)
