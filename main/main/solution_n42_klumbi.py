@@ -26,7 +26,7 @@ def merge_overlapping_intervals(lines: Iterable[list[int]]) -> Iterable[list[int
     max_end_pair = -1
     res = []
     sorted_lns = sorted(lines)
-    for index,(start,end) in enumerate(sorted_lns):
+    for index, (start, end) in enumerate(sorted_lns):
         if start > max_end:
             res.append([start, end])
             max_end = end
