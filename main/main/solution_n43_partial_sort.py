@@ -3,7 +3,9 @@ import math
 
 def calc_max_chunks(input_seq: list[int]) -> int:
     """
-    Calculates the maximum number of chunks the input array can be split, then sort all of them and get sorted array
+    Calculates the maximum number of chunks the input array can be split which can be sorted separately, concatenated and result into sorted sequence.
+    :param input_seq: source array
+    :return: maximum number of chunks
     CPU - O(n)
     RAM - O(n)"""
     chunks_from_right = []
