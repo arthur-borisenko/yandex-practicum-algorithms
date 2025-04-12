@@ -1,7 +1,6 @@
-import task
 import unittest
-
-from utils import testUtil
+from main.main import solution_n41_golden_mean as task
+from test.utils import testUtil
 
 
 class TestCase(unittest.TestCase):
