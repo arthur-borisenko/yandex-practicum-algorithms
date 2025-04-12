@@ -12,13 +12,13 @@ def calc_max_chunks(input_seq: list[int]) -> int:
         min_from_right = min(min_from_right, el)
         chunks_from_right.append(min_from_right)
 
-    max_from_left = -1
+    max_from_left = -math.inf
     chunks_from_left = []
     for el in input_seq:
         max_from_left = max(max_from_left, el)
         chunks_from_left.append(max_from_left)
-    chunks = 1
 
+    chunks = 1
     for i in range(len(chunks_from_left) - 1):
         min_from_right = chunks_from_right[-i - 2]
         max_from_left = chunks_from_left[i]
