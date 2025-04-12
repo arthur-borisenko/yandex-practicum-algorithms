@@ -11,7 +11,7 @@ def main():
         parsed_lines: Iterable[list[int]] = map(
             lambda l: list(map(int, l.split())), lns
         )
-        print_output(solve(parsed_lines), file=outp)
+        print_output(merge_overlapping_intervals(parsed_lines), file=outp)
 
 
 def print_output(out, file):
@@ -19,7 +19,7 @@ def print_output(out, file):
         print(*line, file=file)
 
 
-def solve(lines: Iterable):
+def merge_overlapping_intervals(lines: Iterable):
     """CPU - O(n log(n))
     RAM - O(n)"""
     max_end = -math.inf
