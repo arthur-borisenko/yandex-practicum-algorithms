@@ -1,7 +1,7 @@
 import math
 
 
-def solve(input_seq: list) -> int:
+def solve(input_seq: list[int]) -> int:
     """
     Calculates the maximum number of chunks the input array can be split, then sort all of them and get sorted array
     CPU - O(n)
