@@ -1,7 +1,6 @@
-import task
 import unittest
-
-from utils import testUtil
+from main.main import solution_n42_klumbi as task
+from test.utils import testUtil
 
 
 class TestCase(unittest.TestCase):
