@@ -1,7 +1,7 @@
 import math
 
 
-def solve(input_seq: list[int]) -> int:
+def calc_max_chunks(input_seq: list[int]) -> int:
     """
     Calculates the maximum number of chunks the input array can be split, then sort all of them and get sorted array
     CPU - O(n)
@@ -33,7 +33,7 @@ def main():
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
         n = int(inp.readline())
         arr = list(map(int, inp.readline().split()))
-        print(solve(arr), file=outp)
+        print(calc_max_chunks(arr), file=outp)
 
 
 if __name__ == "__main__":
