@@ -1,7 +1,6 @@
-import task
 import unittest
-
-from utils import testUtil
+from main.main import solution_n40_two_bicycles as task
+from test.utils import testUtil
 
 
 class TestCase(unittest.TestCase):
