@@ -5,7 +5,7 @@ def calc_max_chunks(input_seq: list[int]) -> int:
     """
     Calculates the maximum number of chunks the input array can be split, then sort all of them and get sorted array
     CPU - O(n)
-    RAM - O(1)"""
+    RAM - O(n)"""
     chunks_from_right = []
     min_from_right = math.inf
     for el in reversed(input_seq):
