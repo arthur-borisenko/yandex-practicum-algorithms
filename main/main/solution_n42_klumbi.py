@@ -1,3 +1,4 @@
+import math
 from typing import Iterable
 
 
@@ -21,7 +22,7 @@ def print_output(out, file):
 def solve(lines: Iterable):
     """CPU - O(n log(n))
     RAM - O(n)"""
-    max_end = float("-inf")
+    max_end = -math.inf
     max_end_pair = -1
     res = []
     res_pair_i = 0
