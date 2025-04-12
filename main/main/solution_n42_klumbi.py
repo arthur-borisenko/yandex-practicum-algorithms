@@ -1,8 +1,16 @@
+from typing import Iterable
+
+
 def main():
     """CPU - O(n log(n))
     RAM - O(n)"""
     with open("input.txt", "r") as inp, open("output.txt", "w") as outp:
-        print_output(solve(inp), file=outp)
+        n = int(inp.readline())
+        lns = inp.readlines()
+        parsed_lines: Iterable[list[int]] = map(
+            lambda l: list(map(int, l.split())), lns
+        )
+        print_output(solve(parsed_lines), file=outp)
 
 
 def print_output(out, file):
@@ -10,16 +18,14 @@ def print_output(out, file):
         print(*line, file=file)
 
 
-def solve(inp):
+def solve(lines: Iterable):
     """CPU - O(n log(n))
     RAM - O(n)"""
-    n = int(inp.readline())
     max_end = float("-inf")
     max_end_pair = -1
     res = []
     res_pair_i = 0
-    lns = inp.readlines()
-    sorted_lns = sorted(map(lambda l: list(map(int, l.split())), lns))
+    sorted_lns = sorted(lines)
     for line in sorted_lns:
         if line[0] > max_end:
             res.append(line)
