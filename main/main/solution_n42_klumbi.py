@@ -27,13 +27,15 @@ def merge_overlapping_intervals(lines: Iterable):
     res = []
     sorted_lns = sorted(lines)
     for index, line in enumerate(sorted_lns):
-        if line[0] > max_end:
+        current_start = line[0]
+        current_end = line[1]
+        if current_start > max_end:
             res.append(line)
-            max_end = line[1]
+            max_end = current_end
             max_end_pair = index
-        elif line[1] > max_end:
-            res[max_end_pair][1] = line[1]
-            max_end = line[1]
+        elif current_end > max_end:
+            res[max_end_pair][1] = current_end
+            max_end = current_end
     return res
 
 
