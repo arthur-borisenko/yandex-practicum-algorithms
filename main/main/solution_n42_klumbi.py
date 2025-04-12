@@ -19,7 +19,7 @@ def print_output(out, file):
         print(*line, file=file)
 
 
-def merge_overlapping_intervals(lines: Iterable):
+def merge_overlapping_intervals(lines: Iterable) -> Iterable[list[int]]:
     """CPU - O(n log(n))
     RAM - O(n)"""
     max_end = -math.inf
