@@ -1,5 +1,5 @@
 import unittest
-from main.main import solution_n43_partial_sort as task
+from main.main import solution_n43_partial_sort_ram_efficent as task
 from test.utils import testUtil
 
 
