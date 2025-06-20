@@ -15,7 +15,7 @@ class LinkedList:
      may not be used outside this class
     """
 
-    def __init__(self, init_data):
+    def __init__(self, init_data=[]):
         self.head: Node = Node(None, None)
         self.tail = self.head
         self._len: int = 0
@@ -68,6 +68,7 @@ class LinkedList:
         if prev_node.next_item == self.tail:
             self.tail = prev_node
         prev_node.next_item = prev_node.next_item.next_item
+        prev_node.next_item.next_item.prev_item=prev_node
 
     def _slice(self, start, stop, step):
         start = start if start else 0
