@@ -191,6 +191,7 @@ def main():
                             break
         print(minimals[k-1].value, file=outp)
 
-
+if __name__ == '__main__':
+    main()
 
 
