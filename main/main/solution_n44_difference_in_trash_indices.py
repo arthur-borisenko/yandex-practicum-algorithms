@@ -33,13 +33,14 @@ class LinkedList:
 
     def _create_node(self, after_node, data):
         next_node = after_node.next_item
-        new_node = Node(None, after_node, next_node)
+        new_node = Node(data, after_node, next_node)
         after_node.next_item = new_node
+        if next_node is not None:
+            next_node.prev_item = new_node
         self._len += 1
-        node = new_node
-        node.value = data
-        self.tail = node
-        return node
+        if after_node == self.tail:
+            self.tail = new_node
+        return new_node
 
     def insert(self, data, after: int):
         """
@@ -176,7 +177,7 @@ def main():
         diffs=[]
         for idx, val in enumerate(vals):
             for idx2, val2 in enumerate(vals):
-                if idx==idx2:
+                if idx<=idx2:
                     continue
                 diff=abs(val2-val)
                 diffs.append([val,val2,diff,idx,idx2])
@@ -185,6 +186,8 @@ def main():
                         if el.value>diff:
                             minimals._create_node(el.prev_item,diff)
                             minimals.tail=minimals.tail.prev_item
+                            minimals.tail.next_item = None
+                            minimals._len-=1
                             break
         print(minimals[k-1].value, file=outp)
 
