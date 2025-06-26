@@ -45,7 +45,6 @@ class TestCase(unittest.TestCase):
 """.rstrip(),
         )
     def test_case4(self):
-        assert False
         value = testUtil.file_test(
             open("test_n44_case4_input.txt").read(),
             task.main,

@@ -1,5 +1,4 @@
-import array
-from typing import Iterable
+import numba
 
 MAX_VALUE=1000000
 
@@ -10,19 +9,23 @@ def main():
         n=int(inp.readline())
         vals=list(map(int, inp.readline().split()))
         k=int(inp.readline())
-        diffs_counts=array.array("Q", (MAX_VALUE + 1)*[0])
-        for idx, val in enumerate(vals):
-            for idx2, val2 in enumerate(vals):
-                if idx<=idx2:
-                    continue
-                diff_cnt=abs(val2 - val)
-                diffs_counts[diff_cnt]+=1
+        diffs_counts = count_diffs(vals)
         cnt=0
         for diff, diff_cnt in enumerate(diffs_counts):
             if cnt+diff_cnt >= k:
                 print(diff, file=outp)
                 break
             cnt+=diff_cnt
+
+@numba.njit
+def count_diffs(vals):
+    diffs_counts = (MAX_VALUE + 1) * [0]
+    for idx, val in enumerate(vals):
+        for val2 in vals[idx + 1:]:
+            diff_cnt = abs(val2 - val)
+            diffs_counts[diff_cnt] += 1
+    return diffs_counts
+
 
 if __name__ == '__main__':
     main()
