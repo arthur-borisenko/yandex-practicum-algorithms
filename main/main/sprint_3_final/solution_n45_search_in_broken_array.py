@@ -1,20 +1,19 @@
-from typing import Sequence
+from typing import Sequence, Any
 
 
-def search_ordered_circular_array_start(
+def search_sorted_circular_array_start(
     sequence: Sequence, left: int = None, right: int = None
 ) -> int:
-    """Finds last element in left sorted part of the semi-sorted number array with unique items with one or no disorder.
-    If there is no disorder, returns -1.
+    """Finds the end of a sorted ring array with unique items.
     CPU - O(log n)
     RAM - O(1)"""
     if left is None:
         left = 0
     if right is None:
         right = len(sequence) - 1
+    if sequence[left] <= sequence[right]:
+        return 0
     while left < right:
-        if sequence[left] <= sequence[right]:
-            return -1
         mid = left + (right - left) // 2
         if mid + 1 < len(sequence) and sequence[mid] > sequence[mid + 1]:
             return mid
@@ -22,7 +21,9 @@ def search_ordered_circular_array_start(
             left = mid + 1
         else:
             right = mid
-    return -1
+    raise ValueError(
+        "Failed to find end. maybe ring array was not sorted or items are not unique."
+    )
 
 
 class CircularArray(Sequence):
@@ -60,7 +61,7 @@ class CircularArray(Sequence):
         return _Iterator(self)
 
 
-def search(sequence: Sequence, target) -> int:
+def search(sequence: Sequence, target: Any) -> int:
     """Classic binary search implementation.
     CPU - O(log n)
     RAM - O(1)"""
@@ -82,7 +83,7 @@ def broken_search(nums, target) -> int:
     If there is no such element, returns -1.
     CPU - O(log n)
     RAM - O(1)"""
-    broken_index = search_ordered_circular_array_start(nums)
+    broken_index = search_sorted_circular_array_start(nums)
     if broken_index != -1:
         ring_array = CircularArray(nums, broken_index)
         target_broken_index = search(ring_array, target)
