@@ -1,44 +1,46 @@
-def search_bad(sequence, left=None, right=None):
-    """Finds last element in left sorted part of the semi-sorted number array with unique with one or no disorder.
-     If there is no disorder, returns -1.
-     CPU - O(log n)
-     RAM - O(log n)"""
+from typing import Sequence
+
+
+def search_ordered_circular_array_start(
+    sequence: Sequence, left: int = None, right: int = None
+) -> int:
+    """Finds last element in left sorted part of the semi-sorted number array with unique items with one or no disorder.
+    If there is no disorder, returns -1.
+    CPU - O(log n)
+    RAM - O(1)"""
     if left is None:
-        left=0
+        left = 0
     if right is None:
-        right=len(sequence)-1
-    if left > right:
-        raise Exception
-    if sequence[left] <= sequence[right]:
-        return -1
-    mid = left + (right - left) // 2
-    if mid + 1 < len(sequence) and sequence[mid] > sequence[mid + 1]:
-        return mid
-    elif left == right:
-        raise Exception
-    if sequence[mid] > sequence[right]:
-        return search_bad(sequence, mid + 1, right)
-    else:
-        return search_bad(sequence, left, mid)
+        right = len(sequence) - 1
+    while left < right:
+        if sequence[left] <= sequence[right]:
+            return -1
+        mid = left + (right - left) // 2
+        if mid + 1 < len(sequence) and sequence[mid] > sequence[mid + 1]:
+            return mid
+        if sequence[mid] > sequence[right]:
+            left = mid + 1
+        else:
+            right = mid
+    return -1
 
 
-
-class RingArrayShiftWrapper:
-    def __init__(self, arr, shift):
+class CircularArray(Sequence):
+    def __init__(self, arr, end_i):
         self.arr = arr
-        self.shift = shift
+        self.shift = -(len(arr) - end_i - 1)
 
-    def calc_index(self, i):
+    def to_internal_array_index(self, i):
         return (i + self.shift) % len(self.arr)
 
     def __len__(self):
         return len(self.arr)
 
     def __getitem__(self, i):
-        return self.arr[self.calc_index(i)]
+        return self.arr[self.to_internal_array_index(i)]
 
     def __setitem__(self, i, val):
-        self.arr[self.calc_index(i)] = val
+        self.arr[self.to_internal_array_index(i)] = val
 
     def __iter__(self):
         class _Iterator:
@@ -58,17 +60,17 @@ class RingArrayShiftWrapper:
         return _Iterator(self)
 
 
-def search(arr, target):
+def search(sequence: Sequence, target) -> int:
     """Classic binary search implementation.
     CPU - O(log n)
-    RAM - O(log n)"""
+    RAM - O(1)"""
     left = 0
-    right = len(arr) - 1
+    right = len(sequence) - 1
     while left <= right:
         mid = left + (right - left) // 2
-        if arr[mid] == target:
+        if sequence[mid] == target:
             return mid
-        elif arr[mid] < target:
+        elif sequence[mid] < target:
             left = mid + 1
         else:
             right = mid - 1
@@ -76,24 +78,23 @@ def search(arr, target):
 
 
 def broken_search(nums, target) -> int:
-    """Finds element index in the semi-sorted number array with unique with one or no disorder.
-         If there is no such element, returns -1.
-         CPU - O(log n)
-         RAM - O(log n)"""
-    broken_index = search_bad(nums)
+    """Finds element target_index in the semi-sorted number array with unique with one or no disorder.
+    If there is no such element, returns -1.
+    CPU - O(log n)
+    RAM - O(1)"""
+    broken_index = search_ordered_circular_array_start(nums)
     if broken_index != -1:
-        shift = -(len(nums) - broken_index - 1)
-        wrapped_sequence = RingArrayShiftWrapper(nums, shift)
-        broken_i = search(wrapped_sequence, target)
-        if broken_i == -1:
+        ring_array = CircularArray(nums, broken_index)
+        target_broken_index = search(ring_array, target)
+        if target_broken_index == -1:
             return -1
-        index = wrapped_sequence.calc_index(broken_i)
-        return index
+        target_index = ring_array.to_internal_array_index(target_broken_index)
+        return target_index
     else:
-        broken_i = search(nums, target)
-        if broken_i == -1:
+        target_broken_index = search(nums, target)
+        if target_broken_index == -1:
             return -1
-        return broken_i
+        return target_broken_index
 
 
 def test():
