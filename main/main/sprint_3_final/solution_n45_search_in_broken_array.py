@@ -12,7 +12,7 @@ def search_sorted_circular_array_start(
     if right is None:
         right = len(sequence) - 1
     if sequence[left] <= sequence[right]:
-        return 0
+        return -1
     while left < right:
         mid = left + (right - left) // 2
         if mid + 1 < len(sequence) and sequence[mid] > sequence[mid + 1]:
