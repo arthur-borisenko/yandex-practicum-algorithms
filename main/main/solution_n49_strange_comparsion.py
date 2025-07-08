@@ -1,15 +1,17 @@
-def solution(s: str, t: str):
+def solution(s: str, t: str) -> bool:
+    """CPU - O(n)
+    RAM - O(n)"""
     if len(s) != len(t):
         return False
-    s_to_t_mapping = {}
-    t_to_s_mapping = {}
-    for i, val in enumerate(s):
-        val2 = t[i]
-        if s_to_t_mapping.get(val, None) is None:
-            s_to_t_mapping[val] = val2
-        if t_to_s_mapping.get(val2, None) is None:
-            t_to_s_mapping[val2] = val
-        if s_to_t_mapping[val] != val2 or t_to_s_mapping[val2] != val:
+    s_to_t = {}
+    t_to_s = {}
+    for i, s_i_char in enumerate(s):
+        t_i_char = t[i]
+        if s_to_t.get(s_i_char) is None:
+            s_to_t[s_i_char] = t_i_char
+        if t_to_s.get(t_i_char) is None:
+            t_to_s[t_i_char] = s_i_char
+        if s_to_t[s_i_char] != t_i_char or t_to_s[t_i_char] != s_i_char:
             return False
     return True
 
