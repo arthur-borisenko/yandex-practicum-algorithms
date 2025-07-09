@@ -65,5 +65,10 @@ def break_collision():
     return None, ""
 
 
+def main():
+    with open("output.txt", "w") as f:
+        print(break_collision())
+
+
 if __name__ == "__main__":
-    print(break_collision())
+    main()
