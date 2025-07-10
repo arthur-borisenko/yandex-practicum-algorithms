@@ -2,6 +2,8 @@ from io import TextIOWrapper
 
 
 def pair_sums(l):
+    """CPU - O(n^2)
+    RAM - O(n^2)"""
     res = {}
     for i1, el1 in enumerate(l):
         for i2, el2 in enumerate(l):
@@ -14,6 +16,8 @@ def pair_sums(l):
 
 
 def sum_4(a, x):
+    """CPU - O(n^2)
+    RAM - O(n^2)"""
     n = len(x)
     x.sort()
     quartets = set()
