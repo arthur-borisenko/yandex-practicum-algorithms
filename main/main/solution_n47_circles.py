@@ -1,4 +1,6 @@
 def main():
+    """CPU - O(n)
+    RAM - O(n)"""
     with open("input.txt") as inp, open("output.txt", "w") as out:
         n = inp.readline()
         d = []
