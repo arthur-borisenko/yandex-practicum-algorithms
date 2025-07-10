@@ -1,9 +1,11 @@
 from io import TextIOWrapper
+from typing import Iterable
 
 
-def pair_sums(l):
-    """CPU - O(n^2)
-    RAM - O(n^2)"""
+def pair_sums(l: Iterable[int]) -> dict[int, tuple[int, int]]:
+    """CPU - O(k^2)
+    RAM - O(k^2)
+    where k = len(l)"""
     res = {}
     for i1, el1 in enumerate(l):
         for i2, el2 in enumerate(l):
@@ -15,9 +17,10 @@ def pair_sums(l):
     return res
 
 
-def sum_4(a, x):
-    """CPU - O(n^2)
-    RAM - O(n^2)"""
+def sum_4(a: int, x: list[int]) -> list[tuple[int, int, int, int]]:
+    """CPU - O(k^2)
+    RAM - O(k^2)
+    where k = len(x)"""
     n = len(x)
     x.sort()
     quartets = set()
