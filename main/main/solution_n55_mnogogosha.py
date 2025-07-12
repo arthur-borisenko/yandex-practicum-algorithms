@@ -23,22 +23,20 @@ def polynominal_hash(s, base, mod):
     return result
 
 
-def count_substrings(n, k, x):
-    xx = x
+def count_substrings(n, k, xx):
     fuck = pow(base, n - 1, mod)
-    l = len(xx)
     res = []
-    h1 = polynominal_hash(xx[:n], base, mod)
-    sss = {}
+    h = polynominal_hash(xx[:n], base, mod)
+    counts = {}
     for i in range(len(xx) - n):
         if i != 0:
-            h1 = ((h1 - ord(xx[i - 1]) * fuck) * base + ord(xx[i - 1 + n])) % mod
-        if h1 not in sss:
-            sss[h1] = [0, i]
-        sss[h1][0] += 1
-    for key in sss.keys():
-        if sss[key][0] >= k:
-            res.append(sss[key][1])
+            h = ((h - ord(xx[i - 1]) * fuck) * base + ord(xx[i - 1 + n])) % mod
+        if h not in counts:
+            counts[h] = [0, i]
+        counts[h][0] += 1
+    for key in counts.keys():
+        if counts[key][0] >= k:
+            res.append(counts[key][1])
     return res
 
 
