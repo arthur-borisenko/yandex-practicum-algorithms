@@ -5,24 +5,22 @@ def solve(l: Iterable[str]) -> Iterable[Iterable[int]]:
     """CPU - O(s log(s) + n*s)
     RAM - O(n + s)
     where n - input data length; s - count of unique symbols in input data"""
-    groups = {}
-    symbols = []
-    symbols_seen = set()
+    symbols_set = set()
     for el in l:
         for symbol in el:
-            if symbol not in symbols_seen:
-                symbols_seen.add(symbol)
-                symbols.append(symbol)
-    symbols.sort()
+            symbols_set.add(symbol)
+    symbols = sorted(symbols_set)
+    groups = {}
     for i, el in enumerate(l):
         counts: dict = {}
-        s_sorted = []
         for symbol in el:
             counts[symbol] = counts.get(symbol, 0) + 1
+        s_sorted_list = []
         for symbol in symbols:
-            s_sorted.append(counts.get(symbol, 0) * symbol)
-        groups["".join(s_sorted)] = groups.get("".join(s_sorted), [])
-        groups["".join(s_sorted)].append(i)
+            s_sorted_list.append(counts.get(symbol, 0) * symbol)
+        s_sorted = "".join(s_sorted_list)
+        groups[s_sorted] = groups.get(s_sorted, [])
+        groups[s_sorted].append(i)
     return sorted(groups.values())
 
 
