@@ -2,9 +2,9 @@ from typing import Iterable
 
 
 def solve(l: Iterable[str]) -> Iterable[Iterable[int]]:
-    """CPU - O(s log(s) + n*s)
-    RAM - O(n + s)
-    where n - input data length; s - count of unique symbols in input data"""
+    """CPU - O(sum(x log x)
+    RAM - O(n)
+    where n - input data length, x - each element length"""
     groups = {}
     for i, el in enumerate(l):
         s_sorted = "".join(sorted(el))
