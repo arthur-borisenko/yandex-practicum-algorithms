@@ -1,4 +1,4 @@
-def group_anagrams(strings):
+`def group_anagrams(strings):
     from collections import defaultdict
 
     groups = defaultdict(list)
@@ -9,11 +9,12 @@ def group_anagrams(strings):
 
 
 def main():
-    n = int(input())
-    strings = [input().strip() for _ in range(n)]
-    result = group_anagrams(strings)
-    for group in result:
-        print(" ".join(map(str, group)))
+    with open("input.txt") as inp, open("output.txt", "w") as out:
+        n = int(inp.readline())
+        strings = [inp.readline().strip() for _ in range(n)]
+        result = group_anagrams(strings)
+        for group in result:
+            print(" ".join(map(str, group)), file=out)
 
 
 if __name__ == "__main__":
