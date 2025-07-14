@@ -1,7 +1,6 @@
 import unittest
 
-import main.main.solution_n53_anagramm_grouping as solution
-
+import main.main.solution_n53_anagramm_grouping_simple as solution
 from test.utils import testUtil
 
 
@@ -36,3 +35,4 @@ tan eat tea ate nat bat
 8 9 10
 """.rstrip(),
         )
+
