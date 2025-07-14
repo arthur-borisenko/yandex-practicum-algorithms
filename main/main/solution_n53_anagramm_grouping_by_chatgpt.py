@@ -1,4 +1,4 @@
-`def group_anagrams(strings):
+def group_anagrams(strings):
     from collections import defaultdict
 
     groups = defaultdict(list)
