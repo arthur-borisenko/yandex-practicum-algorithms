@@ -21,12 +21,11 @@ def sum_4(a: int, x: list[int]) -> list[tuple[int, int, int, int]]:
     """CPU - O(k^2)
     RAM - O(k^2)
     where k = len(x)"""
-    n = len(x)
-    x.sort()
+    k = len(x)
     quartets = set()
     sums = pair_sums(x)
-    for i in range(n):
-        for j in range(i + 1, n):
+    for i in range(k):
+        for j in range(i + 1, k):
             target = a - x[i] - x[j]
             if target in sums:
                 target_indexes = sums[target]
