@@ -1,4 +1,6 @@
-def cals_max_substring_with_unique_symbols_len(s):
+def cals_max_substring_with_unique_symbols_len(s: str) -> int:
+    """CPU - O(n)
+    RAM - O(n)"""
     ss = set()
     ml = 0
     left = 0
@@ -17,6 +19,8 @@ def cals_max_substring_with_unique_symbols_len(s):
 
 
 def main():
+    """CPU - O(n)
+    RAM - O(n)"""
     with open("input.txt") as inp, open("output.txt", "w") as out:
         print(
             cals_max_substring_with_unique_symbols_len(inp.readline().strip()), file=out
