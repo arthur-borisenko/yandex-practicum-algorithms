@@ -1,19 +1,19 @@
-def cals_max_substring_with_unique_symbols_len(string: str) -> int:
+def cals_max_substring_with_unique_symbols_len(s: str) -> int:
     """CPU - O(n)
     RAM - O(n)"""
-    current_symbols = set()
+    sub_s = set()
     max_length = 0
     left = 0
-    for i, symbol in enumerate(string):
-        if symbol in current_symbols:
-            if len(current_symbols) > max_length:
-                max_length = len(current_symbols)
-            while symbol in current_symbols:
-                current_symbols.remove(string[left])
+    for right, s_char in enumerate(s):
+        if s_char in sub_s:
+            if len(sub_s) > max_length:
+                max_length = len(sub_s)
+            while s_char in sub_s:
+                sub_s.remove(s_char)
                 left += 1
-        current_symbols.add(symbol)
-    if len(current_symbols) > max_length:
-        max_length = len(current_symbols)
+        sub_s.add(s_char)
+    if len(sub_s) > max_length:
+        max_length = len(sub_s)
     return max_length
 
 
