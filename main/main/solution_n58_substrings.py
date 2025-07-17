@@ -4,7 +4,7 @@ def cals_max_substring_with_unique_symbols_len(s: str) -> int:
     sub_s = set()
     max_length = 0
     left = 0
-    for right, s_char in enumerate(s):
+    for s_char in s:
         if s_char in sub_s:
             if len(sub_s) > max_length:
                 max_length = len(sub_s)
