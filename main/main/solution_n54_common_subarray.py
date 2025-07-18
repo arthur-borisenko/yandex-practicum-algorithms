@@ -11,7 +11,7 @@ class PrefixHasher:
     def prefix_hashes(self, s, base, mod):
         res = [0]
         for el in s:
-            res.append((res[-1] * base + ord(el)) % mod)
+            res.append((res[-1] * base + el) % mod)
         return res
 
     def precompute_powers(self, base, exp, mod):
@@ -41,15 +41,35 @@ n = int(input())
 a = list(map(int, input().split()))
 m = int(input())
 b = list(map(int, input().split()))
-a_hashes = PrefixHasher(a, 10**9 + 7, 2**16 - 1)
-b_hashes = PrefixHasher(b, 10**9 + 7, 2**16 - 1)
+a_hashes = PrefixHasher(a, 10**9 + 7, 1234567891)
+b_hashes = PrefixHasher(b, 10**9 + 7, 1234567891)
+a_hashes2 = PrefixHasher(a, 10**9 + 9, 2**31 - 1)
+b_hashes2 = PrefixHasher(b, 10**9 + 9, 2**31 - 1)
 
 
-def idk(a, b, a_ph, b_ph, le):
+def idk(aa, bb, a_ph, b_ph, a_ph2, b_ph2, le):
     b_hs = set()
-    for i in range(len(b)):
+    b_hs2 = set()
+    for i in range(len(bb) - le):
         b_hs.add(b_ph[i : i + le])
-    for i in range(len(a)):
-        if a_ph[i : i + le] in b_hs:
+    for i in range(len(bb) - le):
+        b_hs2.add(b_ph2[i : i + le])
+    for i in range(len(aa) - le):
+        if a_ph[i : i + le] in b_hs and a_ph2[i : i + le] in b_hs2:
             return True
     return False
+
+
+def search(a, b):
+    left = 0
+    right = len(b) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if idk(a, b, a_hashes, b_hashes, a_hashes2, b_hashes2, mid):
+            left = mid + 1
+        else:
+            right = mid - 1
+    return left
+
+
+print(search(a, b))
