@@ -1,30 +1,31 @@
 from collections import defaultdict
 
-
-d = []
+inp = open("input.txt", "r")
+d = defaultdict(dict)
 q = []
-n = int(input())
+n = int(inp.readline())
 for i in range(n):
-    dct = input().split()
-    d.append(defaultdict(int))
+    dct = inp.readline().split()
     for el in dct:
-        d[-1][el] += 1
+        data = d[el]
+        data[i] = data.get(i, 0) + 1
 
-m = int(input())
+m = int(inp.readline())
 for i in range(m):
-    dct = input().split()
+    dct = inp.readline().split()
     q.append(set())
     for el in dct:
         q[-1].add(el)
-
-
+out = open("output.txt", "w")
 for qq in q:
-    dcs = []
-    for i, dc in enumerate(d):
-        qqq = 0
-        for word in qq:
-            if word in dc:
-                qqq += dc[word]
-        if qqq > 0:
-            dcs.append((qqq, i))
-    print(*map(lambda x: x[1] + 1, sorted(dcs)))
+    rels = {}
+    for word in qq:
+        for ddd in d[word].keys():
+            rels[ddd] = rels.get(ddd, 0) + d[word][ddd]
+    res = []
+    for ddd in rels.keys():
+        res.append((rels[ddd], ddd))
+        res.sort(reverse=True, key=lambda x: (x[0], -x[1]))
+        if len(res) > 5:
+            res.pop()
+    print(*map(lambda x: x[1] + 1, res), file=out)
