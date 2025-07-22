@@ -34,7 +34,7 @@ class DoubleLinkedList:
         self._len += 1
         return new_node
 
-    def create_node(self, after_node, value):
+    def create_node(self, after_node: DoubleConnectedNode, value):
         new_node = DoubleConnectedNode(value)
         new_node.next_item = after_node.next_item
         new_node.prev_item = after_node
@@ -49,19 +49,19 @@ class DoubleLinkedList:
         self._len += 1
         return new_node
 
-    def delete_node(self, node):
+    def delete_node(self, node: DoubleConnectedNode):
         if node is None:
             return
 
-        if node.prev:
-            node.prev.next_item = node.next_item
+        if node.prev_item:
+            node.prev_item.next_item = node.next_item
         else:  # node == head
             self.head = node.next_item
 
         if node.next_item:
-            node.next_item.prev_item = node.prev
+            node.next_item.prev_item = node.prev_item
         else:  # node == tail
-            self.tail = node.prev
+            self.tail = node.prev_item
 
         self._len -= 1
 
@@ -116,6 +116,7 @@ class HashMap:
         for node in bucket:
             if node.value[0] == key:
                 bucket.delete_node(node)
+                return
         raise KeyError(key)
 
     def keys(self):
@@ -148,9 +149,9 @@ def main():
                 case "get":
                     try:
                         i = query[1]
-                        print(data[i])
+                        print(data[i], file=out)
                     except KeyError:
-                        print(None)
+                        print(None, file=out)
                 case "put":
                     i = query[1]
                     value = query[2]
@@ -158,6 +159,10 @@ def main():
                 case "delete":
                     try:
                         i = query[1]
-                        print(data.pop(i))
+                        print(data.pop(i), file=out)
                     except KeyError:
-                        print(None)
+                        print(None, file=out)
+
+
+if __name__ == "__main__":
+    main()
