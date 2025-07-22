@@ -1,6 +1,6 @@
 import unittest
 
-import main.main.sprint_4_final.solution_n58_search_system as solution
+import main.main.sprint_4_final.solution_n59_search_system as solution
 from test.utils import testUtil
 
 
