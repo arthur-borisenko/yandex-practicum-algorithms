@@ -1,47 +1,62 @@
 class HashMap:
-    def __init__(self, m=10**5 + 3, hash_fn=lambda x: int(x)):
-        self._arr: list[list] = []
+    KEY_IDX = 0
+    VAL_IDX = 1
+
+    def __init__(self, m=10**5 + 3, hash_fn=hash):
+        self._arr: list[list] = [[] for _ in range(m)]
         self.m = m
         self.hash_fn = hash_fn
-        for i in range(m):
-            self._arr.append([])
 
     def __getitem__(self, key):
         bucket = self._arr[self.hash_fn(key) % self.m]
         for el in bucket:
-            if el[0] == key:
-                return el[1]
+            if el[self.KEY_IDX] == key:
+                return el[self.VAL_IDX]
         raise KeyError(key)
 
-    def __setitem__(self, key, value, hash_fn=lambda x: int(x)):
+    def __setitem__(self, key, value):
         bucket = self._arr[self.hash_fn(key) % self.m]
         for el in bucket:
-            if el[0] == key:
-                el[1] = value
+            if el[self.KEY_IDX] == key:
+                el[self.VAL_IDX] = value
                 return
         bucket.append([key, value])
 
     def __delitem__(self, key):
         bucket = self._arr[self.hash_fn(key) % self.m]
         for i, el in enumerate(bucket):
-            if el[0] == key:
+            if el[self.KEY_IDX] == key:
                 del bucket[i]
                 return
         raise KeyError(key)
 
+    def get(self, key, default=None):
+        bucket = self._arr[self.hash_fn(key) % self.m]
+        for el in bucket:
+            if el[self.KEY_IDX] == key:
+                return el[self.VAL_IDX]
+        return default
+
     def keys(self):
         keys = []
         for bucket in self._arr:
-            for node in bucket:
-                keys.append(node.value[0])
+            for el in bucket:
+                keys.append(el[self.KEY_IDX])
         return keys
 
     def values(self):
         values = []
         for bucket in self._arr:
-            for node in bucket:
-                values.append(node.value[1])
+            for el in bucket:
+                values.append(el[self.VAL_IDX])
         return values
+
+    def __contains__(self, key) -> bool:
+        bucket = self._arr[self.hash_fn(key) % self.m]
+        for el in bucket:
+            if el[self.KEY_IDX] == key:
+                return True
+        return False
 
     def pop(self, key):
         value = self[key]
@@ -57,18 +72,15 @@ def main():
             query = inp.readline().split()
             match query[0]:
                 case "get":
-                    try:
-                        i = query[1]
-                        print(data[i], file=out)
-                    except KeyError:
-                        print(None, file=out)
+                    i = int(query[1])
+                    print(data.get(i), file=out)
                 case "put":
-                    i = query[1]
-                    value = query[2]
+                    i = int(query[1])
+                    value = int(query[2])
                     data[i] = value
                 case "delete":
                     try:
-                        i = query[1]
+                        i = int(query[1])
                         print(data.pop(i), file=out)
                     except KeyError:
                         print(None, file=out)
