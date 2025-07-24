@@ -1,121 +1,31 @@
-class DoubleConnectedNode:
-    def __init__(self, value, next_item=None, prev_item=None):
-        self.value = value
-        self.next_item = next_item
-        self.prev_item = prev_item
-
-
-class DoubleLinkedList:
-    def __init__(self, values=None):
-        self.head = None
-        self.tail = None
-        self._len = 0
-
-        if values is not None:
-            for value in values:
-                self.append(value)
-
-    def _get_node(self, index):
-        if index < 0 or index >= self._len:
-            raise IndexError("Index out of range")
-        node = self.head
-        for _ in range(index):
-            node = node.next_item
-        return node
-
-    def append(self, value):
-        new_node = DoubleConnectedNode(value)
-        if self.tail is None:
-            self.head = self.tail = new_node
-        else:
-            self.tail.next_item = new_node
-            new_node.prev_item = self.tail
-            self.tail = new_node
-        self._len += 1
-        return new_node
-
-    def create_node(self, after_node: DoubleConnectedNode, value):
-        new_node = DoubleConnectedNode(value)
-        new_node.next_item = after_node.next_item
-        new_node.prev_item = after_node
-
-        after_node.next_item = new_node
-
-        if new_node.next_item:
-            new_node.next_item.prev_item = new_node
-        else:
-            self.tail = new_node
-
-        self._len += 1
-        return new_node
-
-    def delete_node(self, node: DoubleConnectedNode):
-        if node is None:
-            return
-
-        if node.prev_item:
-            node.prev_item.next_item = node.next_item
-        else:  # node == head
-            self.head = node.next_item
-
-        if node.next_item:
-            node.next_item.prev_item = node.prev_item
-        else:  # node == tail
-            self.tail = node.prev_item
-
-        self._len -= 1
-
-    def __delitem__(self, index):
-        node = self._get_node(index)
-        self.delete_node(node)
-
-    def __getitem__(self, index):
-        return self._get_node(index)
-
-    def __len__(self):
-        return self._len
-
-    def __iter__(self):
-        node = self.head
-        while node:
-            yield node
-            node = node.next_item
-
-    def __str__(self):
-        return " <-> ".join(str(x.value) for x in self)
-
-    def __repr__(self):
-        return f"DoubleLinkedList({list(map(lambda x: x.value, self))})"
-
-
 class HashMap:
     def __init__(self, m=10**5 + 3, hash_fn=lambda x: int(x)):
-        self._arr: list[DoubleLinkedList] = []
+        self._arr: list[list] = []
         self.m = m
         self.hash_fn = hash_fn
         for i in range(m):
-            self._arr.append(DoubleLinkedList())
+            self._arr.append([])
 
     def __getitem__(self, key):
         bucket = self._arr[self.hash_fn(key) % self.m]
-        for node in bucket:
-            if node.value[0] == key:
-                return node.value[1]
+        for el in bucket:
+            if el[0] == key:
+                return el[1]
         raise KeyError(key)
 
     def __setitem__(self, key, value, hash_fn=lambda x: int(x)):
         bucket = self._arr[self.hash_fn(key) % self.m]
-        for node in bucket:
-            if node.value[0] == key:
-                node.value[1] = value
+        for el in bucket:
+            if el[0] == key:
+                el[1] = value
                 return
         bucket.append([key, value])
 
     def __delitem__(self, key):
         bucket = self._arr[self.hash_fn(key) % self.m]
-        for node in bucket:
-            if node.value[0] == key:
-                bucket.delete_node(node)
+        for i, el in enumerate(bucket):
+            if el[0] == key:
+                del bucket[i]
                 return
         raise KeyError(key)
 
