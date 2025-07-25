@@ -6,14 +6,14 @@ class HashMap:
         self._m = m
         self.hash_fn = hash_fn
 
-    def _pf(self, b, i):
+    def _probing_fumc(self, b, i):
         return (b + i) % self._m
 
     def __getitem__(self, key):
         i = 0
         bucket_i = self.hash_fn(key) % self._m
-        while self._pf(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._pf(bucket_i, i)]
+        while self._probing_fumc(bucket_i, i) != bucket_i - 1:
+            bucket = self._arr[self._probing_fumc(bucket_i, i)]
             if bucket[0] == key:
                 return bucket[1]
             elif bucket[0] is None:
@@ -25,11 +25,11 @@ class HashMap:
     def __setitem__(self, key, value):
         i = 0
         bucket_i = self.hash_fn(key) % self._m
-        while self._pf(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._pf(bucket_i, i)]
+        while self._probing_fumc(bucket_i, i) != bucket_i - 1:
+            bucket = self._arr[self._probing_fumc(bucket_i, i)]
             if bucket[0] == key or bucket[0] is None or bucket[0] is self.DELETED:
                 bucket = [key, value]
-                self._arr[self._pf(bucket_i, i)] = bucket
+                self._arr[self._probing_fumc(bucket_i, i)] = bucket
                 return
             else:
                 i += 1
@@ -38,16 +38,29 @@ class HashMap:
     def __delitem__(self, key):
         i = 0
         bucket_i = self.hash_fn(key) % self._m
-        while self._pf(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._pf(bucket_i, i)]
+        while self._probing_fumc(bucket_i, i) != bucket_i - 1:
+            bucket = self._arr[self._probing_fumc(bucket_i, i)]
             if bucket[0] == key:
-                self._arr[self._pf(bucket_i, i)] = [self.DELETED, None]
+                self._arr[self._probing_fumc(bucket_i, i)] = [self.DELETED, None]
                 return
             elif bucket[0] is None:
                 raise KeyError(key)
             else:
                 i += 1
         raise KeyError(key)
+
+    def get(self, key, default=None):
+        i = 0
+        bucket_i = self.hash_fn(key) % self._m
+        while self._probing_fumc(bucket_i, i) != bucket_i - 1:
+            bucket = self._arr[self._probing_fumc(bucket_i, i)]
+            if bucket[0] == key:
+                return bucket[1]
+            elif bucket[0] is None:
+                return default
+            else:
+                i += 1
+        return default
 
     def pop(self, key):
         value = self[key]
