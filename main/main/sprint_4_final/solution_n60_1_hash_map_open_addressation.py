@@ -1,12 +1,10 @@
 class HashMap:
-    DELETED_ELEMENT = object()
+    DELETED = object()
 
     def __init__(self, m=2 * 10**5, hash_fn=hash):
-        self._arr: list = []
+        self._arr: list[list] = [[None, None] for _ in range(m)]
         self._m = m
         self.hash_fn = hash_fn
-        for i in range(m):
-            self._arr.append((None, None))
 
     def _pf(self, b, i):
         return (b + i) % self._m
@@ -29,12 +27,8 @@ class HashMap:
         bucket_i = self.hash_fn(key) % self._m
         while self._pf(bucket_i, i) != bucket_i - 1:
             bucket = self._arr[self._pf(bucket_i, i)]
-            if bucket[0] == key:
-                bucket = (key, value)
-                self._arr[self._pf(bucket_i, i)] = bucket
-                return
-            elif bucket[0] is None or bucket[0] == self.DELETED_ELEMENT:
-                bucket = (key, value)
+            if bucket[0] == key or bucket[0] is None or bucket[0] is self.DELETED:
+                bucket = [key, value]
                 self._arr[self._pf(bucket_i, i)] = bucket
                 return
             else:
@@ -47,7 +41,7 @@ class HashMap:
         while self._pf(bucket_i, i) != bucket_i - 1:
             bucket = self._arr[self._pf(bucket_i, i)]
             if bucket[0] == key:
-                self._arr[self._pf(bucket_i, i)] = (self.DELETED_ELEMENT, None)
+                self._arr[self._pf(bucket_i, i)] = [self.DELETED, None]
                 return
             elif bucket[0] is None:
                 raise KeyError(key)
