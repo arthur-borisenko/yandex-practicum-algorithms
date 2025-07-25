@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class HashMap:
     DELETED = object()
 
@@ -9,7 +12,7 @@ class HashMap:
     def _probing_func(self, b: int, i: int) -> int:
         return (b + i) % self._m
 
-    def __getitem__(self, key):
+    def __getitem__(self, key) -> Any:
         i = 0
         bucket_i = self.hash_fn(key) % self._m
         while self._probing_func(bucket_i, i) != bucket_i - 1:
@@ -22,7 +25,7 @@ class HashMap:
                 i += 1
         raise KeyError(key)
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key, value) -> Any:
         i = 0
         bucket_i = self.hash_fn(key) % self._m
         while self._probing_func(bucket_i, i) != bucket_i - 1:
@@ -35,7 +38,7 @@ class HashMap:
                 i += 1
         raise RuntimeError()
 
-    def __delitem__(self, key):
+    def __delitem__(self, key) -> None:
         i = 0
         bucket_i = self.hash_fn(key) % self._m
         while self._probing_func(bucket_i, i) != bucket_i - 1:
@@ -49,7 +52,7 @@ class HashMap:
                 i += 1
         raise KeyError(key)
 
-    def get(self, key, default=None):
+    def get(self, key, default=None) -> Any:
         i = 0
         bucket_i = self.hash_fn(key) % self._m
         while self._probing_func(bucket_i, i) != bucket_i - 1:
@@ -62,7 +65,7 @@ class HashMap:
                 i += 1
         return default
 
-    def pop(self, key):
+    def pop(self, key) -> Any:
         value = self[key]
         del self[key]
         return value
