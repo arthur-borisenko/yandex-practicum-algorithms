@@ -1,10 +1,12 @@
 class HashMap:
     KEY_IDX = 0
     VAL_IDX = 1
+    BS = 20
 
-    def __init__(self, m=10**5 + 3, hash_fn=hash):
+    def __init__(self, m=10**4 + 3, hash_fn=hash):
         self._arr: list[list] = [[] for _ in range(m)]
         self.m = m
+        self._len = 0
         self.hash_fn = hash_fn
 
     def __getitem__(self, key):
@@ -21,8 +23,11 @@ class HashMap:
                 el[self.VAL_IDX] = value
                 return
         bucket.append([key, value])
+        self._len += 1
+        if len(bucket) >= self.BS:
+            self._rehash(int(self.m * 5))
 
-    def rehash(self, new_m):
+    def _rehash(self, new_m: int):
         keys = self.keys()
         values = [self[key] for key in keys]
         self.__init__(new_m)
@@ -34,8 +39,12 @@ class HashMap:
         for i, el in enumerate(bucket):
             if el[self.KEY_IDX] == key:
                 del bucket[i]
+                self._len -= 1
                 return
         raise KeyError(key)
+
+    def __len__(self):
+        return self._len
 
     def get(self, key, default=None):
         bucket = self._arr[self.hash_fn(key) % self.m]
