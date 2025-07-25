@@ -15,60 +15,60 @@ class HashMap:
         return (b + i) % self.m
 
     def __getitem__(self, key) -> Any:
-        i = 0
-        bucket_i = self.hash_fn(key) % self.m
-        while self._probe_func(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._probe_func(bucket_i, i)]
-            if bucket[self.KEY_IDX] == key:
-                return bucket[self.VAL_IDX]
-            elif bucket[self.KEY_IDX] is None:
+        probing_step = 0
+        i = self.hash_fn(key) % self.m
+        while self._probe_func(i, probing_step) != i - 1:
+            el = self._arr[self._probe_func(i, probing_step)]
+            if el[self.KEY_IDX] == key:
+                return el[self.VAL_IDX]
+            elif el[self.KEY_IDX] is None:
                 raise KeyError(key)
             else:
-                i += 1
+                probing_step += 1
         raise KeyError(key)
 
     def __setitem__(self, key, value) -> Any:
-        i = 0
-        bucket_i = self.hash_fn(key) % self.m
-        while self._probe_func(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._probe_func(bucket_i, i)]
+        probing_step = 0
+        i = self.hash_fn(key) % self.m
+        while self._probe_func(i, probing_step) != i - 1:
+            el = self._arr[self._probe_func(i, probing_step)]
             if (
-                bucket[self.KEY_IDX] == key
-                or bucket[self.KEY_IDX] is None
-                or bucket[self.KEY_IDX] is self.DELETED
+                el[self.KEY_IDX] == key
+                or el[self.KEY_IDX] is None
+                or el[self.KEY_IDX] is self.DELETED
             ):
-                bucket = [key, value]
-                self._arr[self._probe_func(bucket_i, i)] = bucket
+                el = [key, value]
+                self._arr[self._probe_func(i, probing_step)] = el
                 return
             else:
-                i += 1
+                probing_step += 1
         raise RuntimeError()
 
     def __delitem__(self, key) -> None:
-        i = 0
-        bucket_i = self.hash_fn(key) % self.m
-        while self._probe_func(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._probe_func(bucket_i, i)]
+        probing_step = 0
+        i = self.hash_fn(key) % self.m
+        while self._probe_func(i, probing_step) != i - 1:
+            bucket = self._arr[self._probe_func(i, probing_step)]
             if bucket[self.KEY_IDX] == key:
-                self._arr[self._probe_func(bucket_i, i)] = [self.DELETED, None]
+                self._arr[self._probe_func(i, probing_step)] = [self.DELETED, None]
                 return
             elif bucket[self.KEY_IDX] is None:
                 raise KeyError(key)
             else:
-                i += 1
+                probing_step += 1
         raise KeyError(key)
 
     def get(self, key, default=None) -> Any:
-        i = 0
-        bucket_i = self.hash_fn(key) % self.m
-        while self._probe_func(bucket_i, i) != bucket_i - 1:
-            bucket = self._arr[self._probe_func(bucket_i, i)]
-            if bucket[self.KEY_IDX] == key:
-                return bucket[self.VAL_IDX]
-            elif bucket[self.KEY_IDX] is None:
+        probing_step = 0
+        i = self.hash_fn(key) % self.m
+        while self._probe_func(i, probing_step) != i - 1:
+            el = self._arr[self._probe_func(i, probing_step)]
+            if el[self.KEY_IDX] == key:
+                return el[self.VAL_IDX]
+            elif el[self.KEY_IDX] is None:
                 return default
             else:
-                i += 1
+                probing_step += 1
         return default
 
     def pop(self, key) -> Any:
