@@ -5,6 +5,7 @@ class DeletedElement:
 
 class HashMap:
     DELETED_ELEMENT_INSTANCE = DeletedElement()
+
     def _pf(self, b, i):
         return (b + i) % self._m
 
