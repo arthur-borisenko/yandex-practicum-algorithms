@@ -37,27 +37,6 @@ class HashMap:
                 return el[self.VAL_IDX]
         return default
 
-    def keys(self):
-        keys = []
-        for bucket in self._arr:
-            for el in bucket:
-                keys.append(el[self.KEY_IDX])
-        return keys
-
-    def values(self):
-        values = []
-        for bucket in self._arr:
-            for el in bucket:
-                values.append(el[self.VAL_IDX])
-        return values
-
-    def __contains__(self, key) -> bool:
-        bucket = self._arr[self.hash_fn(key) % self.m]
-        for el in bucket:
-            if el[self.KEY_IDX] == key:
-                return True
-        return False
-
     def pop(self, key):
         value = self[key]
         del self[key]
