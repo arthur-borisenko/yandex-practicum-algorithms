@@ -7,7 +7,7 @@ class HashMap:
     def _probing_func(self, b, i):
         return (b + i) % self._m
 
-    def __init__(self, m=2 * 10**5, hash_fn=lambda x: abs(int(x))):
+    def __init__(self, m=2 * 10**5, hash_fn=hash):
         self._arr: list = []
         self._m = m
         self.hash_fn = hash_fn
