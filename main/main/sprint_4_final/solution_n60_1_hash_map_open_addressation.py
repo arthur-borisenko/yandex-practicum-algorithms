@@ -1,12 +1,12 @@
 class HashMap:
     DELETED = object()
 
-    def __init__(self, m=2 * 10**5, hash_fn=hash):
+    def __init__(self, m: int = 2 * 10**5, hash_fn=hash):
         self._arr: list[list] = [[None, None] for _ in range(m)]
         self._m = m
         self.hash_fn = hash_fn
 
-    def _probing_func(self, b, i):
+    def _probing_func(self, b: int, i: int) -> int:
         return (b + i) % self._m
 
     def __getitem__(self, key):
