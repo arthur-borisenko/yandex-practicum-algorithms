@@ -6,8 +6,7 @@ class DeletedElement:
 class HashMap:
     DELETED_ELEMENT_INSTANCE = DeletedElement()
 
-    def _pf(self, b, i):
-        return (b + i) % self._m
+
 
     def __init__(self, m=2 * 10**5, hash_fn=lambda x: abs(int(x))):
         self._arr: list = []
@@ -15,7 +14,8 @@ class HashMap:
         self.hash_fn = hash_fn
         for i in range(m):
             self._arr.append((None, None))
-
+    def _pf(self, b, i):
+        return (b + i) % self._m
     def __getitem__(self, key):
         i = 0
         bucket_i = self.hash_fn(key) % self._m
