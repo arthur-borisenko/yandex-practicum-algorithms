@@ -1,21 +1,16 @@
-class DeletedElement:
-    def __init__(self):
-        pass
-
-
 class HashMap:
-    DELETED_ELEMENT_INSTANCE = DeletedElement()
+    DELETED_ELEMENT = object()
 
-
-
-    def __init__(self, m=2 * 10**5, hash_fn=lambda x: abs(int(x))):
+    def __init__(self, m=2 * 10**5, hash_fn=hash):
         self._arr: list = []
         self._m = m
         self.hash_fn = hash_fn
         for i in range(m):
             self._arr.append((None, None))
+
     def _pf(self, b, i):
         return (b + i) % self._m
+
     def __getitem__(self, key):
         i = 0
         bucket_i = self.hash_fn(key) % self._m
@@ -38,7 +33,7 @@ class HashMap:
                 bucket = (key, value)
                 self._arr[self._pf(bucket_i, i)] = bucket
                 return
-            elif bucket[0] is None or isinstance(bucket[0], DeletedElement):
+            elif bucket[0] is None or bucket[0] == self.DELETED_ELEMENT:
                 bucket = (key, value)
                 self._arr[self._pf(bucket_i, i)] = bucket
                 return
@@ -52,27 +47,13 @@ class HashMap:
         while self._pf(bucket_i, i) != bucket_i - 1:
             bucket = self._arr[self._pf(bucket_i, i)]
             if bucket[0] == key:
-                self._arr[self._pf(bucket_i, i)] = (self.DELETED_ELEMENT_INSTANCE, None)
+                self._arr[self._pf(bucket_i, i)] = (self.DELETED_ELEMENT, None)
                 return
             elif bucket[0] is None:
                 raise KeyError(key)
             else:
                 i += 1
         raise KeyError(key)
-
-    def keys(self):
-        keys = []
-        for bucket in self._arr:
-            if bucket[0] is not None and not isinstance(bucket[0], DeletedElement):
-                keys.append(bucket[0])
-        return keys
-
-    def values(self):
-        values = []
-        for bucket in self._arr:
-            if bucket[0] is not None and not isinstance(bucket[0], DeletedElement):
-                values.append(bucket[1])
-        return values
 
     def pop(self, key):
         value = self[key]
