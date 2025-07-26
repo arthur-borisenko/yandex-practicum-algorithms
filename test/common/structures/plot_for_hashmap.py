@@ -33,9 +33,9 @@ def plot(*ms):
     for m, color in ms:
         x = 1000000
         points = {}
-        n = 2
+        n = 10
         while n < x:
-            n = int(n * 1.5)
+            n = int(n * 1.25)
             t_s = time.time()
             m(n)
             t_e = time.time()
