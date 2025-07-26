@@ -21,13 +21,13 @@ class TestCase(unittest.TestCase):
         expected_keys = list(exp.keys())
         cls.random_test_data = (kvs_to_add, ks_to_del, expected_keys, exp)
         exp = {}
-        for i in range(200000):
+        for i in range(2000000):
             exp[i] = i * 100
         kvs_to_add = list(exp.items())
-        for i in range(20000):
+        for i in range(200000):
             kvs_to_add.append((i, i * 10))
             exp[i] = i * 10
-        ks_to_del = list(range(10000))
+        ks_to_del = list(range(100000))
         for key in ks_to_del:
             del exp[key]
         expected_keys = list(exp.keys())

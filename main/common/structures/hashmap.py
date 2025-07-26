@@ -3,7 +3,7 @@ class HashMap:
     VAL_IDX = 1
     BS = 20
 
-    def __init__(self, m=10**4 + 3, hash_fn=hash):
+    def __init__(self, m=10000, hash_fn=hash):
         self._arr: list[list] = [[] for _ in range(m)]
         self.m = m
         self._len = 0
