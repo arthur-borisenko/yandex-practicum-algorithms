@@ -29,13 +29,13 @@ def hmm(n):
         a += m[i]
 
 
-def aaa(*ms):
+def plot(*ms):
     for m, color in ms:
         x = 1000000
         points = {}
-        n = 1
+        n = 2
         while n < x:
-            n = n * 2
+            n = int(n * 1.5)
             t_s = time.time()
             m(n)
             t_e = time.time()
@@ -44,4 +44,4 @@ def aaa(*ms):
     pyplot.show()
 
 
-aaa((o1, "grey"), (on, "black"), (hmm, "red"))
+plot((o1, "grey"), (on, "black"), (hmm, "red"))
