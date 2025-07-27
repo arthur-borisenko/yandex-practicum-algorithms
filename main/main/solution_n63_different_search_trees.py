@@ -13,7 +13,5 @@ def solution(data):
 
 
 def main():
-    with open("input.txt") as inp, open(
-        "output.txt", "w"
-    ) as out:
+    with open("input.txt") as inp, open("output.txt", "w") as out:
         print(solution(list(range(int(inp.readline())))), file=out)
