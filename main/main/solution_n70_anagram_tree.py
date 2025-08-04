@@ -66,6 +66,8 @@ def test2():
     node2 = Node(1, node4, None)
     node1 = Node(1, node2, node3)
     assert not solution(node1)
+
+
 def test3():
     node5 = Node(3, None, None)
     node4 = Node(3, None, None)
@@ -73,6 +75,7 @@ def test3():
     node2 = Node(2, node4, None)
     node1 = Node(0, node2, node3)
     assert solution(node1)
+
 
 if __name__ == "__main__":
     test()
