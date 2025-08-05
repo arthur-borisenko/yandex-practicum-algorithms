@@ -1,8 +1,9 @@
 import os
 
-LOCAL = os.environ.get('REMOTE_JUDGE', 'false') != 'true'
+LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
 
 if LOCAL:
+
     class Node:
         def __init__(self, left=None, right=None, value=0, size=0):
             self.right = right
@@ -10,15 +11,18 @@ if LOCAL:
             self.value = value
             self.size = size
 
+
 def direction(node, k):
     if node.size < k:
-        return 'NE'
+        return "NE"
     elif node.size == k:
-        return 'stop'
+        return "stop"
     elif node.left is not None and node.left.size >= k:
-        return 'left'
+        return "left"
     else:
-        return 'right'
+        return "right"
+
+
 def _split(parent_root, parent, root, k):
     node = root
     if direction(node, k) == "NE":
@@ -36,6 +40,8 @@ def _split(parent_root, parent, root, k):
         return _split(parent_root, node, node.left, k)
     else:
         return _split(parent_root, node, node.right, k)
+
+
 def split(root, k):
     stack = Stack()
     pass
@@ -49,9 +55,9 @@ def test():
     node5 = Node(node3, node4, 10, 3)
     node6 = Node(node2, node5, 5, 6)
     left, right = split(node6, 4)
-    assert (left.size == 4)
-    assert (right.size == 2)
+    assert left.size == 4
+    assert right.size == 2
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test()
