@@ -11,43 +11,50 @@ if LOCAL:
             self.value = value
             self.size = size
 
+        def __repr__(self):
+            return "Node({}, {})".format(self.value, self.size)
 
-def direction(node, k):
+
+def action(node, k):
     if node.size < k:
-        return "NE"
+        return "not_enough"
     elif node.size == k:
-        return "stop"
+        return "take_node_with_all_subtrees"
     elif node.left is not None and node.left.size >= k:
-        return "left"
+        return "move_left"
     else:
-        return "right"
+        return "take_node_with_left_subtree_and_move_right"
 
 
-def _split(parent_root, parent, root, k):
+def _acts(root, k):
     node = root
-    if direction(node, k) == "NE":
-        return root, None
-    elif direction(node, k) == "stop":
-        if parent is None:
-            return root, None
+    if action(node, k) == "not_enough":
+        return Node
+    actions = []
+    while node is not None:
+        if action(node, k) == "move_left":
+            node = node.left
+        elif action(node, k) == "take_node_with_left_subtree_and_move_right":
+            actions.append(("take_node_with_left_ST", node))
+            k -= node.left.size + 1
+            node = node.right
+        elif action(node, k) == "take_node_with_all_subtrees":
+            actions.append(("take_node_with_all_ST", node))
+            k -= node.size
+            node = None
+        elif action(node, k) == "not_enough":
+            raise Exception("500 Internal Brains Error")
         else:
-            if parent.left == root:
-                parent.left = None
-            else:
-                parent.right = None
-            return node, parent_root
-    elif direction(node, k) == "left":
-        return _split(parent_root, node, node.left, k)
-    else:
-        return _split(parent_root, node, node.right, k)
+            raise Exception("400 Bad Thoughts Error")
+    return actions
 
 
 def split(root, k):
-    stack = Stack()
+    print(_acts(root, k))
     pass
 
 
-def test():
+def teest():
     node1 = Node(None, None, 3, 1)
     node2 = Node(None, node1, 2, 2)
     node3 = Node(None, None, 8, 1)
@@ -60,4 +67,4 @@ def test():
 
 
 if __name__ == "__main__":
-    test()
+    teest()
