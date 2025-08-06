@@ -1,6 +1,3 @@
-from queue import Queue
-
-
 import os
 
 LOCAL = os.environ.get("REMOTE_JUDGE", "false") != "true"
@@ -14,6 +11,54 @@ if LOCAL:
             self.left = left
 
 
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, element):
+        self.stack.append(element)
+
+    def pop(self):
+        if self.isEmpty():
+            raise IndexError
+        return self.stack.pop()
+
+    def peek(self):
+        if self.isEmpty():
+            raise IndexError
+        return self.stack[-1]
+
+    def isEmpty(self):
+        return len(self.stack) == 0
+
+    def size(self):
+        return len(self.stack)
+
+
+def s(root, cf):
+    res = []
+    stack = Stack()
+    node = root
+    stack.push(node)
+    while not stack.isEmpty():
+        node = stack.pop()
+        if node is None:
+            yield None
+            continue
+        yield node.value
+        for node in cf(node):
+            stack.push(node)
+    return res
+
+
+def normal_cf(node):
+    return [node.left, node.right]
+
+
+def reversed_cf(node):
+    return [node.right, node.left]
+
+
 def children(node):
     c = []
     if node.left is not None:
@@ -24,28 +69,12 @@ def children(node):
 
 
 def solution(root) -> bool:
-    r = []
-    queue = Queue()
-    node = root
-    queue.put((node, 0))
-    r.append([node.value])
-    while not queue.empty():
-        node, l = queue.get()
-        while len(r) <= l + 1 and len(children(node)) > 0:
-            r.append([])
-        for child in children(node):
-            queue.put((child, l + 1))
-
-            r[l + 1].append(child.value)
-    l = 1
-    print(r)
-    for level in r:
-        if len(level) != l:
-            return False
-        if level != list(reversed(level)):
-            return False
-        l *= 2
-    return True
+    if root.left is None and root.right is None:
+        return True
+    elif root.left is None or root.right is None:
+        return False
+    else:
+        return list(s(root.left, normal_cf)) == list(s(root.right, reversed_cf))
     #  “ヽ(´▽｀)ノ”
 
 
@@ -60,24 +89,5 @@ def test():
     assert solution(node7)
 
 
-def test2():
-    node4 = Node(1, None, None)
-    node3 = Node(1, None, None)
-    node2 = Node(1, node4, None)
-    node1 = Node(1, node2, node3)
-    assert not solution(node1)
-
-
-def test3():
-    node5 = Node(3, None, None)
-    node4 = Node(3, None, None)
-    node3 = Node(2, None, node5)
-    node2 = Node(2, node4, None)
-    node1 = Node(0, node2, node3)
-    assert solution(node1)
-
-
 if __name__ == "__main__":
     test()
-    test2()
-    test3()
