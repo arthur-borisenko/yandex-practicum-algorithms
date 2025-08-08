@@ -26,32 +26,29 @@ def action(node, k):
         return "take_node_with_left_subtree_and_move_right"
 
 
-def _acts(root, k):
+def qbdsib(root, k):
     node = root
-    if action(node, k) == "not_enough":
-        return Node
-    actions = []
-    while node is not None:
-        if action(node, k) == "move_left":
-            node = node.left
-        elif action(node, k) == "take_node_with_left_subtree_and_move_right":
-            actions.append(("take_node_with_left_ST", node))
-            k -= node.left.size + 1
-            node = node.right
-        elif action(node, k) == "take_node_with_all_subtrees":
-            actions.append(("take_node_with_all_ST", node))
-            k -= node.size
-            node = None
-        elif action(node, k) == "not_enough":
-            raise Exception("500 Internal Brains Error")
-        else:
-            raise Exception("400 Bad Thoughts Error")
-    return actions
+    if root.size <= k:
+        return root, None
+    parent = None
+    while node.left is not None and node.left.size > k:
+        parent = node
+        node = node.left
+    if node.left.size == k:
+        root1 = node.left
+        node.left = None
+        return root1, root
+    else:
+        root1, root2 = qbdsib(node.right, k - node.left.size - 1)
+        node.right = root1
+        parent.left = root2
+        return node, root
 
 
 def split(root, k):
-    print(_acts(root, k))
-    pass
+    x1, x2 = qbdsib(root, k)
+
+    return x
 
 
 def teest():
