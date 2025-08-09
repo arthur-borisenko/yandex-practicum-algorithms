@@ -44,22 +44,18 @@ def children(node):
     return c
 
 
-def s1(root):
-    res = []
+def solution(root) -> int:
+    res = 0
     stack = Stack()
     node = root
     stack.push((node, str(node.value)))
     while not stack.isEmpty():
         node, np = stack.pop()
         if node.left is None and node.right is None:
-            res.append(np)
+            res += int(np)
         for node in children(node):
             stack.push((node, np + str(node.value)))
     return res
-
-
-def solution(root) -> int:
-    return sum(map(int, s1(root)))
     #  “ヽ(´▽｀)ノ”
 
 
