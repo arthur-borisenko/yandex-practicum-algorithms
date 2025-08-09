@@ -17,6 +17,8 @@ def size(node):
 
 
 def update_size(node):
+    """CPU - O(1)
+    RAM - O(1)"""
     node.size = size(node.left) + size(node.right) + 1
 
 
