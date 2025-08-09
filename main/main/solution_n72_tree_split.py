@@ -15,17 +15,6 @@ if LOCAL:
             return "Node({}, {})".format(self.value, self.size)
 
 
-def action(node, k):
-    if node.size < k:
-        return "not_enough"
-    elif node.size == k:
-        return "take_node_with_all_subtrees"
-    elif node.left is not None and node.left.size >= k:
-        return "move_left"
-    else:
-        return "take_node_with_left_subtree_and_move_right"
-
-
 def size(node):
     return node.size if node is not None else 0
 
@@ -34,40 +23,32 @@ def update_size(node):
     node.size = size(node.left) + size(node.right) + 1
 
 
-def qbdsib(root, k):
-    node = root
-    if size(node) < k:
-        return node, None
-    elif size(node) == k:
-        return node, None
-    elif size(node.left) + 1 == k:
-        right = node.right
-        node.right = None
-        update_size(node)
-        return node, right
-    elif (
-        size(node.left) + 1 < k
-    ):
-        k_to_take_from_right = k - size(node.left) - 1
-        left_root, right_root = qbdsib(node.right, k_to_take_from_right)
-        node.right = left_root
-        update_size(node)
-        return node, right_root
-    elif size(node.left) >= k:  # move left
-        left_root, right_root = qbdsib(node.left, k)
-        node.left = right_root
-        update_size(node)
-        return left_root, node
+def split(root, k):
+    if size(root) < k:
+        return root, None
+    elif size(root) == k:
+        return root, None
+    elif size(root.left) + 1 == k:
+        right = root.right
+        root.right = None
+        update_size(root)
+        return root, right
+    elif size(root.left) + 1 < k:
+        k_to_take_from_right = k - size(root.left) - 1
+        left_root, right_root = split(root.right, k_to_take_from_right)
+        root.right = left_root
+        update_size(root)
+        return root, right_root
+    elif size(root.left) >= k:
+        left_root, right_root = split(root.left, k)
+        root.left = right_root
+        update_size(root)
+        return left_root, root
     else:
         raise Exception("impossible case")
 
 
-def split(root, k):
-    x1, x2 = qbdsib(root, k)
-    return (x1, x2)
-
-
-def teest():
+def test():
     node1 = Node(None, None, 3, 1)
     node2 = Node(None, node1, 2, 2)
     node3 = Node(None, None, 8, 1)
@@ -80,4 +61,4 @@ def teest():
 
 
 if __name__ == "__main__":
-    teest()
+    test()
