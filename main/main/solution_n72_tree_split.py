@@ -36,25 +36,18 @@ def update_size(node):
 
 def qbdsib(root, k):
     node = root
-    # cases:
-    # take node and left subtree = size(node.left) + 1 == k
-    # take node, left subtree and part of its right subtree = size(node.left) + 1 < k
-    # take node and all its subtrees = root.size == k
-    # move left = root.left.size>=k
-    # not enough = root.size < k
-    # left subtree always taken fully, except move left
-    if size(node) < k:  # not enough
+    if size(node) < k:
         return node, None
-    elif size(node) == k:  # take node and all its subtrees
+    elif size(node) == k:
         return node, None
-    elif size(node.left) + 1 == k:  # take node and left subtree
+    elif size(node.left) + 1 == k:
         right = node.right
         node.right = None
         update_size(node)
         return node, right
     elif (
         size(node.left) + 1 < k
-    ):  # take node, left subtree and part of its right subtree
+    ):
         k_to_take_from_right = k - size(node.left) - 1
         left_root, right_root = qbdsib(node.right, k_to_take_from_right)
         node.right = left_root
@@ -71,7 +64,6 @@ def qbdsib(root, k):
 
 def split(root, k):
     x1, x2 = qbdsib(root, k)
-
     return (x1, x2)
 
 
