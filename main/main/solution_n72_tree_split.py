@@ -11,9 +11,6 @@ if LOCAL:
             self.value = value
             self.size = size
 
-        def __repr__(self):
-            return "Node({}, {})".format(self.value, self.size)
-
 
 def size(node):
     return node.size if node is not None else 0
