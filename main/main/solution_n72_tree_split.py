@@ -21,6 +21,11 @@ def update_size(node):
 
 
 def split(root, k):
+    """
+    CPU - O(h)
+    RAM - O(h)
+    where h - tree height
+    """
     if size(root) < k:
         return root, None
     elif size(root) == k:
