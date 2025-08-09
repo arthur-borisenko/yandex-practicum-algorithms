@@ -15,14 +15,14 @@ if LOCAL:
 def solution(root, ma=math.inf, mi=-math.inf) -> bool:
     if not mi < root.value < ma:
         return False
-    if root.left is None and root.right is None:
+    elif root.left is None and root.right is None:
         return True
     elif root.left is not None and root.right is None:
         return (
             solution(root.left, ma=min(root.value, ma), mi=mi)
             and root.value > root.left.value
         )
-    elif root.right is not None and root.left is None:
+    elif root.left is None and root.right is not None:
         return (
             solution(root.right, mi=max(root.value, mi), ma=ma)
             and root.value <= root.right.value
