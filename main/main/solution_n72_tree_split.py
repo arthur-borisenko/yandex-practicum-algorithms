@@ -13,11 +13,13 @@ if LOCAL:
 
 
 def size(node):
+    """Gets node size if node exists, else 0"""
     return node.size if node is not None else 0
 
 
 def update_size(node):
-    """CPU - O(1)
+    """Updates size of node by its children. requires correct children sizes.
+    CPU - O(1)
     RAM - O(1)"""
     node.size = size(node.left) + size(node.right) + 1
 
