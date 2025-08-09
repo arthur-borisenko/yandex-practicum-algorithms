@@ -26,29 +26,53 @@ def action(node, k):
         return "take_node_with_left_subtree_and_move_right"
 
 
+def size(node):
+    return node.size if node is not None else 0
+
+
+def update_size(node):
+    node.size = size(node.left) + size(node.right) + 1
+
+
 def qbdsib(root, k):
     node = root
-    if root.size <= k:
-        return root, None
-    parent = None
-    while node.left is not None and node.left.size > k:
-        parent = node
-        node = node.left
-    if node.left.size == k:
-        root1 = node.left
-        node.left = None
-        return root1, root
+    # cases:
+    # take node and left subtree = size(node.left) + 1 == k
+    # take node, left subtree and part of its right subtree = size(node.left) + 1 < k
+    # take node and all its subtrees = root.size == k
+    # move left = root.left.size>=k
+    # not enough = root.size < k
+    # left subtree always taken fully, except move left
+    if size(node) < k:  # not enough
+        return node, None
+    elif size(node) == k:  # take node and all its subtrees
+        return node, None
+    elif size(node.left) + 1 == k:  # take node and left subtree
+        right = node.right
+        node.right = None
+        update_size(node)
+        return node, right
+    elif (
+        size(node.left) + 1 < k
+    ):  # take node, left subtree and part of its right subtree
+        k_to_take_from_right = k - size(node.left) - 1
+        left_root, right_root = qbdsib(node.right, k_to_take_from_right)
+        node.right = left_root
+        update_size(node)
+        return node, right_root
+    elif size(node.left) >= k:  # move left
+        left_root, right_root = qbdsib(node.left, k)
+        node.left = right_root
+        update_size(node)
+        return left_root, node
     else:
-        root1, root2 = qbdsib(node.right, k - node.left.size - 1)
-        node.right = root1
-        parent.left = root2
-        return node, root
+        raise Exception("impossible case")
 
 
 def split(root, k):
     x1, x2 = qbdsib(root, k)
 
-    return x
+    return (x1, x2)
 
 
 def teest():
