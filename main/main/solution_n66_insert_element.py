@@ -15,14 +15,23 @@ if LOCAL:
 
 
 def insert(root, key) -> Node:
-    if root is None:
-        return Node(value=key)
-
-    if key < root.value:
-        root.left = insert(root.left, key)
-    elif key >= root.value:
-        root.right = insert(root.right, key)
-    return root
+    """CPU - O(h)
+    RAM - O(1)"""
+    r = root
+    while root is not None:
+        if key < root.value:
+            if root.left is not None:
+                root = root.left
+            else:
+                root.left = Node(value=key)
+                return r
+        elif key >= root.value:
+            if root.right is not None:
+                root = root.right
+            else:
+                root.right = Node(value=key)
+                return r
+    return Node(value=key)
 
 
 def test():
