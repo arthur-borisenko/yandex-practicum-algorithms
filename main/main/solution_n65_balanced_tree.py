@@ -12,6 +12,8 @@ if LOCAL:
 
 
 def _solution(node):
+    """CPU - O(n)
+    RAM - O(h)"""
     h = 1
     ok = True
     if node.left is not None and node.right is None:
