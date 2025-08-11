@@ -1,12 +1,15 @@
 def sift_up(heap, idx) -> int:
-    target_index = idx
-    parent_index = target_index // 2
-    while target_index > 1 and heap[target_index] > heap[parent_index]:
-        heap[target_index], heap[parent_index] = heap[parent_index], heap[target_index]
-        target_index = parent_index
-        parent_index = target_index // 2
+    """CPU - O(h)
+    RAM - O(1)
+    """
+    target_i = idx
+    parent_i = target_i // 2
+    while target_i > 1 and heap[target_i] > heap[parent_i]:
+        heap[target_i], heap[parent_i] = heap[parent_i], heap[target_i]
+        target_i = parent_i
+        parent_i = target_i // 2
         pass
-    return target_index
+    return target_i
     #  “ヽ(´▽｀)ノ”
 
 
