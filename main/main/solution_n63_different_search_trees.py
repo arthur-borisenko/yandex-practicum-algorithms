@@ -1,4 +1,4 @@
-def solution(length, ss):
+def solution(n):
     """CPU - O(n^2)
     RAM - O(n)"""
     solutions = {0: 1, 1: 1}
@@ -14,5 +14,4 @@ def solution(length, ss):
 def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
         x = int(inp.readline())
-        ss = {}
-        print(solution(x, ss), file=out)
+        print(solution(x), file=out)
