@@ -3,7 +3,7 @@ def solution(n):
     RAM - O(n)"""
     solutions = {0: 1, 1: 1}
     variants = 0
-    for i in range(1, length + 1):
+    for i in range(1, n + 1):
         variants = 0
         for j in range(i):
             variants += solutions[j] * solutions[i - j - 1]
