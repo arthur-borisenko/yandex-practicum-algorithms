@@ -18,6 +18,7 @@ class MaxHeap:
             parent_index = target_index // 2
             pass
         return target_index
+
     #  “ヽ(´▽｀)ノ”
 
     def sift_down(self, idx) -> int:
