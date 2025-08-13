@@ -32,7 +32,7 @@ def find_key(root, key):
     return None, None
 
 
-def find_replacement_node(root):
+def find_largest_node(root):
     if root is None:
         return None, None
     node = root
@@ -48,10 +48,12 @@ def replace_parent_node_link(parent, node, new_node):
         parent.left = new_node
     else:
         parent.right = new_node
+
+
 def merge_subtrees(left, right):
-    replacement_node_parent, replacement_node = find_replacement_node(left)
+    replacement_node_parent, replacement_node = find_largest_node(left)
     if replacement_node_parent is None:
-        left=None
+        left = None
     else:
         replacement_node_parent.right = replacement_node.left
     replacement_node.left = left
@@ -86,6 +88,8 @@ def remove(root, key) -> Optional[Node]:
             root = replacement_node
     return root
     #  “ヽ(´▽｀)ノ”
+
+
 def test():
     node1 = Node(None, None, 2)
     node2 = Node(node1, None, 3)
@@ -98,7 +102,6 @@ def test():
     assert new_head.value == 5
     assert new_head.right is node5
     assert new_head.right.value == 8
-
 
 
 if __name__ == "__main__":
