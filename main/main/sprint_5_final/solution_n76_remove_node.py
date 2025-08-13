@@ -75,31 +75,25 @@ def remove(root, key) -> Optional[Node]:
 
 
 def test():
-    n1 = Node(value=31)
-    n2 = Node(value=624)
-    n3 = Node(value=220)
-    n4 = Node(value=130)
-    n5 = Node(value=302)
-    n6 = Node(value=442)
-    n7 = Node(value=858)
-    n8 = Node(value=763)
-    n9 = Node(value=701)
-    n10 = Node(value=867)
+    n1 = Node(value=4)
+    n2 = Node(value=2)
+    n3 = Node(value=6)
+    n4 = Node(value=1)
+    n5 = Node(value=3)
+    n6 = Node(value=5)
+    n7 = Node(value=7)
 
-    n1.right = n2
-    n2.left = n3
-    n2.right = n7
-    n3.left = n4
-    n3.right = n5
-    n5.right = n6
-    n7.left = n8
-    n7.right = n10
-    n8.left = n9
+    n1.left = n2
+    n1.right = n3
+    n2.left = n4
+    n2.right = n5
+    n3.left = n6
+    n3.right = n7
 
     root = n1
-    remove(root, 701)
-    remove(root, 130)
-    remove(root, 302)
+    TreeVisualizer(root).display()
+    remove(root, 1)
+    TreeVisualizer(root).display()
 
 
 if __name__ == "__main__":
