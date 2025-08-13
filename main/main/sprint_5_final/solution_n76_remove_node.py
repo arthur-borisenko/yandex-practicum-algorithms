@@ -43,8 +43,10 @@ def get_rightest_node(root):
 
 
 def remove(root, key) -> Optional[Node]:
-    if root.left is None and root.right is None:
+    if root is None:
         return None
+    if root.left is None and root.right is None:
+        return None if root.value == key else root
     parent, node = find_key(root, key)
     if node is None:
         return root
@@ -64,8 +66,8 @@ def remove(root, key) -> Optional[Node]:
             parent.left = node_to_replace
         else:
             parent.right = node_to_replace
-    if parent is None:
-        return node_to_replace
+    else:
+        root = node_to_replace
     return root
     #  “ヽ(´▽｀)ノ”
 
