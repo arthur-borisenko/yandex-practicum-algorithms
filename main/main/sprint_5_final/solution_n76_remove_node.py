@@ -31,7 +31,7 @@ def find_key(root, key):
     return None, None
 
 
-def get_rightest_node(root):
+def prepare_replacement_node(root):
     if root is None:
         return None, None
     node = root
@@ -39,33 +39,35 @@ def get_rightest_node(root):
     while node.right is not None:
         parent = node
         node = node.right
-    return parent if node else None, node
+    if parent is not None:
+        parent.right = node.left
+    return node
 
-
+def replace_node_link(parent, node, new_node):
+    if parent.left is node:
+        parent.left = new_node
+    else:
+        parent.right = new_node
 def remove(root, key) -> Optional[Node]:
     if root is None:
         return None
-    if root.left is None and root.right is None:
-        return None if root.value == key else root
     parent, node = find_key(root, key)
     if node is None:
-        return root
+        return root # Если вершины нет в дереве, изменять его не требуется
+    if root.left is None and root.right is None: # Если дерево состояло из одной вершины, то после её удаления дерева не останется.
+        return None
     right = node.right
     left = node.left
-    if left is not None:
-        x, node_to_replace = get_rightest_node(left)
-        if x is not None:
-            x.right = node_to_replace.left
-            node_to_replace.left = None
+    if left is None and right is None: # Если мы удаляем лист, то дерево останется одним деревом и не распадётся на части.
+        replace_node_link(parent, right, None)
+    if left is not None and right is not None: # Если мы удаляем корень, у которого есть оба поддерева, то каждое поддерево станет отдельным деревом. Если мы удаляем вершину, у которой есть оба ребёнка и родитель, то дерево распадётся на родительское и два поддерева.
+        node_to_replace = prepare_replacement_node(left)
         node_to_replace.right = right
         node_to_replace.left = left
-    else:
-        node_to_replace = right
+    else: # Только 1 ребенок - присоединяем его вместо узла
+        node_to_replace = right if right is not None else left
     if parent is not None:
-        if parent.left is node:
-            parent.left = node_to_replace
-        else:
-            parent.right = node_to_replace
+        replace_node_link(parent, node, node_to_replace)
     else:
         root = node_to_replace
     return root
