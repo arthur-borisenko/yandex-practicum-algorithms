@@ -61,7 +61,8 @@ def remove(root, key) -> Optional[Node]:
     right = node.right
     left = node.left
     if left is None and right is None:  # Если мы удаляем лист, то дерево останется одним деревом и не распадётся на части.
-        replace_node_link(parent, right, None)
+        replace_node_link(parent, node, None)
+        return root
     if left is not None and right is not None:  # Если мы удаляем корень, у которого есть оба поддерева, то каждое поддерево станет отдельным деревом. Если мы удаляем вершину, у которой есть оба ребёнка и родитель, то дерево распадётся на родительское и два поддерева.
         node_to_replace = prepare_replacement_node(left)
         node_to_replace.right = right
@@ -75,8 +76,62 @@ def remove(root, key) -> Optional[Node]:
     return root
     #  “ヽ(´▽｀)ノ”
 
+class Stack:
+  def __init__(self):
+    self.stack = []
+
+  def push(self, element):
+    self.stack.append(element)
+
+  def pop(self):
+    if self.isEmpty():
+      return "Stack is empty"
+    return self.stack.pop()
+
+  def peek(self):
+    if self.isEmpty():
+      return "Stack is empty"
+    return self.stack[-1]
+
+  def isEmpty(self):
+    return len(self.stack) == 0
+
+  def size(self):
+    return len(self.stack)
+
+
+
+
+def children(node):
+    c = []
+    if node.left is not None:
+        c.append(node.left)
+    if node.right is not None:
+        c.append(node.right)
+    return c
+def dfs(root):
+    res=[]
+    stack=Stack()
+    node = root
+    stack.push(node)
+    while not stack.isEmpty():
+        node = stack.pop()
+        yield node.value
+        for node in children(node):
+            stack.push(node)
+    return res
 
 def test():
+    """Data equivalent of correctness
+7
+1 4 2 3
+2 2 4 5
+3 6 6 7
+4 1 -1 -1
+5 3 -1 -1
+6 5 -1 -1
+7 7 -1 -1
+1"""
     n1 = Node(value=4)
     n2 = Node(value=2)
     n3 = Node(value=6)
@@ -93,7 +148,11 @@ def test():
     n3.right = n7
 
     root = n1
+    input1=list(dfs(root))
+    print(*input1)
     remove(root, 1)
+    output1=list(dfs(root))
+    print(*output1)
 
 
 if __name__ == "__main__":
