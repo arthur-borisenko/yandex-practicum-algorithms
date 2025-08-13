@@ -32,7 +32,7 @@ def find_key(root, key):
     return None, None
 
 
-def prepare_replacement_node(root):
+def find_replacement_node(root):
     if root is None:
         return None, None
     node = root
@@ -40,18 +40,23 @@ def prepare_replacement_node(root):
     while node.right is not None:
         parent = node
         node = node.right
-    if parent is not None:
-        parent.right = node.left
-    if parent is None:
-        return None, node
-    return root, node
+    return parent, node
 
 
-def replace_node_link(parent, node, new_node):
+def replace_parent_node_link(parent, node, new_node):
     if parent.left is node:
         parent.left = new_node
     else:
         parent.right = new_node
+def merge_subtrees(left, right):
+    replacement_node_parent, replacement_node = find_replacement_node(left)
+    if replacement_node_parent is None:
+        left=None
+    else:
+        replacement_node_parent.right = replacement_node.left
+    replacement_node.left = left
+    replacement_node.right = right
+    return replacement_node
 
 
 def remove(root, key) -> Optional[Node]:
@@ -59,28 +64,26 @@ def remove(root, key) -> Optional[Node]:
         return None
     parent, node = find_key(root, key)
     if node is None:
-        return root  # Если вершины нет в дереве, изменять его не требуется
-    if root.left is None and root.right is None:  # Если дерево состояло из одной вершины, то после её удаления дерева не останется.
+        return root
+    if root.left is None and root.right is None:
         return None
     right = node.right
     left = node.left
-    if left is None and right is None:  # Если мы удаляем лист, то дерево останется одним деревом и не распадётся на части.
-        replace_node_link(parent, node, None)
+    if left is None and right is None:
+        replace_parent_node_link(parent, node, None)
         return root
-    elif left is not None and right is not None:  # Если мы удаляем корень, у которого есть оба поддерева, то каждое поддерево станет отдельным деревом. Если мы удаляем вершину, у которой есть оба ребёнка и родитель, то дерево распадётся на родительское и два поддерева.
-        left, node_to_replace = prepare_replacement_node(left)
-        node_to_replace.right = right
-        node_to_replace.left = left
+    elif left is not None and right is not None:
+        replacement_node = merge_subtrees(left, right)
         if parent is not None:
-            replace_node_link(parent, node, node_to_replace)
+            replace_parent_node_link(parent, node, replacement_node)
         else:
-            root = node_to_replace
-    else:  # Только 1 ребенок - присоединяем его вместо узла
-        node_to_replace = right if right is not None else left
+            root = replacement_node
+    else:
+        replacement_node = right if right is not None else left
         if parent is not None:
-            replace_node_link(parent, node, node_to_replace)
+            replace_parent_node_link(parent, node, replacement_node)
         else:
-            root = node_to_replace
+            root = replacement_node
     return root
     #  “ヽ(´▽｀)ノ”
 def test():
