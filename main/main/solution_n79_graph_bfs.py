@@ -24,6 +24,7 @@ def parse_input(inp):
         m[v1][v2] = 1
         m[v2][v1] = 1
     s = int(inp.readline())
+    inp.close()
     return m, n, k, s
 
 
@@ -45,6 +46,11 @@ def dfs(start, ribble_map):
         colors[vertex.id] = "black"
 
 
-if __name__ == "__main__":
+def main():
+    out = open("output.txt", "w")
     m, n, k, s = parse_input(open("input.txt", "r"))
-    print(*dfs(s, m))
+    print(*dfs(s, m), file=out)
+
+
+if __name__ == "__main__":
+    main()
