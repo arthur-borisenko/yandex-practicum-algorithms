@@ -1,0 +1,29 @@
+from main.main import solution_n77_build_adjacency_list as task
+import unittest
+
+from test.utils import testUtil
+
+
+class TestCase(unittest.TestCase):
+    def test_case1(self):
+        t672rdf38 = testUtil.file_test(
+            """5 3
+1 3
+2 3
+5 2
+""",
+            task.main,
+        )
+        self.assertEqual(
+            t672rdf38.rstrip(),
+            """1 3 
+1 3 
+0 
+0 
+1 2 
+""".rstrip(),
+        )
+
+
+if __name__ == "__main__":
+    unittest.main()
