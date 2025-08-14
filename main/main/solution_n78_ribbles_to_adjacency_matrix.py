@@ -12,7 +12,7 @@ def main():
         mtx[v1 - 1][v2 - 1] = 1
         # uncomment this if graph is not directional
         # mtx[v2 - 1][v1 - 1]=1
-    print(*map(lambda x: " ".join(map(str, x)), mtx), sep="\n")
+    print(*map(lambda x: " ".join(map(str, x)), mtx), sep="\n", file=out)
     inp.close()
     out.close()
 
