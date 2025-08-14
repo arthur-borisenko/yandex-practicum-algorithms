@@ -50,6 +50,7 @@ def main():
     out = open("output.txt", "w")
     m, n, k, s = parse_input(open("input.txt", "r"))
     print(*dfs(s, m), file=out)
+    out.close()
 
 
 if __name__ == "__main__":
