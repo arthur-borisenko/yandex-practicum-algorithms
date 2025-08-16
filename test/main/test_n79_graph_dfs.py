@@ -1,4 +1,4 @@
-from main.main import solution_n79_graph_bfs as task
+from main.main import solution_n79_graph_dfs as task
 import unittest
 
 from test.utils import testUtil
