@@ -30,7 +30,7 @@ def parse_input(inp):
 
 
 def ks(start, ribble_map, colors, ksids):
-    iteration_id = max([0, *ksids.values()]) + 1
+    iteration_id = max(ksids.values()) + 1 if len(ksids) > 0 else 0
     stack = []
     visited = set()
     d = []
