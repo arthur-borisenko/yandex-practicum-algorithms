@@ -40,26 +40,25 @@ def solution(ribble_map, n):
     ksids = {}
     for start in range(1, n + 1):
         if colors.get(start, ColorEnum.WHITE) == ColorEnum.WHITE:
-            iteration_id = max(ksids.values()) + 1 if len(
-                ksids) > 0 else 0
+            iteration_id = max(ksids.values()) + 1 if len(ksids) > 0 else 0
             stack = []
             visited = set()
             stack.append(Vertex(start, ribble_map))
             colors[start] = ColorEnum.WHITE
             while stack:
                 vertex = stack.pop()
-                if colors.get(vertex.id,
-                              ColorEnum.WHITE) == ColorEnum.GREY:
+                if colors.get(vertex.id, ColorEnum.WHITE) == ColorEnum.GREY:
                     visited.add(vertex.id)
                     iteration_id = ksids.get(vertex.id, iteration_id)
                     colors[vertex.id] = ColorEnum.BLACK
-                if colors.get(vertex.id,
-                              ColorEnum.WHITE) == ColorEnum.WHITE:
+                if colors.get(vertex.id, ColorEnum.WHITE) == ColorEnum.WHITE:
                     stack.append(vertex)
                     colors[vertex.id] = ColorEnum.GREY
                     for next_vertex, weight in vertex.connections:
-                        if colors.get(next_vertex.id,
-                                      ColorEnum.WHITE) == ColorEnum.WHITE:
+                        if (
+                            colors.get(next_vertex.id, ColorEnum.WHITE)
+                            == ColorEnum.WHITE
+                        ):
                             stack.append(next_vertex)
             for node in visited:
                 ksids[node] = iteration_id
@@ -69,6 +68,16 @@ def solution(ribble_map, n):
     return ksids2.values()
 
 
-m, n, k = parse_input(open("input.txt", "r"))
-data = solution(m, n)
-print(len(data), *map(lambda x: " ".join(map(str, sorted(x))), data), sep="\n")
+def main():
+    m, n, k = parse_input(open("input.txt", "r"))
+    data = solution(m, n)
+    print(
+        len(data),
+        *map(lambda x: " ".join(map(str, sorted(x))), data),
+        sep="\n",
+        file=open("output.txt", "w")
+    )
+
+
+if __name__ == "__main__":
+    main()
