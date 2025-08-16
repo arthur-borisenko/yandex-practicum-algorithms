@@ -1,4 +1,10 @@
-class VertexAbstraction:
+class ColorEnum:
+    WHITE = 1
+    GREY = 2
+    BLACK = 3
+
+
+class Vertex:
     def __init__(self, id, ribble_map):
         self.data = ribble_map
         self.id = id
@@ -7,7 +13,7 @@ class VertexAbstraction:
     def connections(self):
         ribbles_for_node = self.data.get(self.id, {})
         for second in sorted(ribbles_for_node.keys(), reverse=True):
-            yield VertexAbstraction(second, self.data), ribbles_for_node[second]
+            yield Vertex(second, self.data), ribbles_for_node[second]
 
     def hasChild(self, child):
         return child in self.connections
@@ -31,19 +37,19 @@ def dfs(start, ribble_map):
     stack = []
     e, l = {}, {}
     t = 0
-    stack.append(VertexAbstraction(start, ribble_map))
-    colors[start] = "white"
+    stack.append(Vertex(start, ribble_map))
+    colors[start] = ColorEnum.WHITE
     while stack:
         vertex = stack.pop()
-        if colors.get(vertex.id, "white") == "grey":
-            colors[vertex.id] = "black"
+        if colors.get(vertex.id, ColorEnum.WHITE) == ColorEnum.GREY:
+            colors[vertex.id] = ColorEnum.BLACK
             l[vertex.id] = t
             t += 1
-        if colors.get(vertex.id, "white") == "white":
+        if colors.get(vertex.id, ColorEnum.WHITE) == ColorEnum.WHITE:
             stack.append(vertex)
-            colors[vertex.id] = "grey"
+            colors[vertex.id] = ColorEnum.GREY
             for next_vertex, weight in vertex.connections:
-                if colors.get(next_vertex.id, "white") == "white":
+                if colors.get(next_vertex.id, ColorEnum.WHITE) == ColorEnum.WHITE:
                     stack.append(next_vertex)
             e[vertex.id] = t
             t += 1
@@ -52,12 +58,14 @@ def dfs(start, ribble_map):
 
 def main():
     m, n, k, s = parse_input(open("input.txt", "r"))
+    out = open("output.txt", "w")
     entry, leave = dfs(1, m)
     for e, l in zip(
         map(lambda x: x[1], sorted(entry.items(), key=lambda x: x[0])),
         map(lambda x: x[1], sorted(leave.items(), key=lambda x: x[0])),
     ):
-        print(e, l)
+        print(e, l, file=out)
+    out.close()
 
 
 if __name__ == "__main__":
