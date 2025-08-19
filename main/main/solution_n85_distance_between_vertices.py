@@ -1,6 +1,4 @@
 import math
-import sys
-from io import StringIO
 from queue import Queue
 
 
@@ -37,7 +35,7 @@ class Graph:
         return self.m.get(v, {}).keys()
 
 
-def d(start, target, graph: Graph, colors):
+def get_distance(start, target, graph: Graph, colors):
     queue = Queue()
     queue.put((start, 0))
     colors[start] = "white"
@@ -57,7 +55,7 @@ def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
         graph = Graph.parse_input(inp)
         start, end = map(int, inp.readline().split())
-        print(d(start, end, graph, {}), file=out)
+        print(get_distance(start, end, graph, {}), file=out)
 
 
 if __name__ == "__main__":
