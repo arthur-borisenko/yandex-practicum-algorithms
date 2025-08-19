@@ -36,7 +36,7 @@ class Graph:
         return self.m.get(v, {}).keys()
 
 
-def d(start, graph: Graph, colors):
+def get_max_distance(start, graph: Graph, colors):
     queue = Queue()
     queue.put((start, 0))
     colors[start] = "white"
@@ -56,7 +56,7 @@ def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
         graph = Graph.parse_input(inp)
         start = int(inp.readline())
-        print(d(start, graph, {}), file=out)
+        print(get_max_distance(start, graph, {}), file=out)
 
 
 if __name__ == "__main__":
