@@ -31,8 +31,7 @@ class Gh:
 
 def subgraph_size(start, graph: Gh, visited: set):
     res = 0
-    stack = []
-    stack.append(start)
+    stack = [start]
     while stack:
         vertex = stack.pop()
         if vertex not in visited:
