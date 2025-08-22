@@ -1,9 +1,12 @@
 import math
 from queue import Queue
 
+
 class ColorEnum:
     WHITE = 0
     GREY = 1
+
+
 class Graph:
     @classmethod
     def parse_input(cls, inp):
