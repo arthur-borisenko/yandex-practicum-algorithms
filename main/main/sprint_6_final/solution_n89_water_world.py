@@ -1,4 +1,5 @@
-import time
+MAX_Y = 1000
+X_BASE = MAX_Y * 10
 
 
 class Gh:
@@ -6,20 +7,20 @@ class Gh:
         self.mtx: list[list[bool]] = mtx
 
     def outgoing_edges(self, v) -> list[int]:
-        x, y = v // 10000, v % 10000
+        x, y = v // X_BASE, v % X_BASE
         res: list[int] = []
         if x - 1 >= 0 and self.mtx[y][x - 1]:
             x1 = x - 1
-            res.append(10000 * x1 + y)
+            res.append(X_BASE * x1 + y)
         if x + 1 < len(self.mtx[y]) and self.mtx[y][x + 1]:
             x2 = x + 1
-            res.append(10000 * x2 + y)
+            res.append(X_BASE * x2 + y)
         if y - 1 >= 0 and self.mtx[y - 1][x]:
             y1 = y - 1
-            res.append(10000 * x + y1)
+            res.append(X_BASE * x + y1)
         if y + 1 < len(self.mtx) and self.mtx[y + 1][x]:
             y2 = y + 1
-            res.append(10000 * x + y2)
+            res.append(X_BASE * x + y2)
         return res
 
 
@@ -28,7 +29,7 @@ def subgraph_size(start, graph: Gh):
     stack = [start]
     while stack:
         vertex = stack.pop()
-        x, y = vertex // 10000, vertex % 10000
+        x, y = vertex // X_BASE, vertex % X_BASE
         if graph.mtx[y][x]:
             res += 1
             graph.mtx[y][x] = False
@@ -47,7 +48,7 @@ def solution(inp):
     for y in range(n):
         for x in range(m):
             if graph.mtx[y][x]:
-                start = 10000 * x + y
+                start = X_BASE * x + y
                 sgs = subgraph_size(start, graph)
                 l += 1
                 s = max(s, sgs)
