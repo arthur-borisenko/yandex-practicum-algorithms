@@ -4,7 +4,11 @@ from collections import defaultdict
 from io import StringIO
 from queue import Queue
 
-
+class ColorEnum:
+    WHITE = 0
+    GREY = 1
+    RED = 2
+    BLUE = 3
 class Graph:
     @classmethod
     def parse_input(cls, inp):
@@ -40,39 +44,39 @@ class Graph:
 def bfs(start, graph: Graph, colors):
     queue = Queue()
     queue.put(start)
-    colors[start] = "white"
+    colors[start] = ColorEnum.WHITE
     while not queue.empty():
         vertex = queue.get()
-        if colors.get(vertex, "white") == "white":
+        if colors.get(vertex, ColorEnum.WHITE) == ColorEnum.WHITE:
             yield vertex
-            colors[vertex] = "grey"
+            colors[vertex] = ColorEnum.GREY
             for next_vertex in graph.outgoing_edges(vertex):
-                if colors.get(next_vertex, "white") == "white":
+                if colors.get(next_vertex, ColorEnum.WHITE) == ColorEnum.WHITE:
                     queue.put(next_vertex)
 
 
 def solution(graph: Graph):
-    colors = defaultdict(lambda: "white")
+    colors = defaultdict(lambda: ColorEnum.WHITE)
     search_colors = {}
     for start in graph.vertices:
         if start in search_colors:
             continue
-        colors[start] = "red"
+        colors[start] = ColorEnum.RED
         for vertex in bfs(start, graph, search_colors):
             for neighbor in graph.outgoing_edges(vertex):
-                if colors[vertex] == "white":
-                    if colors[neighbor] == "red":
-                        colors[vertex] = "blue"
-                    elif colors[neighbor] == "blue":
-                        colors[vertex] = "red"
-                if colors[vertex] == "red":
-                    if colors[neighbor] == "red":
+                if colors[vertex] == ColorEnum.WHITE:
+                    if colors[neighbor] == ColorEnum.RED:
+                        colors[vertex] = ColorEnum.BLUE
+                    elif colors[neighbor] == ColorEnum.BLUE:
+                        colors[vertex] = ColorEnum.RED
+                if colors[vertex] == ColorEnum.RED:
+                    if colors[neighbor] == ColorEnum.RED:
                         return False
-                    colors[neighbor] = "blue"
-                if colors[vertex] == "blue":
-                    if colors[neighbor] == "blue":
+                    colors[neighbor] = ColorEnum.BLUE
+                if colors[vertex] == ColorEnum.BLUE:
+                    if colors[neighbor] == ColorEnum.BLUE:
                         return False
-                    colors[neighbor] = "red"
+                    colors[neighbor] = ColorEnum.RED
     return True
 
 
