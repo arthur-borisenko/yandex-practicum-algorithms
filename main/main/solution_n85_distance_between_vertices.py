@@ -1,7 +1,9 @@
 import math
 from queue import Queue
 
-
+class ColorEnum:
+    WHITE = 0
+    GREY = 1
 class Graph:
     @classmethod
     def parse_input(cls, inp):
@@ -38,15 +40,15 @@ class Graph:
 def get_distance(start, target, graph: Graph, colors):
     queue = Queue()
     queue.put((start, 0))
-    colors[start] = "white"
+    colors[start] = ColorEnum.WHITE
     while not queue.empty():
         vertex, dist = queue.get()
-        if colors.get(vertex, "white") == "white":
-            colors[vertex] = "grey"
+        if colors.get(vertex, ColorEnum.WHITE) == ColorEnum.WHITE:
+            colors[vertex] = ColorEnum.GREY
             if vertex == target:
                 return dist
             for next_vertex in graph.outgoing_edges(vertex):
-                if colors.get(next_vertex, "white") == "white":
+                if colors.get(next_vertex, ColorEnum.WHITE) == ColorEnum.WHITE:
                     queue.put((next_vertex, dist + 1))
     return -1
 
