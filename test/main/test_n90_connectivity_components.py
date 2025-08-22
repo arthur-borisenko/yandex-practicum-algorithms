@@ -1,4 +1,4 @@
-from main.main import solution_n83_connectivity_components as task
+from main.main import solution_n90_connectivity_components as task
 import unittest
 
 from test.utils import testUtil
