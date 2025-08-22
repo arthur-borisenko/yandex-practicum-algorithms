@@ -37,7 +37,7 @@ class Edge:
         )
 
 
-class NuTipoEtoGraph:
+class Graph:
     def __init__(self, m, r):
         self.vertices = list(r)
         self.m = m
@@ -79,7 +79,7 @@ def add_vertex(graph, added, not_added, edges, vertex):
         heapq.heappush(edges, MaxHeapElement(edge))
 
 
-def solve(graph: NuTipoEtoGraph):
+def solve(graph: Graph):
     result = []
     added = set()
     not_added = set(graph.vertices)
@@ -98,7 +98,7 @@ def solve(graph: NuTipoEtoGraph):
 
 def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
-        graph = NuTipoEtoGraph.parse_input(inp)
+        graph = Graph.parse_input(inp)
         try:
             mst = solve(graph)
             print(sum(map(lambda x: x.weight, mst)), file=out)

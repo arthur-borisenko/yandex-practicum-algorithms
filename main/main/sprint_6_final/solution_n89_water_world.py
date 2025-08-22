@@ -37,8 +37,12 @@ def subgraph_size(start, graph: Gh):
     return res
 
 
-def aaa(inp):
-    graph, m, n = parse_input(inp)
+def solution(inp):
+    res = []
+    n, m = map(int, inp.readline().split())
+    for i in range(n):
+        res.append(list(map(lambda x: x == "#", inp.readline().strip())))
+    graph = Gh(res)
     l, s = 0, 0
     for y in range(n):
         for x in range(m):
@@ -50,15 +54,10 @@ def aaa(inp):
     return l, s
 
 
-def parse_input(inp):
-    res = []
-    n, m = map(int, inp.readline().split())
-    for i in range(n):
-        res.append(list(map(lambda x: x == "#", inp.readline().strip())))
-    graph = Gh(res)
-    return graph, m, n
+def main():
+    with open("input.txt") as inp, open("output.txt", "w") as out:
+        print(*solution(inp), file=out)
 
 
-# ts = time.time()
-print(*aaa(open("input.txt", "r")), file=open("output.txt", "w"))
-# print(time.time() - ts)
+if __name__ == "__main__":
+    main()
