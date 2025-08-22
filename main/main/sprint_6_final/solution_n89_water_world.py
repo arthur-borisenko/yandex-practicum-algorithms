@@ -1,18 +1,12 @@
 import time
 
 
-class ColorEnum:
-    WHITE: int = 0
-    GREY: int = 1
-
-
 class Gh:
     def __init__(self, mtx: list[list[bool]]):
         self.mtx: list[list[bool]] = mtx
 
     def outgoing_edges(self, v) -> list[int]:
-        result = v // 10000, v % 10000
-        x, y = result
+        x, y = v // 10000, v % 10000
         res: list[int] = []
         if x - 1 >= 0 and self.mtx[y][x - 1]:
             x1 = x - 1
@@ -29,37 +23,42 @@ class Gh:
         return res
 
 
-def subgraph_size(start, graph: Gh, visited: set):
+def subgraph_size(start, graph: Gh):
     res = 0
     stack = [start]
     while stack:
         vertex = stack.pop()
-        if vertex not in visited:
+        x, y = vertex // 10000, vertex % 10000
+        if graph.mtx[y][x]:
             res += 1
-            visited.add(vertex)
+            graph.mtx[y][x] = False
             for neighbor in graph.outgoing_edges(vertex):
-                if neighbor not in visited:
-                    stack.append(neighbor)
+                stack.append(neighbor)
     return res
 
 
 def aaa(inp):
+    graph, m, n = parse_input(inp)
+    l, s = 0, 0
+    for y in range(n):
+        for x in range(m):
+            if graph.mtx[y][x]:
+                start = 10000 * x + y
+                sgs = subgraph_size(start, graph)
+                l += 1
+                s = max(s, sgs)
+    return l, s
+
+
+def parse_input(inp):
     res = []
     n, m = map(int, inp.readline().split())
     for i in range(n):
         res.append(list(map(lambda x: x == "#", inp.readline().strip())))
     graph = Gh(res)
-    l, s = 0, 0
-    visited = set()
-    for y in range(n):
-        for x in range(m):
-            if res[y][x]:
-                start = 10000 * x + y
-                if start not in visited:
-                    sgs = subgraph_size(start, graph, visited)
-                    l += 1
-                    s = max(s, sgs)
-    return l, s
+    return graph, m, n
 
 
-print(*aaa(open("input.txt", "r")))
+# ts = time.time()
+print(*aaa(open("input.txt", "r")), file=open("output.txt", "w"))
+# print(time.time() - ts)
