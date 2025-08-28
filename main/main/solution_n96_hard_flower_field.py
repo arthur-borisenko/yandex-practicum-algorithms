@@ -1,3 +1,6 @@
+from io import StringIO
+
+
 class DirEnum:
     UP = "U"
     RIGHT = "R"
@@ -39,7 +42,7 @@ def main():
             else:
                 raise Exception
         # print(*path)
-        print(*path2, sep="", file=out)
+        print(*reversed(path2), sep="", file=out)
 
 
 if __name__ == '__main__':
