@@ -7,7 +7,7 @@ def main():
             rt = []
             mx = l[si]
             for i in range(si, len(l)):
-                if l[i] >= mx:
+                if l[i] > mx:
                     rt.append(i + 1)
                     mx = l[i]
             r = max(r, rt, key=len)
