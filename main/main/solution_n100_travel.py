@@ -5,7 +5,7 @@ def main():
         r = []
         for si in range(len(l)):
             rt = []
-            mx = l[si]
+            mx = l[si] - 1
             for i in range(si, len(l)):
                 if l[i] > mx:
                     rt.append(i + 1)
