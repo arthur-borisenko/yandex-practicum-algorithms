@@ -1,5 +1,6 @@
-import sys
 from collections import defaultdict
+
+MOD = 10**9 + 7
 
 
 class Graph:
@@ -61,9 +62,6 @@ def top_sort(start, graph):
     return list(reversed(list(_top_sort(start, graph, {}))))
 
 
-mod = 10**9 + 7
-
-
 def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
         n, m = map(int, inp.readline().split())
@@ -72,14 +70,13 @@ def main():
             p, t = map(int, inp.readline().split())
             rb.append((p, t))
         a, b = map(int, inp.readline().split())
-        g = Graph(rb)
-        aaa = top_sort(a, g)
+        graph = Graph(rb)
         counts = defaultdict(lambda: 0)
         counts[a] = 1
-        for v in aaa:
-            for p in g.parents(v):
+        for v in top_sort(a, graph):
+            for p in graph.parents(v):
                 counts[v] += counts[p]
-            counts[v] %= mod
+            counts[v] %= MOD
         print(counts[b], file=out)
 
 
