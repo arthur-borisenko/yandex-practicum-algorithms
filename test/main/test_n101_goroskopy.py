@@ -17,8 +17,8 @@ class TestCase(unittest.TestCase):
         self.assertEqual(
             value.rstrip(),
             """3
-1 3 4
-2 5 7
+2 3 4
+1 5 7
 
 """.rstrip(),
         )
@@ -53,8 +53,8 @@ class TestCase(unittest.TestCase):
         self.assertEqual(
             value.rstrip(),
             """3
-3 4 8
-3 4 5
+4 7 8
+1 3 5
 
 """.rstrip(),
         )
