@@ -1,31 +1,19 @@
-from collections import defaultdict
-
-ddd = defaultdict(dict)
-
-
-def aaaa(dt, tt, mt):
-    mt1 = mt
-    mt -= tt if tt is not None else 0
-    if mt < 0:
-        return 0
-    if mt == 0:
-        return 1
-    r = 0
-    for d in dt:
-        if tt is not None and d < tt:
-            continue
-        res = aaaa(dt, d, mt)
-        r += res
-    ddd[mt1][tt] = r
-    return r
-
-
 def main():
-    m = int(input())
-    n = int(input())
-    l = list(map(int, input().split()))
-    ff = aaaa(l, None, m)
-    print(ff + 1)
+    with open("input.txt", "r") as inp, open("output.txt", "w") as out:
+        m = int(inp.readline())
+        n = int(inp.readline())
+        dd = sorted(map(int, inp.readline().split()))
+        ddd = [[-1 for _ in range(n)] for _ in range(m + 1)]
+        ddd[0] = [1 for _ in range(n)]
+        for i in range(1, m + 1):
+            for j in range(n):
+                rr = 0
+                for k, d in enumerate(dd):
+                    if k > j or i < d or ddd[i - d][k] == -1:
+                        continue
+                    rr += ddd[i - d][k]
+                ddd[i][j] = rr
+        print(ddd[-1][-1], file=out)
 
 
 if __name__ == "__main__":
