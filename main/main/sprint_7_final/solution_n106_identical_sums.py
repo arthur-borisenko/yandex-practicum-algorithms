@@ -6,8 +6,7 @@ def knapsack(half_sum, l, n):
             not_take = d0[j - 1] if i > 0 else 0
             t_mw = j - l[i]
             take = (
-                ((l[i]) + (
-                    d0[t_mw - 1] if i > 0 and t_mw > 0 else 0))
+                ((l[i]) + (d0[t_mw - 1] if i > 0 and t_mw > 0 else 0))
                 if t_mw >= 0
                 else 0
             )
@@ -17,6 +16,7 @@ def knapsack(half_sum, l, n):
                 d1[j - 1] = not_take
         d0 = d1
     return d0
+
 
 def main():
     with open("input.txt", "r") as inp, open("output.txt", "w") as out:
@@ -30,8 +30,6 @@ def main():
 
         else:
             print(False, file=out)
-
-
 
 
 if __name__ == "__main__":
