@@ -16,3 +16,7 @@ def main():
                 iii -= 1
             i = ii + 1
         print(fuck[::-1], file=out)
+
+
+if __name__ == "__main__":
+    main()
