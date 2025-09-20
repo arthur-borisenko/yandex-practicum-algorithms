@@ -10,3 +10,7 @@ def main():
         x = normalize(inp.readline())
         y = normalize(inp.readline())
         print(-1 if x < y else 0 if x == y else 1, file=out)
+
+
+if __name__ == '__main__':
+    main()
