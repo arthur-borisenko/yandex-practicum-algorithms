@@ -1,5 +1,5 @@
-import main.main.solution_n113_camel_case as task
 import unittest
+import main.main.solution_n114_common_prefix as task
 from test.utils import testUtil
 
 
@@ -7,22 +7,16 @@ class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
             """3
-MamaMilaRamu
-MamaMia
-MonAmi
-2
-MM
-MA
-
+abacaba
+abudabi
+abcdefg
 
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """MamaMia
-MamaMilaRamu
-MonAmi
+            """2
 
 """.rstrip(),
         )
@@ -30,41 +24,32 @@ MonAmi
     def test_case2(self):
         value = testUtil.file_test(
             """2
-AlphaBetaGgamma
-AbcdBcdGggg
-2
-ABGG
-ABG
+tutu
+kukuku
+
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """AbcdBcdGggg
-AlphaBetaGgamma
+            """0
+
 """.rstrip(),
         )
 
     def test_case3(self):
         value = testUtil.file_test(
-            """5
-WudHnagkbhfwrbci
-WCUkvoxboxufsdap
-jdrxomezzrpuhbgi
-ZcGHdrPplfoldemu
-cylbtqwuxhiveznc
-3
-WGHV
-NKVDT
-ZGHU
+            """3
+qwe
+qwerty
+qwerpy
+
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """
-
-
+            """3
 
 """.rstrip(),
         )
