@@ -15,5 +15,7 @@ def main():
             if pp == pp2:
                 res.append(si + 1)
         print(*res, file=out)
+
+
 if __name__ == "__main__":
     main()
