@@ -79,4 +79,4 @@ def main():
                         current = next_node
                 ii = ii + 1
 
-        print("YES" if can_split[0] else "NO")
+        print("YES" if can_split[0] else "NO", file=out)
