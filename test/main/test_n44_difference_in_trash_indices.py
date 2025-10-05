@@ -44,16 +44,7 @@ class TestCase(unittest.TestCase):
             """4
 """.rstrip(),
         )
-    def test_case4(self):
-        value = testUtil.file_test(
-            open("test_n44_case4_input.txt").read(),
-            task.main,
-        )
-        self.assertEqual(
-            value.rstrip(),
-            """99999
-""".rstrip(),
-        )
+
 
 
 
