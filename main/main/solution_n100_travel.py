@@ -145,7 +145,7 @@ def main():
         pv = mx + 1
         while ii >= 0:
             if p0[ii] == pv - 1:
-                r.append(ii)
+                r.append(ii+1)
                 pv = p0[ii]
             ii -= 1
         print(mx, file=out)
