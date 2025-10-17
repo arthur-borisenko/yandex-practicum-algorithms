@@ -49,8 +49,10 @@ class TestCase(unittest.TestCase):
 
     def test_height(self):
         test_tree = AVLTree()
+        self.DEBUG=test_tree
         test_data = [1, 6, 3, 4, 21, 12, 43]
         for value in test_data:
             test_tree.insert(value)
-            assert self._check_height(test_tree.root)
+            r = self._check_height(test_tree.root)
+            assert r
 
