@@ -27,8 +27,8 @@ def main():
                 r.append(ii)
                 pv = p0[ii]
             ii -= 1
-        print(mx)
-        print(*reversed(r))
+        print(mx, file=out)
+        print(*reversed(r), file=out)
 
 
 if __name__ == "__main__":
