@@ -1,6 +1,3 @@
-from io import StringIO
-
-
 class DirEnum:
     UP = "U"
     RIGHT = "R"

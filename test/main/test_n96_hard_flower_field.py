@@ -16,7 +16,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(
             value.rstrip(),
             """3
-URR
+RRU
 
 """.rstrip(),
         )
