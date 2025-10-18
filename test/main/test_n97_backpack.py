@@ -16,11 +16,11 @@ class TestCase(unittest.TestCase):
             task.main,
         )
         lines = value.splitlines()
-        assert len(lines)>=2
-        self.assertEqual(
-            3,
-            int(lines[0]))
-        self.assertListEqual(sorted(list(map(int, lines[1].split())), reverse=True), [4, 3, 1])
+        assert len(lines) >= 2
+        self.assertEqual(3, int(lines[0]))
+        self.assertListEqual(
+            sorted(list(map(int, lines[1].split())), reverse=True), [4, 3, 1]
+        )
 
 
 if __name__ == "__main__":
