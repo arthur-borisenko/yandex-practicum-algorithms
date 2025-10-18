@@ -29,12 +29,11 @@ def main():
         for el in rr1:
             if el[0] >= t:
                 t = el[1]
-                rrr.append(
-                    list(map(lambda x: f"{x // 60}.{x % 60}", el)))
+                rrr.append(list(map(lambda x: f"{x // 60}.{x % 60}", el)))
         print(len(rrr), file=out)
         for v in rrr:
             print(*v, file=out)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
