@@ -1,4 +1,4 @@
-name: run-unittests.yaml
+name: check-codestyle.yaml
 on:
   push:
     branches-ignore:
@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
-          pipenv install --dev
+          pipenv install
       - name: Run black code style check
         run: |
           python -m black --check ./
