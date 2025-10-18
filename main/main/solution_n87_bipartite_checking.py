@@ -4,11 +4,14 @@ from collections import defaultdict
 from io import StringIO
 from queue import Queue
 
+
 class ColorEnum:
     WHITE = 0
     GREY = 1
     RED = 2
     BLUE = 3
+
+
 class Graph:
     @classmethod
     def parse_input(cls, inp):
