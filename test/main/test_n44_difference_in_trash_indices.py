@@ -31,6 +31,7 @@ class TestCase(unittest.TestCase):
             """0
 """.rstrip(),
         )
+
     def test_case3(self):
         value = testUtil.file_test(
             """3
@@ -44,8 +45,6 @@ class TestCase(unittest.TestCase):
             """4
 """.rstrip(),
         )
-
-
 
 
 if __name__ == "__main__":
