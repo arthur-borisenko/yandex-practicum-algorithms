@@ -11,7 +11,7 @@ def parse_input(inp):
     bsm = defaultdict(int)
     for i in range(m):
         x, y = map(int, inp.readline().split())
-        bsm[(x,y)] += 1
+        bsm[(x, y)] += 1
     return mss, bsm
 
 
@@ -27,7 +27,7 @@ def main():
             for x in range(x1 - 20, x1 + 21):
                 for y in range(y1 - 20, y1 + 21):
                     if math.dist([x, y], [x1, y1]) <= 20:
-                        r += bsm[(x,y)]
+                        r += bsm[(x, y)]
             if r > mr:
                 mr = r
                 mi = i
@@ -35,6 +35,5 @@ def main():
         print(mi + 1, file=out)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
