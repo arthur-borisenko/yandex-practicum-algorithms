@@ -1,5 +1,5 @@
 def main():
-    with open("input.txt","r") as inp, open("output.txt","w") as out:
+    with open("input.txt", "r") as inp, open("output.txt", "w") as out:
         n = int(inp.readline())
         ps = list(map(int, inp.readline().split()))
         bp = 0
@@ -22,5 +22,6 @@ def main():
                     pp = None
         print(sp - bp, file=out)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
