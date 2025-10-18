@@ -10,8 +10,7 @@ def main():
         inp1 = []
         n, m = map(int, inp.readline().split())
         for i in range(n):
-            inp1.append(
-                list(map(int, inp.readline().strip().rstrip())))
+            inp1.append(list(map(int, inp.readline().strip().rstrip())))
         d = [[0 for _ in range(m)] for _ in range(n)]
 
         for ii in range(-n + 1, 1):
@@ -27,5 +26,5 @@ def main():
         print(d[0][-1], file=out)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
