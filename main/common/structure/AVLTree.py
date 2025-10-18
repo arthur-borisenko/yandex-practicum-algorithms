@@ -5,16 +5,20 @@ class AVLTree:
             self.left = left
             self.right = right
             self.height = height
+
     def __init__(self):
         self.root = None
-        self._len=0
+        self._len = 0
+
     def __len__(self):
         return self._len
 
     def _get_height(self, node):
         return node.height if node is not None else 0
+
     def _recalc_height(self, node):
-        node.height= max(self._get_height(node.left), self._get_height(node.right)) + 1
+        node.height = max(self._get_height(node.left), self._get_height(node.right)) + 1
+
     def _small_left_rotation(self, a):
         b = a.right
         C = b.left
@@ -77,38 +81,69 @@ class AVLTree:
                 return self._big_right_rotation(vertex)
 
         return vertex
+
     def _insert(self, value):
         if self.root is None:
             self.root = self.Node(value)
             return self.root
-        current=self.root
-        fuck=[]
+        current = self.root
+        fuck = []
         while True:
             fuck.append(current)
             if value < current.value:
                 if current.left:
-                    current=current.left
+                    current = current.left
                 else:
-                    current.left=self.Node(value)
-                    for n in reversed(fuck): self._recalc_height(n)
+                    current.left = self.Node(value)
+                    for n in reversed(fuck):
+                        self._recalc_height(n)
                     return self.root
             elif value > current.value:
                 if current.right:
-                    current=current.right
+                    current = current.right
                 else:
-                    current.right=self.Node(value)
+                    current.right = self.Node(value)
                     self._recalc_height(current)
-                    for n in reversed(fuck): self._recalc_height(n)
+                    for n in reversed(fuck):
+                        self._recalc_height(n)
                     return self.root
             else:
                 raise ValueError("value is already in tree")
+
     def insert(self, value):
         """Inserts new node and performs rotation"""
         self.root = self._rotate(self._insert(value))
-        self._len+=1
-    def binary_nearest_search(self, target):
+        self._len += 1
+
+    def binary_nearest_search(self, target, key=lambda x: x):
         """Returns node with maximum value that is less or equal to target."""
-        current=self.root
+        current = self.root
+        best = None
+        if self.root is None:
+            return None
+        while True:
+            if current is None:
+                break
+            best = (
+                current
+                if (
+                    (not best or key(current.value) >= key(best.value))
+                    and key(current.value) <= target
+                )
+                else best
+            )
+            if key(current.value) > target:
+                current = current.left
+            elif key(current.value) < target:
+                current = current.right
+            else:
+                best = current
+                break
+        return best
+
+    def search(self, target):
+        """Returns node with maximum value that is less or equal to target."""
+        current = self.root
         if self.root is None:
             return None
         while True:
@@ -120,7 +155,7 @@ class AVLTree:
                 else:
                     return None
             elif current.value < target:
-                if current.right and current.right.value <= target:
+                if current.right:
                     current = current.right
                 else:
-                    return current
+                    return None
