@@ -13,8 +13,11 @@ def dp(v, k, m):
         d.append(aaa(d, i, k, m))
     return d[-1]
 
+
 def main():
     with open("input.txt") as inp, open("output.txt", "w") as out:
-        print(dp(*map(int, inp.readline().split()), 10**9+7), file=out)
-if __name__ == '__main__':
+        print(dp(*map(int, inp.readline().split()), 10**9 + 7), file=out)
+
+
+if __name__ == "__main__":
     main()
