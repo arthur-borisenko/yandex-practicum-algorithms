@@ -17,7 +17,7 @@
 - **Linked lists**: Built singly linked list with append, insert, and delete operations
 - **Stacks**: Created stack class supporting push/pop with O(1) operations
 - **Queues**: Implemented queue using fixed-capacity array with head/tail pointers
-- **Deque**: Developed double-ended queue with O(1) insertion/removal at both ends
+- **Deque**: Implemented double-ended queue with O(1) insertion/removal at both ends
 
 ### Sprint 3 - Recursive Algorithms and Sorting
 - **Binary search**: Implemented iterative and recursive versions for sorted arrays
@@ -28,7 +28,7 @@
 
 ### Sprint 4 - Hash Tables
 - **Hash tables with chaining**: Implemented hashmap-like structure using chaining and open-addressing collision resolution
-- **String hashing**: Used polynomial rolling hash with modulo arithmetic
+- **String hashing**: Implemented polynomial hash with modulo arithmetic
 - **Rabin-Karp algorithm**: Implemented substring search using hashing technique
 
 ### Sprint 5 - Trees
@@ -44,7 +44,7 @@
 - **BFS (Breadth-First Search)**: Shortest path finding in unweighted graphs
 - **Topological sorting**: Implemented topological sorting for DAGs
 - **Connectivity detection**: Component identification in undirected graphs
-- **Minimum spanning tree**: Kruskal's algorithm with Union-Find for cycle detection
+- **Minimum spanning tree**: Kruskal's algorithm
 - **Dijkstra's algorithm**: Shortest paths in weighted graphs using priority queue
 - **Floyd-Warshall algorithm**: All-pairs shortest paths computation
 - **Eulerian path detection**: Checked vertex degrees for Eulerian conditions

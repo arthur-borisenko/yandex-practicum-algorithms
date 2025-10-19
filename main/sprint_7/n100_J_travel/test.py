@@ -6,8 +6,6 @@ import main.sprint_7.n100_J_travel.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def check(self, il, val, el):
         self.assertGreaterEqual(len(val.splitlines()), 2)

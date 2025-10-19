@@ -4,6 +4,7 @@ import unittest
 from utils.testUtil import file_test
 import main.sprint_3.n29_A_skobki.solution as task
 
+
 class Test(unittest.TestCase):
     def test_case1(self):
         res = file_test(

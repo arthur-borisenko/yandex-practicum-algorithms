@@ -3,7 +3,7 @@ import os.path
 
 
 import unittest
-import main.sprint_4.n51_E_break_me.solution  as solution
+import main.sprint_4.n51_E_break_me.solution as solution
 
 
 def polynominal_hash(s, base, mod):

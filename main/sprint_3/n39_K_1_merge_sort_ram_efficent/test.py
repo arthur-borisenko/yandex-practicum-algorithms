@@ -5,6 +5,7 @@ import unittest
 import unittest.mock as mock
 import main.sprint_3.n39_K_1_merge_sort_ram_efficent.solution as task
 
+
 class TestMergeSort(unittest.TestCase):
     def _checker(self, i, o):
         exp = sorted(i)

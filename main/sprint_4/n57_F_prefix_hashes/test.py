@@ -2,11 +2,8 @@ from utils import testUtil
 import unittest
 
 
-
 import main.sprint_4.n57_F_prefix_hashes.solution as solution
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):

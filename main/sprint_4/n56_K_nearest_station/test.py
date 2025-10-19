@@ -6,8 +6,6 @@ import main.sprint_4.n56_K_nearest_station.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

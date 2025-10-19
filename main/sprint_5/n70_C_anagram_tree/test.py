@@ -2,7 +2,8 @@ from utils import testUtil
 import unittest
 
 
-from main.sprint_5.n70_C_anagram_tree.solution  import solution
+from main.sprint_5.n70_C_anagram_tree.solution import solution
+
 
 class Node:
     def __init__(self, value, left=None, right=None):

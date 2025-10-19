@@ -6,8 +6,6 @@ import main.sprint_7.n98_D_fibonacci_numbers_for_adults.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

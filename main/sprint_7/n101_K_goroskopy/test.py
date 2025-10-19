@@ -6,8 +6,6 @@ import main.sprint_7.n101_K_goroskopy.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

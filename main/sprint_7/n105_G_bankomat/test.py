@@ -6,8 +6,6 @@ import main.sprint_7.n105_G_bankomat.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

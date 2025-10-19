@@ -2,13 +2,10 @@ from utils import testUtil
 import math
 
 
-
 import main.sprint_1.n12_L_odd_letter.solution as task
 import unittest
 
 from utils import testUtil
-
-
 
 
 def is_simple(n: int):

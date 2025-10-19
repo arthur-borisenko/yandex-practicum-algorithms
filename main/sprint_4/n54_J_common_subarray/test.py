@@ -2,11 +2,8 @@ from utils import testUtil
 import unittest
 
 
-
 import main.sprint_4.n54_J_common_subarray.solution as solution
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):

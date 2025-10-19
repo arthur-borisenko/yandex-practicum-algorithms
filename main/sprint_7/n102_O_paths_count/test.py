@@ -6,8 +6,6 @@ import main.sprint_7.n102_O_paths_count.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

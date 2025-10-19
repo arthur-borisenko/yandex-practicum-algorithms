@@ -6,8 +6,6 @@ import main.sprint_7.n103_L_leprekon_gold.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

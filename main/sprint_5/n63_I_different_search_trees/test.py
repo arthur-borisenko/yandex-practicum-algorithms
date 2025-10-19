@@ -2,11 +2,8 @@ from utils import testUtil
 import unittest
 
 
-
-import main.sprint_5.n63_I_different_search_trees.solution  as solution
+import main.sprint_5.n63_I_different_search_trees.solution as solution
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):

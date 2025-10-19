@@ -6,8 +6,6 @@ import main.sprint_8.n110_K_compare_two_strings.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

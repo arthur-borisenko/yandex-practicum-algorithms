@@ -2,7 +2,7 @@ from utils import testUtil
 import unittest
 
 
-import main.sprint_5.n65_B_balanced_tree.solution  as solution
+import main.sprint_5.n65_B_balanced_tree.solution as solution
 
 
 class Node:

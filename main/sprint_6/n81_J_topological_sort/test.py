@@ -2,13 +2,10 @@ from utils import testUtil
 from io import StringIO
 
 
-
 import main.sprint_6.n81_J_topological_sort.solution as task
 import unittest
 
 from utils import testUtil
-
-
 
 
 def connections(vertex, ribbles_map):

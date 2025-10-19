@@ -6,8 +6,6 @@ import main.sprint_8.n115_G_search_with_shift.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

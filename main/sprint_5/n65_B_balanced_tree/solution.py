@@ -18,16 +18,16 @@ def _solution(node):
     ok = True
     if node.left is not None and node.right is None:
         lh, left_ok = _solution(node.left)
-        h=lh+1
+        h = lh + 1
         ok = ok and left_ok and lh <= 1
     if node.left is None and node.right is not None:
         rh, right_ok = _solution(node.right)
-        h=rh+1
+        h = rh + 1
         ok = ok and right_ok and rh <= 1
     if node.left is not None and node.right is not None:
         lh, left_ok = _solution(node.left)
         rh, right_ok = _solution(node.right)
-        h=max(lh, rh)+1
+        h = max(lh, rh) + 1
         ok = ok and left_ok and right_ok and abs(lh - rh) <= 1
     return h, ok
 

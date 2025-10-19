@@ -3,7 +3,10 @@ import unittest
 
 
 import main.sprint_4.n49_C_strange_comparsion.solution as task
-b=task.solution
+
+b = task.solution
+
+
 class TestCase(unittest.TestCase):
 
     def test1(self):

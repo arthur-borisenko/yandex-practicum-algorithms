@@ -4,6 +4,7 @@ import unittest
 
 from main.sprint_5.n69_D_tree_bliznetsy.solution import solution
 
+
 class Node:
     def __init__(self, value, left=None, right=None):
         self.value = value

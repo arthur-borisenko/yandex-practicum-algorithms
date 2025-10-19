@@ -2,11 +2,8 @@ from utils import testUtil
 import unittest
 
 
-
 import main.sprint_4.n50_D_polynominal_hash.solution as solution
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):

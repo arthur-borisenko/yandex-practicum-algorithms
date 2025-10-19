@@ -6,8 +6,6 @@ import main.sprint_8.n112_L_prefix_function_calculation.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

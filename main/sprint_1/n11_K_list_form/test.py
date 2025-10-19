@@ -11,8 +11,6 @@ import unittest
 from utils import testUtil
 
 
-
-
 def array_iterator(arr):
     i = 0
     while i < len(arr):

@@ -7,8 +7,6 @@ import unittest
 from utils import testUtil
 
 
-
-
 class Node:
     def __init__(self, value, next_item=None):
         self.value = value

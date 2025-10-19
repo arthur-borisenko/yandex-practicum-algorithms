@@ -2,8 +2,7 @@ from utils import testUtil
 import unittest
 
 
-
-import main.sprint_5.n62_E_search_tree.solution  as solution
+import main.sprint_5.n62_E_search_tree.solution as solution
 
 
 class Node:

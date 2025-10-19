@@ -6,8 +6,6 @@ import main.sprint_7.n104_E_alla_on_algosses.solution as task
 from utils import testUtil
 
 
-
-
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(

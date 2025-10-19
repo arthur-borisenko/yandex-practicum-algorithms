@@ -2,11 +2,8 @@ from utils import testUtil
 import unittest
 
 
-
-import main.sprint_4.n58_H_substrings.solution  as solution
+import main.sprint_4.n58_H_substrings.solution as solution
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):

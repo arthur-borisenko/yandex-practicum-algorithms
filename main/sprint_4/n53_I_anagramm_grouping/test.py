@@ -2,12 +2,9 @@ from utils import testUtil
 import unittest
 
 
-
-import main.sprint_4.n53_I_anagramm_grouping.solution  as solution
+import main.sprint_4.n53_I_anagramm_grouping.solution as solution
 
 from utils import testUtil
-
-
 
 
 class TestCase(unittest.TestCase):
