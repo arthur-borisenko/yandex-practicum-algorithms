@@ -1,5 +1,5 @@
 import unittest
-from common.structure.AVLTree import AVLTree
+from common.structure.AVLTree.AVLTree import AVLTree
 
 
 class TestCase(unittest.TestCase):

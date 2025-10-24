@@ -1,5 +1,5 @@
-from common.sorting import tester
-from common.sorting import count_sort
+from common.sorting import SortingTestUtil
+from common.sorting.countsort import count_sort
 
 
 class TestCountSort(tester.SortTester):

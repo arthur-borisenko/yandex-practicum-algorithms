@@ -1,5 +1,5 @@
-from common.sorting import tester
-from common.sorting import merge_sort
+from common.sorting import SortingTestUtil
+from common.sorting.mergesort import merge_sort
 
 
 class TestMergeSorted(tester.SortTester):
