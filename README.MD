@@ -6,11 +6,9 @@
 ## Objectives Learned
 
 ### Sprint 1 - Basics of Python
-- Efficient input/output handling under time constraints
-- Linear search implementation with O(n) complexity
+- input/output handling
+- Linear search
 - Time complexity estimation and optimization basics
-- Writing clean, readable code with proper variable naming
-- Problem decomposition for simple algorithmic tasks
 
 ### Sprint 2 - Basic Data Structures
 - **Fixed-size arrays**: Implemented ring buffer using array-based storage with modulo indexing
@@ -55,9 +53,8 @@
 - **Classic problems solved:**
   - Edit distance (Levenshtein distance)
   - Knapsack problem variants
-  - Fibonacci sequence optimization
+  - Fibonacci sequence
   - Longest increasing subsequence
-- **State space optimization**: Reduced memory usage by tracking only necessary states
 ### Sprint 8 - String-based algorithms
 - **basics of strings: basic operations, substrings, prefixes and suffixes**
 - **Prefix function**
