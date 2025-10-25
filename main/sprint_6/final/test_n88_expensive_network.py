@@ -1,39 +1,52 @@
 import unittest
-import main.sprint_8_final.solution_n119_packed_prefix as task
+import main.sprint_6.final.solution_n88_expensive_network as task
 from utils import testUtil
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """3
-2[a]2[ab]
-3[a]2[r2[t]]
-a2[aa3[b]]
-
+            """4 4
+1 2 5
+1 3 6
+2 4 8
+3 4 3
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """aaa
+            """19
 
 """.rstrip(),
         )
 
     def test_case2(self):
         value = testUtil.file_test(
+            """3 3
+1 2 1
+1 2 2
+2 3 1
+""".rstrip(),
+            task.main,
+        )
+        self.assertEqual(
+            value.rstrip(),
             """3
-abacabaca
-2[abac]a
-3[aba]
+
+""".rstrip(),
+        )
+
+    def test_case3(self):
+        value = testUtil.file_test(
+            """2 0
 
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """aba
+            """Oops! I did it again
 
 """.rstrip(),
         )

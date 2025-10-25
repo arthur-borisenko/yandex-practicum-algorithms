@@ -1,38 +1,61 @@
 import unittest
-import main.sprint_6_final.solution_n89_water_world as task
+import main.sprint_8.final.solution_n120_shpargalka as task
 from utils import testUtil
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """3 3
-#.#
-.#.
-#.#
+            """examiwillpasstheexam
+5
+will
+pass
+the
+exam
+i
+
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """5 1
+            """YES
 
 """.rstrip(),
         )
 
     def test_case2(self):
         value = testUtil.file_test(
-            """4 5
-#####
-.#...
-..#..
-#####
+            """abacaba
+2
+abac
+caba
+
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """2 6
+            """NO
+
+""".rstrip(),
+        )
+
+    def test_case3(self):
+        value = testUtil.file_test(
+            """abacaba
+3
+abac
+caba
+aba
+
+""".rstrip(),
+            task.main,
+        )
+        self.assertEqual(
+            value.rstrip(),
+            """YES
+
 """.rstrip(),
         )
 

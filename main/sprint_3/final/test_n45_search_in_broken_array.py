@@ -1,4 +1,4 @@
-import main.sprint_3_final.solution_n45_search_in_broken_array as sol
+import main.sprint_3.final.solution_n45_search_in_broken_array as sol
 import random
 import unittest
 

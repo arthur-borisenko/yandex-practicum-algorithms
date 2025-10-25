@@ -2,7 +2,7 @@ import random
 import unittest
 from functools import cmp_to_key
 
-import main.sprint_3_final.solution_n46_efficent_quicksort as solution
+import main.sprint_3.final.solution_n46_efficent_quicksort as solution
 from utils import testUtil
 
 

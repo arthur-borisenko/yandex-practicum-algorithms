@@ -1,10 +1,10 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
-### Sprint 3 - Recursion and Sorting
-- **Recursion:** Implemented recursive algorithms for generating combinations and sequences
-- **Sorting algorithms:** Implemented various sorting techniques including bubble sort and merge sort
-- **Binary search:** Applied binary search for efficient element lookup in sorted arrays
-- **Greedy algorithms:** Solved optimization problems using greedy approach
-- **Divide and conquer:** Applied divide and conquer strategy for efficient problem solving
+### Sprint 3 - Recursive Algorithms and Sorting
+- **Binary search**: Implemented iterative and recursive versions for sorted arrays(tasks: L, O)
+- **Bubble sort**: Basic O(n²) sorting(tasks: J)
+- **Merge sort**: O(n log n) sorting algorithm(tasks: K)
+- **Quicksort**: Another O(n log n) sorting algorithm(tasks: final A)
+- **Counting sort**: Linear-time non-comparison sorting for integers within limited range(tasks: D_1, E_1, F_1, G, I)
 
 ### Tasks:
 - A: implemented bracket sequence generation algorithm
@@ -21,5 +21,5 @@
 - L: implemented binary search algorithm
 - M: implemented golden mean finding algorithm
 - N: implemented interval merging algorithm
-- O: implemented partial sorting algorithm
-- P: implemented efficient array chunking algorithm
+- O: practiced in binary search
+- P: implemented array chunking algorithm

@@ -1,10 +1,9 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 4 - Hash Tables and Hash Functions
-- **Hash functions:** Implemented polynomial hash function for strings
-- **Hash tables:** Created hash table implementations with collision resolution
-- **String algorithms:** Applied hash-based techniques for efficient string processing
-- **Substring search:** Implemented efficient substring search using hash techniques
-- **Hash collisions:** Analyzed and handled hash function collisions
+- **Hash functions:** Implemented polynomial hash function for strings(tasks: D, F)
+- **Hash tables:** Practiced hash table usage(tasks: A, B, C, G, I, K, L)
+- **String algorithms:** Applied hash-based techniques for efficient string processing(tasks: C, F, I, J, L)
+- **Hash collisions:** Analyzed and handled hash function collisions(tasks: E, J)
 
 ### Tasks:
 - A: implemented geometric objects hashing algorithm

@@ -1,4 +1,5 @@
-from main.sprint_5_final import solution_n76_remove_node as task
+from main.sprint_5.final import \
+    solution_n76_remove_node as task
 import unittest
 
 

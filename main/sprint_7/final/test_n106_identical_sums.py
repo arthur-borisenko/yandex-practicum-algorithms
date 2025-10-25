@@ -1,61 +1,34 @@
 import unittest
-import main.sprint_8_final.solution_n120_shpargalka as task
+import main.sprint_7.final.solution_n106_identical_sums as task
 from utils import testUtil
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """examiwillpasstheexam
-5
-will
-pass
-the
-exam
-i
+            """4
+1 5 7 1
 
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """YES
-
+            """True
 """.rstrip(),
         )
 
     def test_case2(self):
         value = testUtil.file_test(
-            """abacaba
-2
-abac
-caba
+            """3
+2 10 9
 
 """.rstrip(),
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
-            """NO
-
-""".rstrip(),
-        )
-
-    def test_case3(self):
-        value = testUtil.file_test(
-            """abacaba
-3
-abac
-caba
-aba
-
-""".rstrip(),
-            task.main,
-        )
-        self.assertEqual(
-            value.rstrip(),
-            """YES
-
+            """False
 """.rstrip(),
         )
 

@@ -1,10 +1,9 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 6 - Graphs
-- **Graph representations:** Implemented adjacency list and adjacency matrix representations
-- **Graph traversal:** Applied depth-first search (DFS) and breadth-first search (BFS) algorithms
-- **Shortest paths:** Implemented algorithms for finding shortest paths in graphs
-- **Topological sorting:** Applied topological sort algorithm for directed acyclic graphs
-- **Graph properties:** Analyzed connectivity, bipartiteness, and other graph properties
+- **Graph representations:** Implemented adjacency list and adjacency matrix representations(tasks: A, B, C, D, E, F, G, H, J, K, L, M)
+- **Graph traversal:** Applied depth-first search (DFS) and breadth-first search (BFS) algorithms(tasks: C, D, E, H, K, L, M)
+- **Shortest paths:** Implemented algorithms for finding shortest paths in graphs(tasks: F, G)
+- **Topological sorting:** Applied topological sort algorithm for directed acyclic graphs(tasks: J)
 
 ### Tasks:
 - A: implemented adjacency list construction algorithm

@@ -1,5 +1,5 @@
 import unittest
-from main.sprint_1_final import solution_n14_lovkost_ruk as task
+from main.sprint_1.final import solution_n14_lovkost_ruk as task
 from utils import testUtil
 
 

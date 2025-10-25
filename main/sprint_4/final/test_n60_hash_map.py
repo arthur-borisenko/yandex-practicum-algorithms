@@ -1,6 +1,6 @@
 import unittest
 
-import main.sprint_4_final.solution_n60_hash_map as solution
+import main.sprint_4.final.solution_n60_hash_map as solution
 from utils import testUtil
 
 

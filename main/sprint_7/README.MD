@@ -1,10 +1,12 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 7 - Dynamic Programming
-- **Fibonacci numbers:** Implemented efficient Fibonacci calculation using dynamic programming
-- **Knapsack problem:** Solved the classic knapsack problem with various constraints
-- **Path counting:** Applied dynamic programming to count paths in grids
-- **Optimal substructure:** Identified and utilized optimal substructure in various problems
-- **Memoization:** Implemented memoization techniques to avoid redundant calculations
+- **Fibonacci numbers:** Implemented efficient Fibonacci calculation using dynamic programming(tasks: D)
+- **Knapsack problem:** Solved the classic knapsack problem with various constraints(tasks: M, L)
+- **Timetable problem:** Solved the classic timetable problem using greedy programming(tasks: B)
+- **Path counting:** Applied dynamic programming to count paths in grids(tasks: H, I)
+- **1-dimension DP:** various problems(tasks: D, J, O, L, E)
+- **2-dimension DP:** various problems(tasks: H, I, M, N, K)
+
 
 ### Tasks:
 - A: implemented optimal exchange calculation algorithm

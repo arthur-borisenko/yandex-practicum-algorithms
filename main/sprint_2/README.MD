@@ -1,10 +1,11 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 2 - Basic Data Structures
-- **Fixed-size arrays:** Implemented ring buffer using array-based storage with modulo indexing
-- **Linked lists:** Built singly linked list with append, insert, and delete operations
-- **Stacks:** Created stack class supporting push/pop with O(1) operations
-- **Queues:** Implemented queue using fixed-capacity array with head/tail pointers
-- **Deque:** Implemented double-ended queue with O(1) insertion/removal at both ends
+- **Fixed-size arrays:** Implemented ring buffer using array-based storage with modulo indexing(tasks: A, I)
+- **Linked lists:** Built singly linked list with append, insert, and delete operations(tasks: B, C, D, E, J)
+- **Stacks:** Created stack class supporting push/pop with O(1) operations(tasks: F, G, H)
+- **Queues:** Implemented queue using fixed-capacity array with head/tail pointers(tasks: I, J)
+- **Deque:** Implemented double-ended queue with O(1) insertion/removal at both ends(tasks: )
+- **Recursion:** Implemented recursive and iterative algorithms(tasks: K, L)
 
 
 ### Tasks:

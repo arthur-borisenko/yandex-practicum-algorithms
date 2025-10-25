@@ -1,51 +1,50 @@
-import unittest
-import main.sprint_7_final.solution_n107_levenstain_distance as task
 from utils import testUtil
+import unittest
+
+
+import main.sprint_3.n44_O_difference_in_trash_indices.solution as task
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """abacaba
-abaabc
-
-""".rstrip(),
-            task.main,
-        )
-        self.assertEqual(
-            value.rstrip(),
-            """2
-
-""".rstrip(),
-        )
-
-    def test_case2(self):
-        value = testUtil.file_test(
-            """innokentiy
-innnokkentia
-
-""".rstrip(),
-            task.main,
-        )
-        self.assertEqual(
-            value.rstrip(),
             """3
-
-""".rstrip(),
-        )
-
-    def test_case3(self):
-        value = testUtil.file_test(
-            """r
-x
-
-""".rstrip(),
+2 3 4
+2
+""",
             task.main,
         )
         self.assertEqual(
             value.rstrip(),
             """1
+""".rstrip(),
+        )
 
+    def test_case2(self):
+        value = testUtil.file_test(
+            """3
+1 3 1
+1
+""",
+            task.main,
+        )
+        self.assertEqual(
+            value.rstrip(),
+            """0
+""".rstrip(),
+        )
+
+    def test_case3(self):
+        value = testUtil.file_test(
+            """3
+1 3 5
+3
+""",
+            task.main,
+        )
+        self.assertEqual(
+            value.rstrip(),
+            """4
 """.rstrip(),
         )
 

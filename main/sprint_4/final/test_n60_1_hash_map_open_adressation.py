@@ -1,6 +1,6 @@
 import unittest
 
-import main.sprint_4_final.solution_n60_1_hash_map_open_addressation as solution
+import main.sprint_4.final.solution_n60_1_hash_map_open_addressation as solution
 from utils import testUtil
 
 

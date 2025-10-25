@@ -1,10 +1,8 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 8 - String Algorithms
-- **String manipulation:** Implemented various string transformation algorithms
-- **Pattern matching:** Applied efficient pattern matching techniques
-- **Prefix functions:** Implemented and utilized prefix functions for string processing
-- **String search:** Developed algorithms for efficient substring search
-- **Text processing:** Implemented algorithms for text analysis and manipulation
+- **Prefix functions:** Implemented and utilized prefix functions for string processing(tasks: L, D, H, I)
+- **Prefix Tree:** Implemented and used prefix tree(tasks: J)
+- **String search and pattern matching:** Implemented algorithms for various substrings search(tasks: H, J, G, I, D)
 
 ### Tasks:
 - A: implemented string reversal algorithm

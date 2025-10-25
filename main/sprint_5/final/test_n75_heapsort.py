@@ -1,44 +1,50 @@
-from utils import testUtil
+from main.sprint_5.final import \
+    solution_n75_heapsort as task
 import unittest
 
-
-import main.sprint_7.n96_J_hard_flower_field.solution as task
 from utils import testUtil
 
 
 class TestCase(unittest.TestCase):
     def test_case1(self):
         value = testUtil.file_test(
-            """2 3
-101
-110
-
-""".rstrip(),
+            """5
+alla 4 100
+gena 6 1000
+gosha 2 90
+rita 2 90
+timofey 4 80""",
             task.main,
         )
         self.assertEqual(
-            value.rstrip(),
-            """3
-RRU
-
-""".rstrip(),
+            value,
+            """gena
+timofey
+alla
+gosha
+rita
+""",
         )
 
     def test_case2(self):
         value = testUtil.file_test(
-            """3 3
-100
-110
-001
-
-""".rstrip(),
+            """5
+alla 0 0
+gena 0 0
+gosha 0 0
+rita 0 0
+timofey 0 0
+""",
             task.main,
         )
         self.assertEqual(
-            value.rstrip(),
-            """2
-URRU
-""".rstrip(),
+            value,
+            """alla
+gena
+gosha
+rita
+timofey
+""",
         )
 
 

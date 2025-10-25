@@ -1,10 +1,9 @@
 # My solutions of Yandex Practicum course "Algorithms and Data Structures"
 ### Sprint 5 - Trees and Heaps
-- **Binary search trees:** Implemented BST with insertion, deletion, and search operations
-- **Tree traversal:** Applied various tree traversal algorithms (in-order, pre-order, post-order)
-- **Balanced trees:** Analyzed tree balance properties and implemented balance checks
-- **Heap data structure:** Implemented heap operations including sift-up and sift-down
-- **Tree algorithms:** Solved various tree-related problems using recursive and iterative approaches
+- **Binary search trees:** Implemented BST with insertion, deletion, and search operations(tasks: E, I, J, K, N)
+- **Tree traversal:** Applied various tree traversal algorithms (in-order, pre-order, post-order)(tasks: A, C, F, G, H)
+- **Balanced trees:** Analyzed tree balance properties and implemented balance checks(tasks: B, N)
+- **Heap data structure:** Implemented heap operations including sift-up and sift-down(tasks: L, M)
 
 ### Tasks:
 - A: implemented tree node counting algorithm
