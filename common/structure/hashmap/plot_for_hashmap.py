@@ -1,7 +1,7 @@
 import random
 import time
 from matplotlib import pyplot
-import main.common.structures.hashmap as hm
+import common.structure.hashmap.hashmap as hm
 
 
 def o1(n, k):

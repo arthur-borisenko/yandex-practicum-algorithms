@@ -2,7 +2,7 @@ from common.sorting import SortingTestUtil
 from common.sorting.countsort import count_sort
 
 
-class TestCountSort(tester.SortTester):
+class TestCountSort(SortingTestUtil.SortTester):
     def test_already_sorted(self):
         inp_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         res = self._patch_sorted(count_sort.count_sort, inp_arr)
@@ -29,7 +29,7 @@ class TestCountSort(tester.SortTester):
         self._checker(inp_arr, res)
 
 
-class TestCountSortReversed(tester.SortTester):
+class TestCountSortReversed(SortingTestUtil.SortTester):
     def test_already_sorted(self):
         inp_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         res = self._patch_sorted(count_sort.count_sort, inp_arr, reverse=True)

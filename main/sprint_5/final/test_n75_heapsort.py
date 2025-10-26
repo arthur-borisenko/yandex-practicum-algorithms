@@ -1,5 +1,4 @@
-from main.sprint_5.final import \
-    solution_n75_heapsort as task
+from main.sprint_5.final import solution_n75_heapsort as task
 import unittest
 
 from utils import testUtil

@@ -3,7 +3,7 @@ import random
 import time
 import unittest
 
-import common.structure.hashmap as hashmap
+import common.structure.hashmap.hashmap as hashmap
 
 
 class TestCase(unittest.TestCase):

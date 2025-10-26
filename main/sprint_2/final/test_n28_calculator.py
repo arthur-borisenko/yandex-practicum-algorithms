@@ -1,6 +1,5 @@
 import unittest
-from main.sprint_2.final import \
-    solution_n28_calculator as task
+from main.sprint_2.final import solution_n28_calculator as task
 from utils import testUtil
 
 

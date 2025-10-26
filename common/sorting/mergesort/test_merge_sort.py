@@ -2,7 +2,7 @@ from common.sorting import SortingTestUtil
 from common.sorting.mergesort import merge_sort
 
 
-class TestMergeSorted(tester.SortTester):
+class TestMergeSorted(SortingTestUtil.SortTester):
 
     def test_case1(self):
 
